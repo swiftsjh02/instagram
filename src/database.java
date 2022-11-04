@@ -49,4 +49,26 @@ public class database {
 
 
     }
+
+    public Boolean register(String idclient, String pwdclient) {
+        String sq = "insert into user values(?,?)";
+        try {
+            preparedstatement =con.prepareStatement(sq);
+            preparedstatement.setString(1,idclient);
+            preparedstatement.setString(2,pwdclient);
+            int count = preparedstatement.executeUpdate();
+            if (count == 0) {
+                System.out.println("데이터 입력 실패");
+                return false;
+            } else {
+                System.out.println("데이터 입력 성공");
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+
+
+    }
 }
