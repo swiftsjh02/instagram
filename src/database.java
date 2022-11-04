@@ -29,13 +29,14 @@ public class database {
         }
     }
 
-    public Boolean logincheck(String id1, String password) {
-        String sq = "Select id,password from user where id="+id1;
+    public Boolean logincheck(String idclient, String pwdclient) {
+        String sq = "select * from user;";
         try {
             result = statement.executeQuery(sq);
             while(result.next()){
                 String pwdfromdb=result.getString(2);
-                if(pwdfromdb.equals(password)){
+                System.out.println(pwdfromdb);
+                if(pwdfromdb.equals(pwdclient)){
                     System.out.println("Correct ID and Password");
                     return true;
                 }
