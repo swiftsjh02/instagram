@@ -20,9 +20,12 @@ public class Login extends JFrame {
                 String password= txtPwd.getText();
                 System.out.println("ID: " + id + "\tPWD: " + password + "\n");
                 database con=new database();
-                con.logincheck(id,password);
-
-                ViewStudent view = new ViewStudent();
+                if(con.logincheck(id,password)==true){
+                    ViewStudent view = new ViewStudent();
+                }
+                else{
+                    System.out.println("x");
+                }
             }
         });
 

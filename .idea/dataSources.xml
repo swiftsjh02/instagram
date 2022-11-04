@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@swiftsjh.tplinkdns.com" uuid="893ed99f-0aa3-42b4-bcba-812be6d8022f">
+    <data-source source="LOCAL" name="insta@swiftsjh.tplinkdns.com" uuid="e1387b52-8372-475a-b77b-019d6ecfd591">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://swiftsjh.tplinkdns.com:3306</jdbc-url>
+      <jdbc-url>jdbc:mysql://swiftsjh.tplinkdns.com:3306/insta</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
