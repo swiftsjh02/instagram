@@ -30,12 +30,11 @@ public class database {
     }
 
     public Boolean logincheck(String idclient, String pwdclient) {
-        String sq = "select password from user where id="+idclient;
+        String sq = "select * from user";
         try {
             result = statement.executeQuery(sq);
             while(result.next()){
-                String pwdfromdb=result.getString(1);
-                System.out.println(pwdfromdb);
+                String pwdfromdb=result.getString(4);
                 if(pwdfromdb.equals(pwdclient)){
                     System.out.println("Correct ID and Password");
                     return true;
