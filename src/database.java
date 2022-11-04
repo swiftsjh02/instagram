@@ -49,4 +49,25 @@ public class database {
 
 
     }
+
+    public Boolean resgister(String idclient, String pwdclient) {
+        String sq = "insert into user values()";
+        try {
+            result = statement.executeQuery(sq);
+            while(result.next()){
+                String pwdfromdb=result.getString(4);
+                if(pwdfromdb.equals(pwdclient)){
+                    System.out.println("Correct ID and Password");
+                    return true;
+                }
+            }
+            System.out.println("no correct password or id");
+            return false;
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+
+
+    }
 }
