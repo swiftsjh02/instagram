@@ -24,7 +24,7 @@ public class Signup extends JFrame {
                 database con=new database();
 
                 //database 안에 회원가입 메서드를 불러와야함
-                //con.register(id,password);
+                con.register(id,password);
             }
         });
     }
