@@ -3,6 +3,7 @@ import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class Login extends JFrame {
     private JTextField txtId;
@@ -15,7 +16,12 @@ public class Login extends JFrame {
         OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("ID: " + txtId.getText() + "\tPWD: " + txtPwd.getText() + "\n");
+                String id= txtId.getText();
+                String password= txtPwd.getText();
+                System.out.println("ID: " + id + "\tPWD: " + password + "\n");
+                database con=new database();
+                con.logincheck(id,password);
+
                 ViewStudent view = new ViewStudent();
             }
         });
