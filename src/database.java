@@ -50,19 +50,20 @@ public class database {
 
     }
 
-    public Boolean resgister(String idclient, String pwdclient) {
-        String sq = "insert into user values()";
+    public Boolean register(String idclient, String pwdclient) {
+        String sq = "insert into user values(?,?)";
         try {
-            result = statement.executeQuery(sq);
-            while(result.next()){
-                String pwdfromdb=result.getString(4);
-                if(pwdfromdb.equals(pwdclient)){
-                    System.out.println("Correct ID and Password");
-                    return true;
-                }
+            preparedstatement =con.prepareStatement(sq);
+            preparedstatement.setString(1,idclient);
+            preparedstatement.setString(2,pwdclient);
+            int count = preparedstatement.executeUpdate();
+            if (count == 0) {
+                System.out.println("데이터 입력 실패");
+                return false;
+            } else {
+                System.out.println("데이터 입력 성공");
+                return true;
             }
-            System.out.println("no correct password or id");
-            return false;
         }catch (Exception e){
             System.out.println(e);
         }
