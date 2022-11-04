@@ -34,7 +34,7 @@ public class database {
         try {
             result = statement.executeQuery(sq);
             while(result.next()){
-                String pwdfromdb=result.getString(4);
+                String pwdfromdb=result.getString(2);
                 if(pwdfromdb.equals(pwdclient)){
                     System.out.println("Correct ID and Password");
                     return true;
