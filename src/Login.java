@@ -1,15 +1,13 @@
 import javax.swing.*;
-import javax.tools.Tool;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 public class Login extends JFrame {
     private JTextField txtId;
     private JTextField txtPwd;
     private JButton OKButton;
     private JPanel mainPanel;
+    private JButton signup;
 
 
     public Login() {
@@ -26,6 +24,11 @@ public class Login extends JFrame {
                 else{
                     System.out.println("x");
                 }
+            }
+        });
+        signup.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                Signup sign = new Signup();
             }
         });
 
