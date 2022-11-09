@@ -19,7 +19,7 @@ public class Login extends JFrame {
                 System.out.println("ID: " + id + "\tPWD: " + password + "\n");
                 database con=new database();
                 if(con.logincheck(id,password)==true){
-                    ViewStudent view = new ViewStudent();
+                    mainFeed view = new mainFeed();
                 }
                 else{
                     System.out.println("x");
