@@ -4,21 +4,22 @@ import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
     private JTextField txtId;
-    private JTextField txtPwd;
     private JButton OKButton;
     private JPanel mainPanel;
     private JButton signup;
+    private JPasswordField enpassword;
 
 
     public Login() {
         OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String id= txtId.getText();
-                String password= txtPwd.getText();
-                System.out.println("ID: " + id + "\tPWD: " + password + "\n");
+                String email= txtId.getText();
+                char[] char_password= enpassword.getPassword();
+                String password= new String(char_password);
+                System.out.println("email: " + email + "\tPWD: " + password + "\n");
                 database con=new database();
-                if(con.logincheck(id,password)==true){
+                if(con.logincheck(email,password)==true){
                     ViewStudent view = new ViewStudent();
                 }
                 else{

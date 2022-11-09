@@ -4,9 +4,10 @@ import java.awt.event.ActionListener;
 
 public class Signup extends JFrame {
     private JPanel panel1;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField id;
+    private JTextField email;
     private JButton button1;
+    private JPasswordField pwd;
 
     public Signup(){
         setContentPane(panel1);
@@ -18,14 +19,19 @@ public class Signup extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String id= textField1.getText();
-                String password= textField2.getText();
-                System.out.println("ID: " + id + "\tPWD: " + password + "\n");
-                database con=new database();
 
+                char[] password= pwd.getPassword();
+                String emailfromclient= email.getText();
+                System.out.println("email: " + emailfromclient + "\tPWD: " + password + "\n");
+                database con=new database();
+                String pwd_chartostr = new String(password);
                 //database 안에 회원가입 메서드를 불러와야함
-                con.register(id,password);
-                dispose();
+                if(con.register(emailfromclient,pwd_chartostr)==false){
+                    System.out.println("회원가입 오류");
+                }
+                else {
+                    dispose();
+                }
             }
         });
     }
