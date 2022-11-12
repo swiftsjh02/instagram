@@ -18,13 +18,7 @@ public class Login extends JFrame {
                 char[] char_password= enpassword.getPassword();
                 String password= new String(char_password);
                 System.out.println("email: " + email + "\tPWD: " + password + "\n");
-                database con=new database();
-                if(con.logincheck(email,password)==true){
-                    ViewStudent view = new ViewStudent();
-                }
-                else{
-                    System.out.println("x");
-                }
+
             }
         });
         signup.addActionListener(new ActionListener() {

@@ -22,16 +22,9 @@ public class Signup extends JFrame {
 
                 char[] password= pwd.getPassword();
                 String emailfromclient= email.getText();
-                System.out.println("email: " + emailfromclient + "\tPWD: " + password + "\n");
-                database con=new database();
+                System.out.println("ID: " + emailfromclient + "\tPWD: " + password + "\n");
                 String pwd_chartostr = new String(password);
-                //database 안에 회원가입 메서드를 불러와야함
-                if(con.register(emailfromclient,pwd_chartostr)==false){
-                    System.out.println("회원가입 오류");
-                }
-                else {
-                    dispose();
-                }
+
             }
         });
     }
