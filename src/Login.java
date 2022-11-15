@@ -28,6 +28,7 @@ public class Login extends JFrame {
         });
         signup.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
+
                 Signup sign = new Signup();
             }
         });
