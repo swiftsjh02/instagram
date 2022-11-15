@@ -13,7 +13,7 @@ public class Signup extends JFrame {
         setContentPane(panel1);
         setSize(450, 300);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-
+        loginregister registermanager= new loginregister();
         setTitle("signup");
         setVisible(true);
         button1.addActionListener(new ActionListener() {
@@ -24,6 +24,8 @@ public class Signup extends JFrame {
                 String emailfromclient= email.getText();
                 System.out.println("ID: " + emailfromclient + "\tPWD: " + password + "\n");
                 String pwd_chartostr = new String(password);
+                registermanager.register(emailfromclient,pwd_chartostr);
+
 
             }
         });

@@ -9,6 +9,10 @@ public class Login extends JFrame {
     private JButton signup;
     private JPasswordField enpassword;
 
+    private int session;
+
+    private loginregister loginmanager= new loginregister();
+
 
     public Login() {
         OKButton.addActionListener(new ActionListener() {
@@ -18,6 +22,12 @@ public class Login extends JFrame {
                 char[] char_password= enpassword.getPassword();
                 String password= new String(char_password);
                 System.out.println("email: " + email + "\tPWD: " + password + "\n");
+                session=loginmanager.login(email,password);
+                if(session!=-1){
+                    System.out.println("Error occured while login proccese");
+                }else{
+
+                }
 
             }
         });
