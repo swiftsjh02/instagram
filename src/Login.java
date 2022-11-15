@@ -26,7 +26,7 @@ public class Login extends JFrame {
                 if(session!=-1){
                     System.out.println("Error occured while login proccese");
                 }else{
-
+                    InitialScreen screen= new InitialScreen();
                 }
 
             }
