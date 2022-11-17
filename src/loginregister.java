@@ -68,4 +68,28 @@ public class loginregister {
 
         return -1; //when error occured return -1
     }
+
+    public int logout(String id){
+        try{
+            Socket socket= new Socket(host,port);
+            OutputStream os=socket.getOutputStream();
+            InputStream is=socket.getInputStream();
+            DataOutputStream ds= new DataOutputStream(os);
+            DataInputStream di=new DataInputStream(is);
+            PrintWriter pw= new PrintWriter(os);
+
+            ds.writeInt(300); //300 means logout status
+            ds.flush();
+            pw.println(id);
+            pw.flush();
+
+            os.close();
+            socket.close();
+            return 1;
+        }catch (Exception e){
+            System.out.println(e);
+            return -1;
+        }
+
+    }
 }
