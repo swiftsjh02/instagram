@@ -26,7 +26,7 @@ public class loginregister {
             int register_status=-1;
             register_status = di.readInt(); //get session id
             if(register_status==1){
-                System.out.println("회원가입 성공");
+                System.out.println("회원가입 성공");//
                 return  register_status;
             }
             os.close();
