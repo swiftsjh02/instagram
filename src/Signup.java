@@ -24,7 +24,12 @@ public class Signup extends JFrame {
                 String emailfromclient= email.getText();
                 System.out.println("ID: " + emailfromclient + "\tPWD: " + password + "\n");
                 String pwd_chartostr = new String(password);
-                registermanager.register(emailfromclient,pwd_chartostr);
+                if(registermanager.register(emailfromclient,pwd_chartostr)==1){
+                    dispose();
+                }
+                else{
+                    System.out.println("회원가입 실패");
+                }
 
 
             }

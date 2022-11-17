@@ -12,6 +12,8 @@ public class loginregister {
             Socket socket= new Socket(host,port);
             OutputStream os=socket.getOutputStream();
             DataOutputStream ds= new DataOutputStream(os);
+            InputStream is=socket.getInputStream();
+            DataInputStream di=new DataInputStream(is);
             PrintWriter pw= new PrintWriter(os);
             int id_len =id.getBytes().length;
             int pwd_len=password.getBytes().length;
@@ -21,6 +23,12 @@ public class loginregister {
             pw.flush();
             pw.println(password);
             pw.flush();
+            int register_status=-1;
+            register_status = di.readInt(); //get session id
+            if(register_status==1){
+                System.out.println("회원가입 성공");
+                return  register_status;
+            }
             os.close();
             socket.close();
 

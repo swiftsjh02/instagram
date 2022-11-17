@@ -26,7 +26,8 @@ public class Login extends JFrame {
                 if(session==-1){
                     System.out.println("Wrong id and password");
                 }else{
-                    InitialScreen screen= new InitialScreen();
+                    ViewStudent screen= new ViewStudent();
+                    dispose();
                 }
 
             }
