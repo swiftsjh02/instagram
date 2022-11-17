@@ -17,4 +17,9 @@ public class mainFeed {
 
 
     }
+
+    private void createUIComponents() {
+        searchButton = new JButton();
+        searchButton.setSize(100, 100);
+    }
 }
