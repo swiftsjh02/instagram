@@ -24,10 +24,13 @@ public class loginregister {
             pw.println(password);
             pw.flush();
             int register_status=-1;
-            register_status = di.readInt(); //get session id
+            register_status = di.readInt(); //get register status
             if(register_status==1){
                 System.out.println("회원가입 성공");//
                 return  register_status;
+            } else if (register_status==2) {
+                System.out.println("중복된 아이디 존재");
+                return register_status;
             }
             os.close();
             socket.close();
