@@ -13,9 +13,8 @@ public class Login extends JFrame {
 
 
     public Login() {
-        ImageIcon ImgTest = new ImageIcon("/Users/taewan/IdeaProjects/instagram/src/IMG/login.png");
-        ImgTest = imageSetSize(ImgTest, 800, 400);
-        Icon.setIcon(ImgTest);
+        ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 800, 400);
+        Icon.setIcon(mainphoto.getImg());
         Icon.setVisible(true);
 
         OKButton.addActionListener(new ActionListener() {
@@ -46,13 +45,6 @@ public class Login extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("AI-DB Instagram LogIn System");
         setVisible(true);
-    }
-
-    ImageIcon imageSetSize(ImageIcon icon, int i, int j) { // image Size Setting
-        Image ximg = icon.getImage();  //ImageIcon을 Image로 변환.
-        Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
-        ImageIcon xyimg = new ImageIcon(yimg);
-        return xyimg;
     }
 }
 

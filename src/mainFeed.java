@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.beans.Visibility;
 
-public class mainFeed {
+public class mainFeed extends JFrame{
     private JPanel panelBottom;
     private JButton homeButton;
     private JButton userHomeButton;
@@ -14,21 +14,34 @@ public class mainFeed {
     private JButton button3;
     private JButton button4;
     private JTextPane TextPane;
+    private JPanel main;
+
     public mainFeed(){
-        ImageIcon home = new ImageIcon("IMG/home.png");
-        Image img = home.getImage();
-        Image changeImg = img.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-        ImageIcon chageIcon = new ImageIcon(changeImg);
-        JButton bt = new JButton(chageIcon);
-
-        homeButton.add(bt);
-        homeButton.setSize(50,50);
+        ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
+        homeButton.setIcon(home.getImg());
         homeButton.setVisible(true);
+
+        ImgSetSize search = new ImgSetSize("src/IMG/search.png", 50, 50);
+        searchButton.setIcon(search.getImg());
+        searchButton.setVisible(true);
+
+        ImgSetSize reels = new ImgSetSize("src/IMG/reels.png", 50, 50);
+        reelsButton.setIcon(reels.getImg());
+        reelsButton.setVisible(true);
+
+        ImgSetSize shop = new ImgSetSize("src/IMG/shop.png", 50, 50);
+        shopButton.setIcon(shop.getImg());
+        shopButton.setVisible(true);
+
+//        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
+//        userHomeButton.setIcon(home.getImg());
+//        userHomeButton.setVisible(true);
+
+        setContentPane(main);
+        setSize(600,1100);
+        setVisible(true);
     }
 
-    private void createUIComponents() {
-        searchButton = new JButton();
-        searchButton.setSize(100, 100);
-    }
+
 }
 
