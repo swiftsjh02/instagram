@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +9,7 @@ public class Login extends JFrame {
     private JPanel mainPanel;
     private JButton signup;
     private JLabel Icon;
+    private JTextField txtpwd;
 
 
     public Login() {
@@ -34,14 +34,13 @@ public class Login extends JFrame {
         });
         signup.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-
                 Signup sign = new Signup();
             }
         });
 
         setContentPane(mainPanel);
 
-        setSize(1000, 1000);
+        setSize(800, 1100);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("AI-DB Instagram LogIn System");
         setVisible(true);

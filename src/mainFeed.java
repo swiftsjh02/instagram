@@ -19,23 +19,18 @@ public class mainFeed extends JFrame{
     public mainFeed(){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
-        homeButton.setVisible(true);
 
         ImgSetSize search = new ImgSetSize("src/IMG/search.png", 50, 50);
         searchButton.setIcon(search.getImg());
-        searchButton.setVisible(true);
 
         ImgSetSize reels = new ImgSetSize("src/IMG/reels.png", 50, 50);
         reelsButton.setIcon(reels.getImg());
-        reelsButton.setVisible(true);
 
         ImgSetSize shop = new ImgSetSize("src/IMG/shop.png", 50, 50);
         shopButton.setIcon(shop.getImg());
-        shopButton.setVisible(true);
 
 //        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
 //        userHomeButton.setIcon(home.getImg());
-//        userHomeButton.setVisible(true);
 
         setContentPane(main);
         setSize(600,1100);
