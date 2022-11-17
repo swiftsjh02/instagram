@@ -5,7 +5,7 @@ import java.util.*;
 public class loginregister {
 
     public static int port=9898;
-    public static String host="localhost";
+    public static String host="swiftsjh.tplinkdns.com";
 
     public int register(String id,String password){
         try{
