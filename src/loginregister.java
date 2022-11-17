@@ -24,10 +24,13 @@ public class loginregister {
             pw.println(password);
             pw.flush();
             int register_status=-1;
-            register_status = di.readInt(); //get session id
+            register_status = di.readInt(); //get register status
             if(register_status==1){
                 System.out.println("회원가입 성공");//
                 return  register_status;
+            } else if (register_status==2) {
+                System.out.println("중복된 아이디 존재");
+                return register_status;
             }
             os.close();
             socket.close();
@@ -64,5 +67,29 @@ public class loginregister {
         }
 
         return -1; //when error occured return -1
+    }
+
+    public int logout(String id){
+        try{
+            Socket socket= new Socket(host,port);
+            OutputStream os=socket.getOutputStream();
+            InputStream is=socket.getInputStream();
+            DataOutputStream ds= new DataOutputStream(os);
+            DataInputStream di=new DataInputStream(is);
+            PrintWriter pw= new PrintWriter(os);
+
+            ds.writeInt(300); //300 means logout status
+            ds.flush();
+            pw.println(id);
+            pw.flush();
+
+            os.close();
+            socket.close();
+            return 1;
+        }catch (Exception e){
+            System.out.println(e);
+            return -1;
+        }
+
     }
 }

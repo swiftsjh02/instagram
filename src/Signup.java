@@ -25,13 +25,16 @@ public class Signup extends JFrame {
                 String emailfromclient= email.getText();
                 System.out.println("ID: " + emailfromclient + "\tPWD: " + password + "\n");
                 String pwd_chartostr = new String(password);
-                if(registermanager.register(emailfromclient,pwd_chartostr)==1){
+                int status= registermanager.register(emailfromclient,pwd_chartostr);
+                if(status==1){
                     Login a = new Login();
                     setVisible(false);
                     a.setVisible(true);
+                } else if (status==2) {
+                    System.out.println("중복된 아이디가 존재합니다.");
                 }
                 else{
-                    System.out.println("회원가입 실패");
+                    System.out.println("알 수 없는 에러");
                 }
 
 

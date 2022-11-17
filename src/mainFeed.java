@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.Visibility;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 
 public class mainFeed extends JFrame{
 
@@ -22,7 +25,22 @@ public class mainFeed extends JFrame{
 
     private JPanel home_main;
 
-    public mainFeed(){
+
+    public String session_id=null;
+
+
+    class JFrameWindowClosingEventHandler extends WindowAdapter {
+        public void windowClosing(WindowEvent e) {
+            JFrame frame = (JFrame)e.getWindow();
+            loginregister manager= new loginregister();
+            frame.dispose();
+            manager.logout(session_id);
+            System.out.println("LogOut");
+        }
+    }
+
+    public mainFeed(String session){
+        session_id=session;
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -51,10 +69,28 @@ public class mainFeed extends JFrame{
         dm.setIcon(dm_size.getImg());
 
 
+        setContentPane(main);
+
+        setSize(850, 1000);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(0,0,850,1000);
+        setTitle("AI-DB Instagram LogIn System");
+        setVisible(true);
+        this.addWindowListener(new JFrameWindowClosingEventHandler());
+
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                story a = new story();
+                Container parent = home_main.getParent();
+                int index = parent.getComponentZOrder(home_main);
+                parent.remove(home_main);
+                parent.validate();
+                parent.repaint();
+                home_main = a.main;
+                parent.add(home_main,index);
+                parent.validate();
+                parent.repaint();
             }
         });
 
@@ -108,13 +144,6 @@ public class mainFeed extends JFrame{
             }
         });
 
-        setContentPane(main);
-
-        setSize(850, 1000);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(0,0,850,1000);
-        setTitle("AI-DB Instagram LogIn System");
-        setVisible(true);
 
     }
 
