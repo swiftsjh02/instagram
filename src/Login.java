@@ -35,7 +35,7 @@ public class Login extends JFrame {
 
         setContentPane(mainPanel);
 
-        setSize(350, 200);
+        setSize(1000, 1000);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("AI-DB Instagram LogIn System");
         setVisible(true);

@@ -12,4 +12,9 @@ public class mainFeed {
     private JButton button3;
     private JButton button4;
     private JTextPane TextPane;
+
+    public mainFeed(){
+
+
+    }
 }
