@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 import java.beans.Visibility;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 
 public class mainFeed extends JFrame{
 
@@ -16,7 +19,20 @@ public class mainFeed extends JFrame{
     private JButton heart;
     private JButton dm;
 
-    public mainFeed(){
+    public String session_id=null;
+
+    class JFrameWindowClosingEventHandler extends WindowAdapter {
+        public void windowClosing(WindowEvent e) {
+            JFrame frame = (JFrame)e.getWindow();
+            loginregister manager= new loginregister();
+            frame.dispose();
+            manager.logout(session_id);
+            System.out.println("LogOut");
+        }
+    }
+
+    public mainFeed(String session){
+        session_id=session;
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -47,6 +63,7 @@ public class mainFeed extends JFrame{
         setContentPane(main);
         setSize(600,800);
         setVisible(true);
+        this.addWindowListener(new JFrameWindowClosingEventHandler());
     }
 
 

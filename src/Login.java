@@ -23,8 +23,9 @@ public class Login extends JFrame {
                 String password= txtpwd.getText();
                 System.out.println("ID: " + id + "\tPWD: " + password + "\n");
                 loginregister manager = new loginregister();
-                if(manager.login(id,password)!=-1){
-                    mainFeed view = new mainFeed();
+                int session_id=manager.login(id,password);
+                if(session_id!=-1){
+                    mainFeed view = new mainFeed(id);
                     dispose();
                 }
                 else{
