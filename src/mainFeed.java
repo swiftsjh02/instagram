@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.Visibility;
 
 public class mainFeed extends JFrame{
@@ -15,6 +17,10 @@ public class mainFeed extends JFrame{
     private JButton add;
     private JButton heart;
     private JButton dm;
+    private JPanel topbar;
+    private JScrollPane post;
+
+    private JPanel home_main;
 
     public mainFeed(){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
@@ -44,9 +50,72 @@ public class mainFeed extends JFrame{
         ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
         dm.setIcon(dm_size.getImg());
 
+
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                search a = new search();
+
+            }
+        });
+
+        reelsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        shopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        userHomeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        heart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        dm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         setContentPane(main);
-        setSize(600,800);
+
+        setSize(850, 1000);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(0,0,850,1000);
+        setTitle("AI-DB Instagram LogIn System");
         setVisible(true);
+
     }
 
 

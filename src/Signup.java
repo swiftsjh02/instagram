@@ -11,11 +11,12 @@ public class Signup extends JFrame {
 
     public Signup(){
         setContentPane(panel1);
-        setSize(450, 300);
+        setSize(850, 1000);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        setBounds(0,0,850,1000);
         loginregister registermanager= new loginregister();
         setTitle("signup");
-        setVisible(true);
+        //setVisible(true);
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -25,7 +26,9 @@ public class Signup extends JFrame {
                 System.out.println("ID: " + emailfromclient + "\tPWD: " + password + "\n");
                 String pwd_chartostr = new String(password);
                 if(registermanager.register(emailfromclient,pwd_chartostr)==1){
-                    dispose();
+                    Login a = new Login();
+                    setVisible(false);
+                    a.setVisible(true);
                 }
                 else{
                     System.out.println("회원가입 실패");
