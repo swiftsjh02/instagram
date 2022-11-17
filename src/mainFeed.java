@@ -25,5 +25,10 @@ public class mainFeed {
         homeButton.setSize(50,50);
         homeButton.setVisible(true);
     }
+
+    private void createUIComponents() {
+        searchButton = new JButton();
+        searchButton.setSize(100, 100);
+    }
 }
 
