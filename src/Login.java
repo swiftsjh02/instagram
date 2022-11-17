@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
     private JTextField txtId;
-    private JTextField txtPwd;
     private JButton OKButton;
     private JPanel mainPanel;
     private JButton signup;
@@ -21,7 +20,7 @@ public class Login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String id= txtId.getText();
-                String password= txtPwd.getText();
+                String password= txtpwd.getText();
                 System.out.println("ID: " + id + "\tPWD: " + password + "\n");
                 database con=new database();
                 if(con.logincheck(id,password)==true){
