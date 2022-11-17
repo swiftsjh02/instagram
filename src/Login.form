@@ -85,14 +85,18 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="52309" class="javax.swing.JLabel">
+      <component id="52309" class="javax.swing.JLabel" binding="Icon">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <icon value="IMG/login.png"/>
+          <enabled value="true"/>
+          <labelFor value=""/>
           <text value=""/>
         </properties>
+        <clientProperties>
+          <html.disable class="java.lang.Boolean" value="false"/>
+        </clientProperties>
       </component>
       <component id="b1770" class="javax.swing.JButton" binding="signup">
         <constraints>
