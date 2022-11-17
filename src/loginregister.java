@@ -5,7 +5,7 @@ import java.util.*;
 public class loginregister {
 
     public static int port=9898;
-    public static String host="localhost";
+    public static String host="swiftsjh.tplinkdns.com";
 
     public int register(String id,String password){
         try{
@@ -26,7 +26,7 @@ public class loginregister {
             int register_status=-1;
             register_status = di.readInt(); //get session id
             if(register_status==1){
-                System.out.println("회원가입 성공");
+                System.out.println("회원가입 성공");//
                 return  register_status;
             }
             os.close();
