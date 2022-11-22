@@ -12,10 +12,13 @@ public class Signup extends JFrame {
     private JTextField email;
     private JButton button1;
     private JPasswordField pwd;
+    private JTextField fullNameTextField;
+    private JTextField mobileNumberOrEmailTextField;
 
     public Signup(){
         setContentPane(panel1);
-        setSize(450, 300);
+        setSize(850, 1000);
+        setBounds(0,0,850,1000);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         loginregister registermanager= new loginregister();
         setTitle("signup");
