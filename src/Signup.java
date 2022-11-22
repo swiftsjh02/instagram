@@ -8,6 +8,8 @@ public class Signup extends JFrame {
     private JTextField email;
     private JButton button1;
     private JPasswordField pwd;
+    private JTextField fullNameTextField;
+    private JTextField mobileNumberOrEmailTextField;
 
     public Signup(){
         setContentPane(panel1);
@@ -16,7 +18,7 @@ public class Signup extends JFrame {
         setBounds(0,0,850,1000);
         loginregister registermanager= new loginregister();
         setTitle("signup");
-        //setVisible(true);
+        setVisible(true);
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

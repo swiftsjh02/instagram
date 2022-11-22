@@ -1,11 +1,14 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import encryption.*;
 
 public class loginregister {
 
     public static int port=9898;
     public static String host="swiftsjh.tplinkdns.com";
+
+    public static md5 encryptor= new md5();
 
     public int register(String id,String password){
         try{
@@ -17,11 +20,12 @@ public class loginregister {
             PrintWriter pw= new PrintWriter(os);
             int id_len =id.getBytes().length;
             int pwd_len=password.getBytes().length;
+            String enc_password=encryptor.encMD5(password);
             ds.writeInt(100); //100 means register status code
             ds.flush();
             pw.println(id);
             pw.flush();
-            pw.println(password);
+            pw.println(enc_password);
             pw.flush();
             int register_status=-1;
             register_status = di.readInt(); //get register status
@@ -51,11 +55,12 @@ public class loginregister {
             PrintWriter pw= new PrintWriter(os);
             int id_len =id.getBytes().length;
             int pwd_len=password.getBytes().length;
+            String enc_password=encryptor.encMD5(password);
             ds.writeInt(200); //200 means register status code
             ds.flush();
             pw.println(id);
             pw.flush();
-            pw.println(password);
+            pw.println(enc_password);
             pw.flush();
             int session=-1;
             session = di.readInt(); //get session id
