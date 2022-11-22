@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +11,11 @@ public class Signup extends JFrame {
     private JPasswordField pwd;
     private JTextField fullNameTextField;
     private JTextField mobileNumberOrEmailTextField;
+    private JButton btnOk;
+    private JLabel lblOk;
+
+    private boolean isIdPossible = false;
+    private boolean isSuccess = false;
 
     public Signup(){
         setContentPane(panel1);
@@ -40,6 +46,23 @@ public class Signup extends JFrame {
                 }
 
 
+            }
+        });
+
+        btnOk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Check Duplicated Id...");
+                System.out.println(isIdPossible);
+
+                if (isIdPossible == true) {
+                    lblOk.setForeground(Color.GREEN);
+                    lblOk.setText("Possible");
+                }
+                else {
+                    lblOk.setForeground(Color.RED);
+                    lblOk.setText("Impossible");
+                }
             }
         });
     }
