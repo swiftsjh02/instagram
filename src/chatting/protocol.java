@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class protocol implements Serializable {
     private int typeofrequest;
-    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<Integer> list = new ArrayList<>();
     private int sender;
     private String roomnumber;
     private String messege;
@@ -17,14 +17,14 @@ public class protocol implements Serializable {
 
     }
     // 방 생성인 경우
-    public protocol(int typeofrequest, int sender, ArrayList<String> list){
+    public protocol(int typeofrequest, int sender, ArrayList<Integer> list){
         this.sender = sender;
         this.typeofrequest = typeofrequest;
         this.list = list;
     }
 
     // 방 초대
-    public protocol(int typeofrequest, int sender, String roomnumber, ArrayList<String> list){
+    public protocol(int typeofrequest, int sender, String roomnumber, ArrayList<Integer> list){
         this.typeofrequest = typeofrequest;
         this.sender = sender;
         this.roomnumber = roomnumber;
@@ -53,7 +53,7 @@ public class protocol implements Serializable {
     public int getTypeofrequest() {
         return typeofrequest;
     }
-    public ArrayList<String> getList() {
+    public ArrayList<Integer> getList() {
         return list;
     }
     public int getSender() {
