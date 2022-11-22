@@ -107,7 +107,6 @@
         <properties>
           <background color="-1"/>
           <foreground color="-1"/>
-          <icon value="IMG/login.png"/>
           <text value=""/>
         </properties>
       </component>

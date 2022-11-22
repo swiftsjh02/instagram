@@ -14,8 +14,8 @@ public class Signup extends JFrame {
     public Signup(){
         setContentPane(panel1);
         setSize(850, 1000);
-        setBounds(0,0,850,1000);
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        setBounds(0,0,850,1000);
         loginregister registermanager= new loginregister();
         setTitle("signup");
         setVisible(true);
@@ -29,7 +29,9 @@ public class Signup extends JFrame {
                 String pwd_chartostr = new String(password);
                 int status= registermanager.register(emailfromclient,pwd_chartostr);
                 if(status==1){
-                    dispose();
+                    Login a = new Login();
+                    setVisible(false);
+                    a.setVisible(true);
                 } else if (status==2) {
                     System.out.println("중복된 아이디가 존재합니다.");
                 }

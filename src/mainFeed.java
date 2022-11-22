@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.Visibility;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -18,8 +20,14 @@ public class mainFeed extends JFrame{
     private JButton add;
     private JButton heart;
     private JButton dm;
+    private JPanel topbar;
+    private JScrollPane post;
+
+    private JPanel home_main;
+    private JPanel home;
 
     public String session_id=null;
+
 
     class JFrameWindowClosingEventHandler extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
@@ -32,7 +40,10 @@ public class mainFeed extends JFrame{
     }
 
     public mainFeed(String session){
+        this.home = home_main;
+
         session_id=session;
+
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -60,10 +71,75 @@ public class mainFeed extends JFrame{
         ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
         dm.setIcon(dm_size.getImg());
 
+
         setContentPane(main);
-        setSize(600,800);
+
+        setSize(850, 1000);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(0,0,850,1000);
+        setTitle("AI-DB Instagram LogIn System");
         setVisible(true);
         this.addWindowListener(new JFrameWindowClosingEventHandler());
+
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                story a = new story(session);
+                setVisible(false);
+            }
+        });
+
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                search a = new search();
+
+            }
+        });
+
+        reelsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        shopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        userHomeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        heart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        dm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+
     }
 
 

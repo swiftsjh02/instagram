@@ -26,7 +26,8 @@ public class Login extends JFrame {
                 int session_id=manager.login(id,password);
                 if(session_id!=-1){
                     mainFeed view = new mainFeed(id);
-                    dispose();
+                    setVisible(false);
+                    view.setVisible(true);
                 }
                 else{
                     System.out.println("x");
@@ -36,13 +37,16 @@ public class Login extends JFrame {
         signup.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 Signup sign = new Signup();
+                setVisible(false);
+                sign.setVisible(true);
             }
         });
 
         setContentPane(mainPanel);
 
-        setSize(800, 1100);
+        setSize(850, 1000);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(0,0,850,1000);
         setTitle("AI-DB Instagram LogIn System");
         setVisible(true);
     }
