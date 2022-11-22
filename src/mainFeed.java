@@ -114,7 +114,8 @@ public class mainFeed extends JFrame{
         userHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                userFeed a = new userFeed();
+                setVisible(false);
             }
         });
 
