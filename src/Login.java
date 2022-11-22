@@ -22,9 +22,11 @@ public class Login extends JFrame {
                 String id= txtId.getText();
                 String password= txtpwd.getText();
                 System.out.println("ID: " + id + "\tPWD: " + password + "\n");
-                database con=new database();
-                if(con.logincheck(id,password)==true){
-                    mainFeed view = new mainFeed();
+                loginregister manager = new loginregister();
+                int session_id=manager.login(id,password);
+                if(session_id!=-1){
+                    mainFeed view = new mainFeed(id);
+                    dispose();
                 }
                 else{
                     System.out.println("x");
