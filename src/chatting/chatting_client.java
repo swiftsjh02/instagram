@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class chatting_client {
-    private Socket socket;
+    public static Socket socket;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
 
@@ -81,16 +81,18 @@ public class chatting_client {
     public static void main(String[] args){
         Scanner keyboard = new Scanner(System.in);
         chatting_client client = new chatting_client(1);
+        ListeningThread t1 = new ListeningThread(socket);
         ArrayList<Integer> list = new ArrayList<>();
         list.add(1);//ksdk6145@naver.com
         list.add(4);//ssohye@icloud.com
         client.make_room(1, 1, list);
+        t1.start();
         while(true) {
             try {
                 String messege = keyboard.nextLine();
-                client.send_messege(4, "5000", 1, messege, "시간", false, "경로");
+                client.send_messege(4, "", 1, messege, "시간", false, "경로");
             }
-            catch (Exception e) {}
+            catch(Exception e) {}
         }
     }
 }
