@@ -1,4 +1,5 @@
 package chatting;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,5 +45,31 @@ public class protocol implements Serializable {
         this.time = time;
         this.file_exist = file_exist;
         this.file_path = file_path;
+    }
+
+    //make getter function
+    public int getTypeofrequest() {
+        return typeofrequest;
+    }
+    public ArrayList<String> getList() {
+        return list;
+    }
+    public int getSender() {
+        return sender;
+    }
+    public String getRoomnumber() {
+        return roomnumber;
+    }
+    public String getMessege() {
+        return messege;
+    }
+    public String getTime() {
+        return time;
+    }
+    public boolean isFile_exist() {
+        return file_exist;
+    }
+    public String getFile_path() {
+        return file_path;
     }
 }
