@@ -2,7 +2,6 @@ package chatting;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class protocol implements Serializable {
     private int typeofrequest;
@@ -18,21 +17,24 @@ public class protocol implements Serializable {
 
     }
     // 방 생성인 경우
-    public protocol(int typeofrequest, ArrayList<String> list){
+    public protocol(int typeofrequest, int sender, ArrayList<String> list){
+        this.sender = sender;
         this.typeofrequest = typeofrequest;
         this.list = list;
     }
 
     // 방 초대
-    public protocol(int typeofrequest, String roomnumber, ArrayList<String> list){
+    public protocol(int typeofrequest, int sender, String roomnumber, ArrayList<String> list){
         this.typeofrequest = typeofrequest;
+        this.sender = sender;
         this.roomnumber = roomnumber;
         this.list = list;
     }
 
     // 방 제거
-    public protocol(int typeofrequest, String roomnumber){
+    public protocol(int typeofrequest, int sender, String roomnumber){
         this.typeofrequest = typeofrequest;
+        this.sender = sender;
         this.roomnumber = roomnumber;
     }
 
