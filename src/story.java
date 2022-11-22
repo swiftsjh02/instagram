@@ -34,10 +34,12 @@ public class story extends JFrame{
         exit.setIcon(exitbt.getImg());
 
         setContentPane(main);
-        setSize(850,900);
-        setBounds(0,0,850,900);
+        setSize(850,1000);
+        setBounds(0,0,850,1000);
         setVisible(true);
         //dispose();
+
+
 
     }
 

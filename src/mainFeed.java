@@ -24,7 +24,7 @@ public class mainFeed extends JFrame{
     private JScrollPane post;
 
     private JPanel home_main;
-
+    private JPanel home;
 
     public String session_id=null;
 
@@ -40,6 +40,7 @@ public class mainFeed extends JFrame{
     }
 
     public mainFeed(String session){
+        this.home = home_main;
         session_id=session;
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
@@ -82,15 +83,7 @@ public class mainFeed extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 story a = new story();
-                Container parent = home_main.getParent();
-                int index = parent.getComponentZOrder(home_main);
-                parent.remove(home_main);
-                parent.validate();
-                parent.repaint();
-                home_main = a.main;
-                parent.add(home_main,index);
-                parent.validate();
-                parent.repaint();
+                setVisible(false);
             }
         });
 
