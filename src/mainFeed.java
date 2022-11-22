@@ -41,7 +41,9 @@ public class mainFeed extends JFrame{
 
     public mainFeed(String session){
         this.home = home_main;
+
         session_id=session;
+
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -82,7 +84,7 @@ public class mainFeed extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                story a = new story();
+                story a = new story(session);
                 setVisible(false);
             }
         });
