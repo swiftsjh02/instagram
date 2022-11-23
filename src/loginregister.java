@@ -5,8 +5,8 @@ import encryption.*;
 
 public class loginregister {
 
-    public static int port=9898;
-    public static String host="swiftsjh.tplinkdns.com";
+    public static int port = 9898;
+    public static String host = "swiftsjh.tplinkdns.com";
 
     public static md5 encryptor= new md5();
 

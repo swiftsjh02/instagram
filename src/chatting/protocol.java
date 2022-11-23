@@ -13,9 +13,7 @@ public class protocol implements Serializable {
     private boolean file_exist;
     private String file_path;
 
-    public protocol(){
-
-    }
+    public protocol(){}
     // 방 생성인 경우
     public protocol(int typeofrequest, int sender, ArrayList<Integer> list){
         this.sender = sender;
