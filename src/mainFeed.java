@@ -26,6 +26,7 @@ public class mainFeed extends JFrame{
             loginregister manager= new loginregister();
             frame.dispose();
             manager.logout(user_id);
+
             System.out.println("LogOut");
         }
     }

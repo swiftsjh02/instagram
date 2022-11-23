@@ -22,7 +22,7 @@ public class chatting_client {
 
     public chatting_client(int user_id) {
         try {
-            this.socket = new Socket("localhost", 25588);
+            this.socket = new Socket("swiftsjh.tplinkdns.com", 25588);
             this.oos = new ObjectOutputStream(socket.getOutputStream());
             this.ois = new ObjectInputStream(socket.getInputStream());
             this.dos = new DataOutputStream(socket.getOutputStream());
@@ -80,17 +80,17 @@ public class chatting_client {
     }
     public static void main(String[] args){
         Scanner keyboard = new Scanner(System.in);
-        chatting_client client = new chatting_client(1);
+        chatting_client client = new chatting_client(16);
         ListeningThread t1 = new ListeningThread(socket);
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);//ksdk6145@naver.com
-        list.add(4);//ssohye@icloud.com
-        client.make_room(1, 1, list);
+//        ArrayList<Integer> list = new ArrayList<>();
+//        list.add(1);//ksdk6145@naver.com
+//        list.add(4);//ssohye@icloud.com
+        String roomnumber = keyboard.nextLine();
         t1.start();
         while(true) {
             try {
                 String messege = keyboard.nextLine();
-                client.send_messege(4, "", 1, messege, "시간", false, "경로");
+                client.send_messege(4, roomnumber, 16, messege, "시간", false, "경로");
             }
             catch(Exception e) {}
         }
