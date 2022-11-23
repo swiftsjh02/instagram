@@ -49,11 +49,6 @@ public class protocol implements Serializable {
         this.file_path = file_path;
     }
 
-    //방 목록 업데이트 요청
-    public protocol(int typeofrequest){
-        this.typeofrequest= typeofrequest;
-    }
-
     //make getter function
     public int getTypeofrequest() {
         return typeofrequest;
@@ -80,4 +75,3 @@ public class protocol implements Serializable {
         return file_path;
     }
 }
-
