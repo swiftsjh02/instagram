@@ -6,10 +6,9 @@
 * description: Instagram protocol
 * author: 김예지, 김의진, 서지호, 조태완
 * version: 1.0.0
-* license: MITs
 * university: Gachon University
 * department: Artificial Intelligence
-* email: taewan2002@gachon.ac.kr, ksdk6145@gachon.ac.kr
+* email: taewan2002@gachon.ac.kr, ksdk6145@gachon.ac.kr, whitekuj02@gachon.ac.kr, yezii1120@gachon.ac.kr
 * last update: 2022-11-23
 
 ## Database tables
@@ -144,6 +143,10 @@
 * `roomnumber`: md5(number of members + user_id of members + time)
 * https://en.wikipedia.org/wiki/MD5
 
+## Create user_id number
+
+* `user_id`: mysql auto increment
+* https://dev.mysql.com/doc/refman/5.6/en/innodb-auto-increment-handling.html
 
 
 
