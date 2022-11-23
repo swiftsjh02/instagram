@@ -12,7 +12,7 @@
 * email: taewan2002@gachon.ac.kr, ksdk6145@gachon.ac.kr
 * last update: 2022-11-23
 
-## database tables
+## Database tables
 
 ### `chat_manager`
 * `chat_id`: char(70)
@@ -91,7 +91,9 @@
 * `user_id`: int unsigned
 * `post_id`: int unsigned
 
-## chatting protocol
+## Chatting protocol
+
+* use protocol.java file
 
 ### `packet format for make chatting room`
 
@@ -135,6 +137,13 @@
 |  type   |     name      |                description                |
 |:-------:|:-------------:|:-----------------------------------------:|
 |   int   | typeofrequest |          type of request number           |
+
+
+## Create room number
+
+* `roomnumber`: md5(number of members + user_id of members + time)
+* https://en.wikipedia.org/wiki/MD5
+
 
 
 

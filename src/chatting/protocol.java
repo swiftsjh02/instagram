@@ -13,7 +13,9 @@ public class protocol implements Serializable {
     private boolean file_exist;
     private String file_path;
 
-    public protocol(){}
+    public protocol(){
+
+    }
     // 방 생성인 경우
     public protocol(int typeofrequest, int sender, ArrayList<Integer> list){
         this.sender = sender;
@@ -47,6 +49,11 @@ public class protocol implements Serializable {
         this.file_path = file_path;
     }
 
+    //방 목록 업데이트 요청
+    public protocol(int typeofrequest){
+        this.typeofrequest= typeofrequest;
+    }
+
     //make getter function
     public int getTypeofrequest() {
         return typeofrequest;
@@ -73,3 +80,4 @@ public class protocol implements Serializable {
         return file_path;
     }
 }
+
