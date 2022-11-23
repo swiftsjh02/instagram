@@ -18,21 +18,20 @@ public class mainFeed extends JFrame{
     private JButton add;
     private JButton heart;
     private JButton dm;
-
-    public String session_id=null;
+    private int user_id;
 
     class JFrameWindowClosingEventHandler extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
             JFrame frame = (JFrame)e.getWindow();
             loginregister manager= new loginregister();
             frame.dispose();
-            manager.logout(session_id);
+            manager.logout(user_id);
             System.out.println("LogOut");
         }
     }
 
-    public mainFeed(String session){
-        session_id=session;
+    public mainFeed(int user_id){
+        this.user_id = user_id;
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -65,7 +64,5 @@ public class mainFeed extends JFrame{
         setVisible(true);
         this.addWindowListener(new JFrameWindowClosingEventHandler());
     }
-
-
 }
 
