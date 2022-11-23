@@ -5,6 +5,6 @@ public class Main {
         Login mylogin = new Login();
         // mainFeed a = new mainFeed();
         // story a = new story();
-        post a = new post();
+        // post a = new post();
     }
 }
