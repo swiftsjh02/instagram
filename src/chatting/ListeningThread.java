@@ -17,7 +17,11 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 			while(true){
 				ObjectInputStream ois = new ObjectInputStream(input);
 				protocol t = (protocol) ois.readObject();
-				System.out.println(t.getMessege());
+				if(t.getTypeofrequest() == 5){
+
+				}else {
+					System.out.println(t.getMessege());
+				}
 			}
 
 
