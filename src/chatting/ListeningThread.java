@@ -2,6 +2,7 @@ package chatting;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class ListeningThread extends Thread { // 서버에서 보낸 메세지 읽는 Thread
 	Socket socket = null;
@@ -27,11 +28,11 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 				}
 
 			}
-
+		} catch (SocketException e){
+			System.out.println("로그아웃 하였습니다.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
-		
 	}
 
 }
