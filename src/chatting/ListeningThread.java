@@ -17,13 +17,16 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 			while(true){
 				ObjectInputStream ois = new ObjectInputStream(input);
 				protocol t = (protocol) ois.readObject();
-				if(t.getTypeofrequest() == 5){
+				if(t.getTypeofrequest() == 1){
 
-				}else {
-					System.out.println(t.getMessege());
 				}
-			}
+				else if(t.getTypeofrequest() == 2) {
+				}
+				else if(t.getTypeofrequest() == 4){
+					System.out.println(t.getSender() + " : " + t.getMessege());
+				}
 
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
