@@ -1,6 +1,10 @@
+package display;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import function.*;
+import chatting.*;
 
 public class Login extends JFrame {
     private JTextField txtId;
@@ -23,8 +27,10 @@ public class Login extends JFrame {
                 String password= txtpwd.getText();
                 System.out.println("ID: " + id + "\tPWD: " + password + "\n");
                 loginregister manager = new loginregister();
-                if(manager.login(id,password)!=-1){
-                    mainFeed view = new mainFeed();
+                int user_id = manager.login(id,password);
+                if(user_id!=-1){
+                    mainFeed view = new mainFeed(user_id);
+                    chatting_client client = new chatting_client(user_id);
                     dispose();
                 }
                 else{

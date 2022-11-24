@@ -1,3 +1,5 @@
+package function;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,7 +10,7 @@ public class ImgSetSize {
     private ImageIcon icon;
     private int i;
     private int j;
-    ImgSetSize(String file_name, int i, int j){
+    public ImgSetSize(String file_name, int i, int j){
         this.icon = new ImageIcon(file_name);
         this.i = i;
         this.j = j;
