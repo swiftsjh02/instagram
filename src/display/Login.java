@@ -1,6 +1,9 @@
+package display;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import function.*;
 import chatting.*;
 
 public class Login extends JFrame {

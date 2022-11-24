@@ -1,8 +1,9 @@
+package display;
+
 import javax.swing.*;
-import java.awt.*;
-import java.beans.Visibility;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import function.*;
 
 
 public class mainFeed extends JFrame{
@@ -45,7 +46,7 @@ public class mainFeed extends JFrame{
         ImgSetSize shop = new ImgSetSize("src/IMG/shop.png", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-//        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
+//        function.ImgSetSize userhome = new function.ImgSetSize("src/IMG/.png", 50, 50);
 //        userHomeButton.setIcon(home.getImg());
 
         ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 100, 50);
