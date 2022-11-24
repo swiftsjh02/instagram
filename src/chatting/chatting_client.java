@@ -161,6 +161,15 @@ public class chatting_client {
             while(true) {
                 try {
                     String messege = keyboard.nextLine();
+                    if (messege.equals("exit")) {
+                        System.out.println("로그아웃 합니다");
+                        try {
+                            client.logout(type, user_id);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                        break;
+                    }
                     client.send_messege(4, roomnumber, user_id, messege, "시간", false, "경로");
                 }
                 catch(Exception e) {}
