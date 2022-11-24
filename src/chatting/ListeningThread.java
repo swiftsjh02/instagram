@@ -22,9 +22,11 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 				else if(t.getTypeofrequest() == 2) {
 				}
 				else if(t.getTypeofrequest() == 4){
-					System.out.println("방번호 : " + t.getRoomnumber());
-					System.out.println("보낸사람 : " + t.getSender());
-					System.out.println("메시지 : " + t.getMessege());
+					// System.out.println("방번호 : " + t.getRoomnumber());
+					String time = t.getTime();
+					time = time.substring(8, 10) + ":"+ time.substring(9, 11);
+					System.out.println(t.getSender());
+					System.out.println(time + " : " + t.getMessege());
 				}
 				else{
 					System.out.println("잘못된 요청입니다.");
