@@ -152,7 +152,8 @@ public class chatting_client {
             } else if (type == 4) { // 메시지 보내기
                 System.out.println("메시지 보내기 입니다.");
                 System.out.println("roomnumber를 입력하세요");
-                roomnumber = keyboard.nextLine();
+                roomnumber = keyboard.next();
+                roomnumber.trim();
                 while (true) {
                     try {
                         String messege = keyboard.nextLine();
