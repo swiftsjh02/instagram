@@ -1,6 +1,8 @@
+package display;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import function.*;
 
 public class Login extends JFrame {
     private JTextField txtId;
@@ -25,7 +27,7 @@ public class Login extends JFrame {
                 loginregister manager = new loginregister();
                 int session_id=manager.login(id,password);
                 if(session_id!=-1){
-                    mainFeed view = new mainFeed(id);
+                    mainFeed view = new mainFeed(session_id);
                     setVisible(false);
                     view.setVisible(true);
                 }
