@@ -126,7 +126,7 @@ public class chatting_client {
                 }
             } else if (type == 2) { // 방에 초대하기
                 System.out.println("방 번호를 입력하세요");
-                roomnumber = keyboard.next();
+                roomnumber = keyboard.next().trim();
                 System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
                 ArrayList<Integer> list = new ArrayList<Integer>();
                 while (true) {
@@ -143,7 +143,7 @@ public class chatting_client {
                 }
             } else if (type == 3) { // 방에서 나가기
                 System.out.println("방 번호를 입력하세요");
-                roomnumber = keyboard.next();
+                roomnumber = keyboard.next().trim();
                 try {
                     client.exit_room(type, user_id, roomnumber);
                 } catch (Exception e) {
@@ -152,8 +152,7 @@ public class chatting_client {
             } else if (type == 4) { // 메시지 보내기
                 System.out.println("메시지 보내기 입니다.");
                 System.out.println("roomnumber를 입력하세요");
-                roomnumber = keyboard.next();
-                roomnumber.trim();
+                roomnumber = keyboard.next().trim();
                 while (true) {
                     try {
                         String messege = keyboard.nextLine();
@@ -169,7 +168,6 @@ public class chatting_client {
                 System.out.println("로그아웃 입니다");
                 try {
                     client.logout(5, user_id);
-                    break;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
