@@ -13,8 +13,6 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 	public void run() {
 		try {
 			InputStream input = socket.getInputStream();
-
-			protocol tmp;
 			while(true){
 				ObjectInputStream ois = new ObjectInputStream(input);
 				protocol t = (protocol) ois.readObject();
@@ -24,10 +22,10 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 				else if(t.getTypeofrequest() == 2) {
 				}
 				else if(t.getTypeofrequest() == 4){
-					System.out.println(t.getRoomnumber());
-					System.out.println(t.getSender() + " : " + t.getMessege());
+					System.out.println("방번호 : " + t.getRoomnumber());
+					System.out.println("보낸사람 : " + t.getSender());
+					System.out.println("메시지 : " + t.getMessege());
 				}
-
 			}
 		} catch (SocketException e){
 			System.out.println("로그아웃 하였습니다.");
