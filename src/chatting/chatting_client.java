@@ -65,8 +65,8 @@ public class chatting_client {
     }
 
     // 메시지 보내기
-    public void send_messege(int typeofrequest, String roomnumber, int sender, String messege, String time, boolean file_exist, String file_path){
-        protocol content = new protocol(typeofrequest, roomnumber, sender, messege, time, file_exist, file_path);
+    public void send_messege(int typeofrequest, String roomnumber, int sender, String messege, String time, boolean file_exist, String file_name){
+        protocol content = new protocol(typeofrequest, roomnumber, sender, messege, time, file_exist, file_name);
         chat_message(content);
     }
 
@@ -132,7 +132,7 @@ public class chatting_client {
                 try {
                     client.make_room(type, user_id, list);
                 } catch (Exception e) {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
             } else if (type == 2) { // 방에 초대하기
                 System.out.println("방 번호를 입력하세요");
@@ -149,7 +149,7 @@ public class chatting_client {
                 try {
                     client.invite_room(type, user_id, roomnumber, list);
                 } catch (Exception e) {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
             } else if (type == 3) { // 방에서 나가기
                 System.out.println("방 번호를 입력하세요");
@@ -157,11 +157,11 @@ public class chatting_client {
                 try {
                     client.exit_room(type, user_id, roomnumber);
                 } catch (Exception e) {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
             } else if (type == 4) { // 메시지 보내기
                 file_client file = new file_client();
-                String time = file.getServerDateTime();
+                String time;
                 System.out.println("메시지 보내기 입니다.");
                 System.out.println("roomnumber를 입력하세요");
                 roomnumber = keyboard.next().trim();
@@ -173,21 +173,27 @@ public class chatting_client {
                             break;
                         } else if (messege.equals("file")) {
                             file_exist = true;
-                        }
-                        if (file_exist) {
+                            filechoose choice= new filechoose();
+                            String filename= choice.jFileChooserUtil();
+                            Socket sc = new Socket("swiftsjh.tplinkdns.com", 25589);
+                            new file_client(sc, filename ,roomnumber);
+                            time = file.getServerDateTime();
                             client.send_messege(type, roomnumber, user_id, null, time, file_exist, time);
                             file_exist = false;
-                        } else {
+                        }
+                        else {
+                            time = file.getServerDateTime();
                             client.send_messege(type, roomnumber, user_id, messege, time, file_exist, null);
                         }
-                        // client.send_messege(4, roomnumber, user_id, messege, "시간", false, "경로");
                     } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             } if (type == 5) { // 로그아웃
                 System.out.println("로그아웃 입니다");
                 try {
                     client.logout(5, user_id);
+                    break;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

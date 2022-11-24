@@ -21,27 +21,26 @@ public class file_client {
     OutputStream os=null;
     Socket socket = null;
     File file = null;        //파일에 정보를 얻기위한 File 클래스
-
     PrintWriter pw  = null;
     DataInputStream dataInput = null;
     BufferedOutputStream bufferedOutput = null; //output 속도 향상을 위한 BufferedOutputStream
 
-    public static void main(String[] args){
-        Socket socket=null;
-        filechoose choice= new filechoose();
-        String filename= choice.jFileChooserUtil();
-
-        String roomnumber = "84ebe2c62c41bec2abf82d499188da74";
-        try{
-            socket = new Socket("swiftsjh.tplinkdns.com", 25589); //서버에 접속
-        }catch(IOException e){
-            System.out.println("It seems like There is no response from Server");
-        }
-        if(socket!=null){
-            // System.out.println(filename);
-            new file_client(socket,filename,roomnumber);
-        }
-    }
+//    public static void main(String[] args){
+//        Socket socket=null;
+//        filechoose choice= new filechoose();
+//        String filename= choice.jFileChooserUtil();
+//
+//        String roomnumber = "84ebe2c62c41bec2abf82d499188da74";
+//        try{
+//            socket = new Socket("swiftsjh.tplinkdns.com", 25589); //서버에 접속
+//        }catch(IOException e){
+//            System.out.println("It seems like There is no response from Server");
+//        }
+//        if(socket!=null){
+//            // System.out.println(filename);
+//            new file_client(socket,filename,roomnumber);
+//        }
+//    }
 
     public file_client(Socket socket, String fileName, String roomnumber) {
         try {
