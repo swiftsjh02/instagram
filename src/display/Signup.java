@@ -34,7 +34,7 @@ public class Signup extends JFrame {
                 System.out.println("ID: " + emailfromclient + "\tPWD: " + password + "\n");
                 String pwd_chartostr = new String(password);
                 int status= registermanager.register(emailfromclient,pwd_chartostr);
-                if(status==1){
+                if(status!= -1 && status != 2){
                     Login a = new Login();
                     setVisible(false);
                     a.setVisible(true);
