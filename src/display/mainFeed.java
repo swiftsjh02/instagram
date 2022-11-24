@@ -139,7 +139,9 @@ public class mainFeed extends JFrame{
         dm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                dm a = new dm();
+                setVisible(false);
+                a.setVisible(true);
             }
         });
 
