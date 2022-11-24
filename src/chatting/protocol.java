@@ -24,7 +24,7 @@ public class protocol implements Serializable {
     }
 
     // 방 초대
-    public protocol(int typeofrequest, int sender, String roomnumber, ArrayList<Integer> list){
+    public protocol(int typeofrequest, int sender, String roomnumber, ArrayList<Integer>list){
         this.typeofrequest = typeofrequest;
         this.sender = sender;
         this.roomnumber = roomnumber;
