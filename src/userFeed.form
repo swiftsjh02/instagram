@@ -274,7 +274,9 @@
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <foreground color="-1"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="7d6e5" class="javax.swing.JLabel" binding="id">
@@ -282,21 +284,14 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <foreground color="-1"/>
+              <background color="-1"/>
+              <foreground color="-16777216"/>
               <text value="Id Id Id"/>
             </properties>
           </component>
           <component id="81f8d" class="javax.swing.JButton" binding="button3" default-binding="true">
             <constraints>
               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Button"/>
-            </properties>
-          </component>
-          <component id="4ea5" class="javax.swing.JButton" binding="button2" default-binding="true">
-            <constraints>
-              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Button"/>
@@ -323,6 +318,15 @@
             </constraints>
             <properties>
               <icon value="IMG/security.jpg"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="1b92d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="IMG/더보기.png"/>
               <text value=""/>
             </properties>
           </component>
