@@ -156,6 +156,7 @@ public class chatting_client {
                 roomnumber = keyboard.next().trim();
                 try {
                     client.exit_room(type, user_id, roomnumber);
+                    break;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -189,7 +190,7 @@ public class chatting_client {
                         e.printStackTrace();
                     }
                 }
-            } if (type == 5) { // 로그아웃
+            } else if (type == 5) { // 로그아웃
                 System.out.println("로그아웃 입니다");
                 try {
                     client.logout(5, user_id);
