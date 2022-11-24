@@ -80,17 +80,21 @@ public class chatting_client {
     }
     public static void main(String[] args){
         Scanner keyboard = new Scanner(System.in);
-        chatting_client client = new chatting_client(16);
+        System.out.println("user_id를 입력하세요");
+        int user_id = keyboard.nextInt();
+        chatting_client client = new chatting_client(user_id);
         ListeningThread t1 = new ListeningThread(socket);
 //        ArrayList<Integer> list = new ArrayList<>();
 //        list.add(16);//ksdk6145@naver.com
 //        list.add(17);//ssohye@icloud.com
+        System.out.println("roomnumber를 입력하세요");
         String roomnumber = keyboard.nextLine();
         t1.start();
         while(true) {
             try {
+                System.out.println("메시지를 입력하세요");
                 String messege = keyboard.nextLine();
-                client.send_messege(4, "73918e70b507857bf888c1a0f72146b7", 16, messege, "시간", false, "경로");
+                client.send_messege(4, roomnumber, user_id, messege, "시간", false, "경로");
             }
             catch(Exception e) {}
         }
