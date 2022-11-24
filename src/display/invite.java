@@ -69,6 +69,8 @@ public class invite extends JFrame{
         friend_list.add(28);
 
 
+        invite_scroll.getVerticalScrollBar().setUnitIncrement(15);
+
         GridBagLayout Gbag = new GridBagLayout();
         scoll.setLayout(Gbag);
         GridBagConstraints gbc = new GridBagConstraints();
