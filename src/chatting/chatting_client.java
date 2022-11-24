@@ -84,17 +84,13 @@ public class chatting_client {
         int user_id = keyboard.nextInt();
         chatting_client client = new chatting_client(user_id);
         ListeningThread t1 = new ListeningThread(socket);
-//        ArrayList<Integer> list = new ArrayList<>();
-//        list.add(16);//ksdk6145@naver.com
-//        list.add(17);//ssohye@icloud.com
-        System.out.println("roomnumber를 입력하세요");
-        String roomnumber = keyboard.nextLine();
         t1.start();
+        // System.out.println("roomnumber를 입력하세요");
+        // String roomnumber = keyboard.nextLine();
         while(true) {
             try {
-                System.out.println("메시지를 입력하세요");
                 String messege = keyboard.nextLine();
-                client.send_messege(4, roomnumber, user_id, messege, "시간", false, "경로");
+                client.send_messege(4, "4722c6f3a56457f08764c92e4cb316a3", user_id, messege, "시간", false, "경로");
             }
             catch(Exception e) {}
         }
