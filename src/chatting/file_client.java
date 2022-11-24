@@ -42,7 +42,7 @@ public class file_client {
 //        }
 //    }
 
-    public file_client(Socket socket, String fileName, String roomnumber) {
+    public file_client(Socket socket, String fileName, String roomnumber, String time) {
         try {
             // roomnumber 전송
             String filetype = fileName.substring(fileName.lastIndexOf("."));
@@ -50,8 +50,8 @@ public class file_client {
             pw = new PrintWriter(os);
             pw.println(roomnumber); //1방넘버
             pw.flush();
-            System.out.println(getServerDateTime());
-            pw.println(getServerDateTime()); //2파일이름
+            System.out.println(time);
+            pw.println(time); //2파일이름
             pw.flush();
             pw.println(filetype); //3파일타입
             pw.flush();

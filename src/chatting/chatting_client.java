@@ -176,8 +176,8 @@ public class chatting_client {
                             filechoose choice= new filechoose();
                             String filename= choice.jFileChooserUtil();
                             Socket sc = new Socket("swiftsjh.tplinkdns.com", 25589);
-                            new file_client(sc, filename ,roomnumber);
                             time = file.getServerDateTime();
+                            new file_client(sc, filename ,roomnumber, time);
                             client.send_messege(type, roomnumber, user_id, null, time, file_exist, time);
                             file_exist = false;
                         }
