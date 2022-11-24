@@ -156,7 +156,7 @@ public class chatting_client {
                 roomnumber = keyboard.next().trim();
                 try {
                     client.exit_room(type, user_id, roomnumber);
-                    break;
+                    continue;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
