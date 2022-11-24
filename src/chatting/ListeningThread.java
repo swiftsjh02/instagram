@@ -24,6 +24,7 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 				else if(t.getTypeofrequest() == 2) {
 				}
 				else if(t.getTypeofrequest() == 4){
+					System.out.println(t.getRoomnumber());
 					System.out.println(t.getSender() + " : " + t.getMessege());
 				}
 
