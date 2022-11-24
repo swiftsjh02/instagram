@@ -1,6 +1,5 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 public class userFeed extends JFrame{
     private JPanel userinformation;
     private JButton homeButton;
@@ -11,13 +10,12 @@ public class userFeed extends JFrame{
     private JPanel bottom;
     private JPanel main;
     private JButton button3;
-    private JButton button1;
     private JButton button2;
     private JLabel id;
-    private JButton button4;
-    private JButton button5;
+    private JButton 프로필편집Button;
+    private JLabel arrowDown;
 
-    userFeed(){
+    public userFeed(){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -32,6 +30,8 @@ public class userFeed extends JFrame{
 
 //        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
 //        userHomeButton.setIcon(home.getImg());
+
+
 
         setContentPane(main);
         setSize(850,1000);
