@@ -75,6 +75,9 @@ public class protocol implements Serializable {
         this.roomnumber = roomnumber;
     }
 
+    // 파일이 왔습니다.
+    // public protocol(){}
+
     public protocol(String error_type) {
     	this.error_type = error_type;
     }
