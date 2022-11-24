@@ -159,6 +159,7 @@ public class chatting_client {
                         String messege = keyboard.nextLine();
                         if (messege.equals("exit")) {
                             type = 5;
+                            break;
                         }
                         client.send_messege(4, roomnumber, user_id, messege, "시간", false, "경로");
                     } catch (Exception e) {
