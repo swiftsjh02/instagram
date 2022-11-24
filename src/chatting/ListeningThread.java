@@ -26,6 +26,9 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 					System.out.println("보낸사람 : " + t.getSender());
 					System.out.println("메시지 : " + t.getMessege());
 				}
+				else{
+					System.out.println("잘못된 요청입니다.");
+				}
 			}
 		} catch (SocketException e){
 			System.out.println("로그아웃 하였습니다.");
