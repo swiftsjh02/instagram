@@ -32,7 +32,7 @@ public class loginregister {
 
             int register_status=-1;
             register_status = di.readInt(); //get register status
-            if(register_status==1){
+            if(register_status!=-1){
                 System.out.println("회원가입 성공");
                 return  register_status;
             } else if (register_status==2) {

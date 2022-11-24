@@ -75,11 +75,9 @@ public class story extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 mainFeed a = new mainFeed(session_id);
                 setVisible(false);
+                a.setVisible(true);
             }
         });
     }
 
-    public JPanel get_main(){
-        return main;
-    }
 }

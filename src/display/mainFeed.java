@@ -31,10 +31,6 @@ public class mainFeed extends JFrame{
 
     public int session_id;
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
-
 
     class JFrameWindowClosingEventHandler extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
@@ -47,7 +43,6 @@ public class mainFeed extends JFrame{
     }
 
     public mainFeed(int session){
-        this.home = home_main;
 
         session_id=session;
 
@@ -85,7 +80,7 @@ public class mainFeed extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(0,0,850,1000);
         setTitle("AI-DB Instagram LogIn System");
-        setVisible(true);
+        //setVisible(true);
         this.addWindowListener(new JFrameWindowClosingEventHandler());
 
         homeButton.addActionListener(new ActionListener() {
@@ -123,6 +118,7 @@ public class mainFeed extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 userFeed a = new userFeed();
                 setVisible(false);
+                a.setVisible(true);
             }
         });
 

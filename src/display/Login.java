@@ -18,6 +18,14 @@ public class Login extends JFrame {
         Icon.setIcon(mainphoto.getImg());
         Icon.setVisible(true);
 
+        setContentPane(mainPanel);
+
+        setSize(850, 1000);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(0,0,850,1000);
+        setTitle("AI-DB Instagram LogIn System");
+        setVisible(true);
+
         OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -25,11 +33,11 @@ public class Login extends JFrame {
                 String password= txtpwd.getText();
                 System.out.println("ID: " + id + "\tPWD: " + password + "\n");
                 loginregister manager = new loginregister();
-                int session_id=manager.login(id,password);
+                int session_id = manager.login(id,password);
                 if(session_id!=-1){
-                    mainFeed view = new mainFeed(session_id);
+                    mainFeed a = new mainFeed(session_id);
                     setVisible(false);
-                    view.setVisible(true);
+                    a.setVisible(true);
                 }
                 else{
                     System.out.println("x");
@@ -43,14 +51,6 @@ public class Login extends JFrame {
                 sign.setVisible(true);
             }
         });
-
-        setContentPane(mainPanel);
-
-        setSize(850, 1000);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(0,0,850,1000);
-        setTitle("AI-DB Instagram LogIn System");
-        setVisible(true);
     }
 }
 
