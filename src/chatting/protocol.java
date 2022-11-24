@@ -11,7 +11,7 @@ public class protocol implements Serializable {
     private String messege;
     private String time;
     private boolean file_exist;
-    private String file_path;
+    private String file_name;
     private String error_type;
 
 
@@ -53,17 +53,17 @@ public class protocol implements Serializable {
     }
 
     // 메시지 보내기 4
-    public protocol(int typeofrequest, String roomnumber, int sender, String messege, String time, boolean file_exist, String file_path){
+    public protocol(int typeofrequest, String roomnumber, int sender, String messege, String time, boolean file_exist, String file_name){
         this.typeofrequest = typeofrequest;
         this.roomnumber = roomnumber;
         this.sender = sender;
         this.messege = messege;
         this.time = time;
         this.file_exist = file_exist;
-        this.file_path = file_path;
+        this.file_name = file_name;
     }
 
-    // 로그아웃 5, 팔로워, 팔로잉 목록 불러오기 요청 7, 8
+    // 로그아웃 5, 팔로워, 팔로잉 목록 불러오기 요청 9, 10
     public protocol(int typeofrequest, int sender){
         this.typeofrequest = typeofrequest;
         this.sender = sender;
@@ -75,8 +75,12 @@ public class protocol implements Serializable {
         this.roomnumber = roomnumber;
     }
 
-    // 파일이 왔습니다.
-    // public protocol(){}
+    // 파일을 보내는 경우 7, 파일을 요청하는 경우 8
+    public protocol(int typeofrequest, String roomnumber, String file_path){
+        this.typeofrequest = typeofrequest;
+        this.roomnumber = roomnumber;
+        this.file_name = file_path;
+    }
 
     public protocol(String error_type) {
     	this.error_type = error_type;
@@ -104,7 +108,7 @@ public class protocol implements Serializable {
     public boolean isFile_exist() {
         return file_exist;
     }
-    public String getFile_path() {
-        return file_path;
+    public String getFile_name() {
+        return file_name;
     }
 }

@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.time.LocalDate;
 import java.time.LocalDate;
 import java.util.Scanner;
+import chatting.file_client;
+import java.time.format.DateTimeFormatter;
+import java.time.*;
 
 public class chatting_client {
     public static Socket socket;
@@ -73,6 +76,13 @@ public class chatting_client {
         chat_message(content);
         sockt_close();
     }
+
+    // 파일 보내는 경우
+    public void send_file(int typeofrequest, String roomnumber, String file_path){
+        protocol content = new protocol(typeofrequest, roomnumber, file_path);
+        chat_message(content);
+    }
+
 
     // 연결 끊기
     public void sockt_close(){
@@ -150,15 +160,26 @@ public class chatting_client {
                     System.out.println(e);
                 }
             } else if (type == 4) { // 메시지 보내기
+                file_client file = new file_client();
+                String time = file.getServerDateTime();
                 System.out.println("메시지 보내기 입니다.");
                 System.out.println("roomnumber를 입력하세요");
                 roomnumber = keyboard.next().trim();
+                boolean file_exist = false;
                 while (true) {
                     try {
                         String messege = keyboard.nextLine();
                         if (messege.equals("exit")) {
                             type = 5;
                             break;
+                        } else if (messege.equals("file")) {
+                            file_exist = true;
+                        }
+                        if (file_exist) {
+                            client.send_messege(type, roomnumber, user_id, null, time, file_exist, time);
+                            file_exist = false;
+                        } else {
+                            client.send_messege(type, roomnumber, user_id, messege, time, file_exist, null);
                         }
                         client.send_messege(4, roomnumber, user_id, messege, "시간", false, "경로");
                     } catch (Exception e) {

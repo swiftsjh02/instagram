@@ -5,13 +5,15 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.*;
 
 
 public class file_client {
+    public file_client (){}
     public String getServerDateTime(){
         String DateTime=null;
-        LocalTime now = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH_mm_ss");
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyMMddHHmmss");
         DateTime = now.format(formatter);
         return DateTime;
     }
@@ -49,6 +51,7 @@ public class file_client {
             pw = new PrintWriter(os);
             pw.println(roomnumber); //1방넘버
             pw.flush();
+            System.out.println(getServerDateTime());
             pw.println(getServerDateTime()); //2파일이름
             pw.flush();
             pw.println(filetype); //3파일타입
