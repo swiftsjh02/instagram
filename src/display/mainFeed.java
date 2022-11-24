@@ -1,3 +1,5 @@
+package display;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.beans.Visibility;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import function.*;
 
 
 public class mainFeed extends JFrame{
@@ -26,7 +29,11 @@ public class mainFeed extends JFrame{
     private JPanel home_main;
     private JPanel home;
 
-    public String session_id=null;
+    public int session_id;
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 
 
     class JFrameWindowClosingEventHandler extends WindowAdapter {
@@ -39,7 +46,7 @@ public class mainFeed extends JFrame{
         }
     }
 
-    public mainFeed(String session){
+    public mainFeed(int session){
         this.home = home_main;
 
         session_id=session;

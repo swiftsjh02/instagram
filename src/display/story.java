@@ -26,7 +26,7 @@ public class story extends JFrame{
     private JButton userHomeButton;
     private JPanel bottom;
 
-    public story(String session_id){
+    public story(int session_id){
         ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
         dmbt.setIcon(dm_size.getImg());
 

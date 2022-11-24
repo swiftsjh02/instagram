@@ -1,4 +1,6 @@
+package display;
 import javax.swing.*;
+import function.*;
 
 public class userFeed extends JFrame{
     private JPanel userinformation;
@@ -11,7 +13,7 @@ public class userFeed extends JFrame{
     private JPanel main;
     private JButton button3;
     private JLabel id;
-    private JButton 프로필편집Button;
+    private JButton profilename;
     private JLabel arrowDown;
 
     public userFeed(){

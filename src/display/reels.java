@@ -1,4 +1,7 @@
+package display;
+
 import javax.swing.*;
+import function.*;
 
 public class reels {
     private JPanel panel1;
