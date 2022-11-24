@@ -10,7 +10,6 @@ public class userFeed extends JFrame{
     private JPanel bottom;
     private JPanel main;
     private JButton button3;
-    private JButton button2;
     private JLabel id;
     private JButton 프로필편집Button;
     private JLabel arrowDown;
