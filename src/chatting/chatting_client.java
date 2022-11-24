@@ -170,7 +170,6 @@ public class chatting_client {
                     try {
                         String messege = keyboard.nextLine();
                         if (messege.equals("exit")) {
-                            type = 5;
                             break;
                         } else if (messege.equals("file")) {
                             file_exist = true;
@@ -181,7 +180,7 @@ public class chatting_client {
                         } else {
                             client.send_messege(type, roomnumber, user_id, messege, time, file_exist, null);
                         }
-                        client.send_messege(4, roomnumber, user_id, messege, "시간", false, "경로");
+                        // client.send_messege(4, roomnumber, user_id, messege, "시간", false, "경로");
                     } catch (Exception e) {
                     }
                 }
@@ -192,8 +191,6 @@ public class chatting_client {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
-                System.out.println("잘못된 입력입니다.");
             }
         }
     }
