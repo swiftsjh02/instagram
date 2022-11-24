@@ -31,7 +31,7 @@ public class protocol implements Serializable {
         this.list = list;
     }
 
-    // 방 제거
+    // 방에서 나가기
     public protocol(int typeofrequest, int sender, String roomnumber){
         this.typeofrequest = typeofrequest;
         this.sender = sender;
@@ -47,6 +47,12 @@ public class protocol implements Serializable {
         this.time = time;
         this.file_exist = file_exist;
         this.file_path = file_path;
+    }
+
+    // 로그아웃
+    public protocol(int typeofrequest, int sender){
+        this.typeofrequest = typeofrequest;
+        this.sender = sender;
     }
 
     //make getter function

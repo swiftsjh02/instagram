@@ -54,8 +54,8 @@ public class chatting_client {
         chat_message(content);
     }
 
-    // 방 제거
-    public void delete_room(int typeofrequest, int sender, String roomnumber){
+    // 방에서 나가기
+    public void exit_room(int typeofrequest, int sender, String roomnumber){
         protocol content = new protocol(typeofrequest, sender, roomnumber);
         chat_message(content);
         sockt_close();
@@ -65,6 +65,13 @@ public class chatting_client {
     public void send_messege(int typeofrequest, String roomnumber, int sender, String messege, String time, boolean file_exist, String file_path){
         protocol content = new protocol(typeofrequest, roomnumber, sender, messege, time, file_exist, file_path);
         chat_message(content);
+    }
+
+    // 로그아웃
+    public void logout(int typeofrequest, int sender){
+        protocol content = new protocol(typeofrequest, sender);
+        chat_message(content);
+        sockt_close();
     }
 
     // 연결 끊기
@@ -80,19 +87,94 @@ public class chatting_client {
     }
     public static void main(String[] args){
         Scanner keyboard = new Scanner(System.in);
+
+        String roomnumber;
+
+        // user_id 입력받기
         System.out.println("user_id를 입력하세요");
         int user_id = keyboard.nextInt();
+
+        // chatting_client 객체 생성
         chatting_client client = new chatting_client(user_id);
+
+        // ListeningThread 객체 생성
         ListeningThread t1 = new ListeningThread(socket);
-        t1.start();
-        // System.out.println("roomnumber를 입력하세요");
-        // String roomnumber = keyboard.nextLine();
-        while(true) {
-            try {
-                String messege = keyboard.nextLine();
-                client.send_messege(4, "4722c6f3a56457f08764c92e4cb316a3", user_id, messege, "시간", false, "경로");
+        t1.start(); // ListeningThread 시작
+
+        System.out.println("1. 방 생성");
+        System.out.println("2. 방 초대");
+        System.out.println("3. 방에서 나가기");
+        System.out.println("4. 메시지 보내기");
+        System.out.println("5. 로그아웃");
+
+        int type = keyboard.nextInt();
+        if (type == 1){ // 방 생성
+            System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            while(true){
+                int user = keyboard.nextInt();
+                if (user == 0){
+                    break;
+                }
+                list.add(user);
+            }
+            try{
+                client.make_room(type, user_id, list);
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        }
+        else if (type == 2){ // 방에 초대하기
+            System.out.println("방 번호를 입력하세요");
+            roomnumber = keyboard.next();
+            System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            while(true){
+                int user = keyboard.nextInt();
+                if (user == 0){
+                    break;
+                }
+                list.add(user);
+            }
+            try{
+                client.invite_room(type, user_id, roomnumber, list);
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        }
+        else if (type == 3){ // 방에서 나가기
+            System.out.println("방 번호를 입력하세요");
+            roomnumber = keyboard.next();
+            try{
+                client.exit_room(type, user_id, roomnumber);
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
+        }
+        else if (type == 4){ // 메시지 보내기
+            System.out.println("메시지 보내기 입니다.");
+            System.out.println("roomnumber를 입력하세요");
+            roomnumber = keyboard.nextLine();
+            while(true) {
+                try {
+                    String messege = keyboard.nextLine();
+                    client.send_messege(4, roomnumber, user_id, messege, "시간", false, "경로");
+                }
+                catch(Exception e) {}
+            }
+        }
+        else if (type == 5){ // 로그아웃
+            System.out.println("로그아웃 입니다");
+            try{
+                client.logout(5, user_id);
             }
             catch(Exception e) {}
+        }
+        else{
+            System.out.println("잘못된 입력입니다.");
         }
     }
 }
