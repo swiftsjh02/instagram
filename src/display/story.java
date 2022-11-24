@@ -1,3 +1,7 @@
+package display;
+
+import function.ImgSetSize;
+
 import javax.swing.*;
 
 
