@@ -36,6 +36,7 @@ public class chatting_client {
             this.bos =new BufferedOutputStream(socket.getOutputStream());
             this.pw = new PrintWriter(bos);
             pw.println(user_id);
+            pw.flush();
 
         } catch (Exception e) {
             System.out.println(e);
@@ -108,7 +109,8 @@ public class chatting_client {
 
         // user_id 입력받기
         System.out.println("user_id를 입력하세요");
-        String user_id = keyboard.next();
+        String user_id = keyboard.nextLine();
+        user_id.trim();
 
         // chatting_client 객체 생성
         chatting_client client = new chatting_client(user_id);
