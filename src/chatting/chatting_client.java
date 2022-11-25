@@ -17,19 +17,25 @@ public class chatting_client {
 
     private DataOutputStream dos;
 
+    private BufferedOutputStream bos;
+
+    private PrintWriter pw;
+
     // chatting_client client = new chatting_client(); 소켓 연결
     // client.make_room(1, user_id, 참여자리스트); 방 생성
     // client.invite_room(2, user_id, 방번호, 참여자리스트); 방 초대
     // client.delete_room(3, user_id, 방번호); 방 제거
     // client.send_messege(4, 방번호, user_id, 메시지, 시간, 파일유무, 파일경로); 메시지 보내기
 
-    public chatting_client(int user_id) {
+    public chatting_client(String user_id) {
         try {
             this.socket = new Socket("swiftsjh.tplinkdns.com", 25588);
             this.oos = new ObjectOutputStream(socket.getOutputStream());
             this.ois = new ObjectInputStream(socket.getInputStream());
             this.dos = new DataOutputStream(socket.getOutputStream());
-            dos.writeInt(user_id);
+            this.bos =new BufferedOutputStream(socket.getOutputStream());
+            this.pw = new PrintWriter(bos);
+            pw.println(user_id);
 
         } catch (Exception e) {
             System.out.println(e);
@@ -46,32 +52,32 @@ public class chatting_client {
         }
     }
     // 방 생성인 경우
-    public void make_room(int typeofrequest, int sender, ArrayList<Integer> list){
+    public void make_room(int typeofrequest, String sender, ArrayList<String> list){
         protocol content = new protocol(typeofrequest, sender, list);
         chat_message(content);
     }
 
     // 방 초대
-    public void invite_room(int typeofrequest, int sender, String roomnumber, ArrayList<Integer> list){
+    public void invite_room(int typeofrequest, String sender, String roomnumber, ArrayList<String> list){
         protocol content = new protocol(typeofrequest, sender, roomnumber, list);
         chat_message(content);
     }
 
     // 방에서 나가기
-    public void exit_room(int typeofrequest, int sender, String roomnumber){
+    public void exit_room(int typeofrequest, String sender, String roomnumber){
         protocol content = new protocol(typeofrequest, sender, roomnumber);
         chat_message(content);
 
     }
 
     // 메시지 보내기
-    public void send_messege(int typeofrequest, String roomnumber, int sender, String messege, String time, boolean file_exist, String file_name){
+    public void send_messege(int typeofrequest, String roomnumber, String sender, String messege, String time, boolean file_exist, String file_name){
         protocol content = new protocol(typeofrequest, roomnumber, sender, messege, time, file_exist, file_name);
         chat_message(content);
     }
 
     // 로그아웃
-    public void logout(int typeofrequest, int sender){
+    public void logout(int typeofrequest, String sender){
         protocol content = new protocol(typeofrequest, sender);
         chat_message(content);
         sockt_close();
@@ -102,7 +108,7 @@ public class chatting_client {
 
         // user_id 입력받기
         System.out.println("user_id를 입력하세요");
-        int user_id = keyboard.nextInt();
+        String user_id = keyboard.next();
 
         // chatting_client 객체 생성
         chatting_client client = new chatting_client(user_id);
@@ -121,10 +127,11 @@ public class chatting_client {
 
             if (type == 1) { // 방 생성
                 System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
-                ArrayList<Integer> list = new ArrayList<Integer>();
+                ArrayList<String> list = new ArrayList<>();
                 while (true) {
-                    int user = keyboard.nextInt();
-                    if (user == 0) {
+                    String user = keyboard.nextLine();
+                    user.trim();
+                    if (user.equals("0")) {
                         break;
                     }
                     list.add(user);
@@ -138,10 +145,11 @@ public class chatting_client {
                 System.out.println("방 번호를 입력하세요");
                 roomnumber = keyboard.next().trim();
                 System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
-                ArrayList<Integer> list = new ArrayList<Integer>();
+                ArrayList<String> list = new ArrayList<>();
                 while (true) {
-                    int user = keyboard.nextInt();
-                    if (user == 0) {
+                    String user = keyboard.nextLine();
+                    user.trim();
+                    if (user.equals("0")) {
                         break;
                     }
                     list.add(user);

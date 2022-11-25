@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class protocol implements Serializable {
     private int typeofrequest;
-    private ArrayList<Integer> list = new ArrayList<>();
-    private int sender;
+    private ArrayList<String> list = new ArrayList<>();
+    private String sender;
     private String roomnumber;
     private String messege;
     private String time;
@@ -31,14 +31,14 @@ public class protocol implements Serializable {
     // 에러 메시지 전송 (에러 메시지 전송)
 
     // 방 생성인 경우 1
-    public protocol(int typeofrequest, int sender, ArrayList<Integer> list){
+    public protocol(int typeofrequest, String sender, ArrayList<String> list){
         this.sender = sender;
         this.typeofrequest = typeofrequest;
         this.list = list;
     }
 
     // 방 초대 2
-    public protocol(int typeofrequest, int sender, String roomnumber, ArrayList<Integer>list){
+    public protocol(int typeofrequest, String sender, String roomnumber, ArrayList<String>list){
         this.typeofrequest = typeofrequest;
         this.sender = sender;
         this.roomnumber = roomnumber;
@@ -46,14 +46,14 @@ public class protocol implements Serializable {
     }
 
     // 방에서 나가기 3
-    public protocol(int typeofrequest, int sender, String roomnumber){
+    public protocol(int typeofrequest, String sender, String roomnumber){
         this.typeofrequest = typeofrequest;
         this.sender = sender;
         this.roomnumber = roomnumber;
     }
 
     // 메시지 보내기 4
-    public protocol(int typeofrequest, String roomnumber, int sender, String messege, String time, boolean file_exist, String file_name){
+    public protocol(int typeofrequest, String roomnumber, String sender, String messege, String time, boolean file_exist, String file_name){
         this.typeofrequest = typeofrequest;
         this.roomnumber = roomnumber;
         this.sender = sender;
@@ -64,36 +64,36 @@ public class protocol implements Serializable {
     }
 
     // 로그아웃 5, 팔로워, 팔로잉 목록 불러오기 요청 9, 10
-    public protocol(int typeofrequest, int sender){
+    public protocol(int typeofrequest, String sender){
         this.typeofrequest = typeofrequest;
         this.sender = sender;
     }
 
-    // 체팅방 유저 목록 불러오기 6
-    public protocol(int typeofrequest, String roomnumber){
-        this.typeofrequest = typeofrequest;
-        this.roomnumber = roomnumber;
-    }
+//    // 체팅방 유저 목록 불러오기 6
+//    public protocol(int typeofrequest, String roomnumber){
+//        this.typeofrequest = typeofrequest;
+//        this.roomnumber = roomnumber;
+//    }
 
     // 파일을 보내는 경우 7, 파일을 요청하는 경우 8
-    public protocol(int typeofrequest, String roomnumber, String file_path){
-        this.typeofrequest = typeofrequest;
-        this.roomnumber = roomnumber;
-        this.file_name = file_path;
-    }
+//    public protocol(int typeofrequest, String roomnumber, String file_path){
+//        this.typeofrequest = typeofrequest;
+//        this.roomnumber = roomnumber;
+//        this.file_name = file_path;
+//    }
 
     public protocol(String error_type) {
-    	this.error_type = error_type;
+        this.error_type = error_type;
     }
 
     //make getter function
     public int getTypeofrequest() {
         return typeofrequest;
     }
-    public ArrayList<Integer> getList() {
+    public ArrayList<String> getList() {
         return list;
     }
-    public int getSender() {
+    public String getSender() {
         return sender;
     }
     public String getRoomnumber() {
@@ -111,4 +111,33 @@ public class protocol implements Serializable {
     public String getFile_name() {
         return file_name;
     }
+
+    //make setter function
+    public void setTypeofrequest(int typeofrequest) {
+        this.typeofrequest = typeofrequest;
+    }
+    public void setList(ArrayList<String> list) {
+        this.list = list;
+    }
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+    public void setRoomnumber(String roomnumber) {
+        this.roomnumber = roomnumber;
+    }
+    public void setMessege(String messege) {
+        this.messege = messege;
+    }
+    public void setTime(String time) {
+        this.time = time;
+    }
+    public void setFile_exist(boolean file_exist) {
+        this.file_exist = file_exist;
+    }
+    public void setFile_name(String file_name) {
+        this.file_name = file_name;
+    }
+
+
+
 }
