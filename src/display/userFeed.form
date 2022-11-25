@@ -247,6 +247,7 @@
             </constraints>
             <properties>
               <background color="-1"/>
+              <icon value="IMG/userhomefeed.png"/>
               <text value="userhome"/>
             </properties>
           </component>
