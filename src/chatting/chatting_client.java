@@ -126,14 +126,15 @@ public class chatting_client {
             System.out.println("4. 메시지 보내기");
             System.out.println("5. 로그아웃");
             int type = keyboard.nextInt();
+            keyboard.nextLine();
 
             if (type == 1) { // 방 생성
                 System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
                 ArrayList<String> list = new ArrayList<>();
                 while (true) {
-                    keyboard.nextLine();
                     String user = keyboard.nextLine();
                     user.trim();
+
                     if (user.equals("0")) {
                         break;
                     }else{
