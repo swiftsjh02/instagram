@@ -61,7 +61,7 @@ public class chatting_client {
     public void exit_room(int typeofrequest, int sender, String roomnumber){
         protocol content = new protocol(typeofrequest, sender, roomnumber);
         chat_message(content);
-        sockt_close();
+
     }
 
     // 메시지 보내기
