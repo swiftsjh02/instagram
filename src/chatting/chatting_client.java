@@ -136,8 +136,10 @@ public class chatting_client {
                     user.trim();
                     if (user.equals("0")) {
                         break;
+                    }else{
+                        list.add(user);
                     }
-                    list.add(user);
+
                 }
                 try {
                     client.make_room(type, user_id, list);
