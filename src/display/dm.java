@@ -8,9 +8,11 @@ public class dm extends JFrame{
     private JPanel main;
     private JButton createRoom;
     private JScrollPane roomPanel;
+    private JPanel room;
 
     public dm(){
         // 방 목록 업데이트
+        // client에서 방목록을 불러오기
         setContentPane(main);
 
         setSize(850, 1000);
