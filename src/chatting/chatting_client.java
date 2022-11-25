@@ -131,6 +131,7 @@ public class chatting_client {
                 System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
                 ArrayList<String> list = new ArrayList<>();
                 while (true) {
+                    keyboard.nextLine();
                     String user = keyboard.nextLine();
                     user.trim();
                     if (user.equals("0")) {
