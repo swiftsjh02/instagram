@@ -2,6 +2,7 @@ package display;
 import javax.swing.*;
 import function.*;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class userFeed extends JFrame{
@@ -18,7 +19,7 @@ public class userFeed extends JFrame{
     private JButton profilename;
     private JLabel arrowDown;
 
-    public userFeed(){
+    public userFeed(int session){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -28,11 +29,11 @@ public class userFeed extends JFrame{
         ImgSetSize reels = new ImgSetSize("src/IMG/reels.png", 50, 50);
         reelsButton.setIcon(reels.getImg());
 
-        ImgSetSize shop = new ImgSetSize("src/IMG/shop.png", 50, 50);
+        ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-//        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
-//        userHomeButton.setIcon(home.getImg());
+       ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
+       userHomeButton.setIcon(home.getImg());
 
 
 
@@ -41,5 +42,37 @@ public class userFeed extends JFrame{
         bottom.setSize(850,50);
         setBounds(0,0,850,1000);
         setVisible(true);
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFeed a  = new mainFeed(session);
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFeed a = new mainFeed(session);
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
+        reelsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFeed a = new mainFeed(session);
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
+        shopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFeed a = new mainFeed(session);
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
     }
 }

@@ -55,7 +55,7 @@ public class mainFeed extends JFrame{
         ImgSetSize reels = new ImgSetSize("src/IMG/reels.png", 50, 50);
         reelsButton.setIcon(reels.getImg());
 
-        ImgSetSize shop = new ImgSetSize("src/IMG/shop.png", 50, 50);
+        ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
 //        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
