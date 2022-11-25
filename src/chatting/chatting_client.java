@@ -125,8 +125,14 @@ public class chatting_client {
             System.out.println("3. 방에서 나가기");
             System.out.println("4. 메시지 보내기");
             System.out.println("5. 로그아웃");
-            int type = keyboard.nextInt();
-            keyboard.nextLine();
+            int type=-1;
+            try {
+                type = Integer.parseInt(keyboard.nextLine());
+            } catch (Exception e) {
+                System.out.println("잘못된 입력입니다.");
+                continue;
+            }
+
 
             if (type == 1) { // 방 생성
                 System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
@@ -150,6 +156,7 @@ public class chatting_client {
             } else if (type == 2) { // 방에 초대하기
                 System.out.println("방 번호를 입력하세요");
                 roomnumber = keyboard.next().trim();
+                keyboard.nextLine();
                 System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
                 ArrayList<String> list = new ArrayList<>();
                 while (true) {
@@ -180,6 +187,7 @@ public class chatting_client {
                 System.out.println("메시지 보내기 입니다.");
                 System.out.println("roomnumber를 입력하세요");
                 roomnumber = keyboard.next().trim();
+                keyboard.nextLine();
                 boolean file_exist = false;
                 while (true) {
                     try {
