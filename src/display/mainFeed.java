@@ -58,8 +58,9 @@ public class mainFeed extends JFrame{
         ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-//        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
-//        userHomeButton.setIcon(home.getImg());
+       ImgSetSize userhome = new ImgSetSize("src/IMG/userhomefeed.jpg", 50, 50);
+       userHomeButton.setIcon(home.getImg());
+
 
         ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 100, 50);
         icon.setIcon(mainphoto.getImg());
@@ -102,21 +103,25 @@ public class mainFeed extends JFrame{
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                reels a = new reels(session);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
 
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                shop a = new shop(session);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
 
         userHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed();
+                userFeed a = new userFeed(session);
                 setVisible(false);
                 a.setVisible(true);
             }

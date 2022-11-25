@@ -53,7 +53,7 @@ public class userFeed extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session);
+                search a = new search();
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -61,7 +61,7 @@ public class userFeed extends JFrame{
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session);
+                reels a = new reels(session);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -69,9 +69,15 @@ public class userFeed extends JFrame{
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session);
+                shop a = new shop(session);
                 setVisible(false);
                 a.setVisible(true);
+            }
+        });
+        userHomeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }
