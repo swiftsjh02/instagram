@@ -88,8 +88,21 @@ public class chatting_client implements Runnable {
 
     // 파일 보내는 경우
     public void send_file(int typeofrequest, String roomnumber, String file_path){
-        protocol content = new protocol(typeofrequest, roomnumber, file_path);
-        chat_message(content);
+        //protocol content = new protocol(typeofrequest, roomnumber, file_path);
+        //chat_message(content);
+        try {
+            file_client file = new file_client();
+            boolean file_exist = true;
+            filechoose choice = new filechoose();
+            String filename = choice.jFileChooserUtil();
+            Socket sc = new Socket("swiftsjh.tplinkdns.com", 25589);
+            String time = file.getServerDateTime();
+            new file_client(sc, filename, roomnumber, time);
+            send_messege(4, roomnumber, user_id, null, time, file_exist, time);
+            file_exist = false;
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
 
