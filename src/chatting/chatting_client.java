@@ -107,6 +107,16 @@ public class chatting_client implements Runnable {
         }
     }
 
+    //방 목록 요청 함수 type of request =11
+    //방 목록 유청 함수 응답 type of request =12
+    public void get_room_list(int typeofrequest, String sender){
+        protocol content = new protocol(typeofrequest, sender);
+        chat_message(content);
+        sockt_close();
+    }
+
+
+
 
     // 연결 끊기
     public void sockt_close(){
@@ -134,7 +144,7 @@ public class chatting_client implements Runnable {
         //chatting_client client = new chatting_client(user_id);
 
         // ListeningThread 객체 생성
-        ListeningThread t1 = new ListeningThread(socket);
+        ListeningThread t1 = new ListeningThread(socket,my_room_list);
         t1.start(); // ListeningThread 시작
 
 //        while(true) {
