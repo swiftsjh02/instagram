@@ -151,7 +151,7 @@ public class mainFeed extends JFrame{
         dm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dm a = new dm();
+                dm a = new dm(client,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }

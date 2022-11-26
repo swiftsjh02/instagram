@@ -1,9 +1,15 @@
 package display;
 
+import chatting.chatting_client;
+import function.loginregister;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.time.LocalDate;
 
 public class chat extends JFrame{
     private JPanel main;
@@ -15,9 +21,28 @@ public class chat extends JFrame{
     private JPanel scroll_panel;
     private String room_id;
     private String my_id;
-    public chat(String my_id,String room_id){
+
+    private chatting_client client;
+
+    class JFrameWindowClosingEventHandler extends WindowAdapter {
+        public void windowClosing(WindowEvent e) {
+            JFrame frame = (JFrame)e.getWindow();
+            frame.dispose();
+            client.logout(5,my_id);
+            System.out.println("LogOut");
+        }
+    }
+    public chat(chatting_client client, String my_id, String room_id){
+        this.client = client;
         this.room_id = room_id;
         this.my_id = my_id;
+
+        setContentPane(main);
+
+        setSize(850, 1000);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(0,0,850,1000);
+        this.addWindowListener(new JFrameWindowClosingEventHandler());
 
         log_Scroll.getVerticalScrollBar().setUnitIncrement(15);
 
@@ -65,8 +90,10 @@ public class chat extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String message = textField1.getText();
+                LocalDate now = LocalDate.now();
+                String time = now.toString();
                 //client에 message와 room_id보내기
-
+                client.send_messege(4,room_id,my_id,message,time,false,null);
             }
         });
     }

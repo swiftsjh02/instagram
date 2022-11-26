@@ -1,5 +1,7 @@
 package display;
 
+import chatting.chatting_client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,10 +15,14 @@ public class dm extends JFrame{
     private JScrollPane roomPanel;
     private JPanel room;
     private String user_id;
-    public dm(String user_id){
+
+    private chatting_client client;
+    public dm(chatting_client client, String user_id){
         this.user_id = user_id;
+        this.client = client;
         // 방 목록 업데이트
         // client에서 방목록을 불러오기 room_id 형태 arrayList<string>
+
 
         setContentPane(main);
 
@@ -62,7 +68,7 @@ public class dm extends JFrame{
         createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                invite a = new invite();
+                invite a = new invite(client,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -91,7 +97,7 @@ public class dm extends JFrame{
             in.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    chat a = new chat(user_id,room_id);
+                    chat a = new chat(client,user_id,room_id);
                     setVisible(false);
                     a.setVisible(true);
                 }

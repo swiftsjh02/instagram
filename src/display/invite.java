@@ -1,5 +1,7 @@
 package display;
 
+import chatting.chatting_client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +18,11 @@ public class invite extends JFrame{
     private JButton searchButton;
     private JLabel invite_list;
 
-    public invite(){
+    private String user_id;
+    private chatting_client client;
+    public invite(chatting_client client, String user_id){
+        this.client = client;
+        this.user_id = user_id;
         setContentPane(main);
 
         setSize(850, 1000);
@@ -81,8 +87,8 @@ public class invite extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //chatting_client에 List 전달
-
-                dm a = new dm();
+                client.make_room(1,user_id,List);
+                dm a = new dm(client,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
