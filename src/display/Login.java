@@ -10,7 +10,7 @@ public class Login extends JFrame {
     private JPanel mainPanel;
     private JButton signup;
     private JLabel Icon;
-    private JTextField txtpwd;
+    private JPasswordField txtpwd;
 
 
     public Login() {
@@ -26,12 +26,19 @@ public class Login extends JFrame {
         setTitle("AI-DB Instagram LogIn System");
         setVisible(true);
 
+        txtpwd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OKButton.doClick();
+            }
+        });
 
         OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String id= txtId.getText();
-                String password= txtpwd.getText();
+                char[] pw= txtpwd.getPassword();
+                String password = new String(pw);
                 System.out.println("ID: " + id + "\tPWD: " + password + "\n");
                 loginregister manager = new loginregister();
                 int session_id = manager.login(id,password);
