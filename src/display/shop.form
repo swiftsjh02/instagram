@@ -86,6 +86,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-1"/>
               <foreground color="-2368549"/>
             </properties>
             <border type="none"/>
@@ -159,7 +160,9 @@
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-1"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="6c735" class="javax.swing.JLabel">

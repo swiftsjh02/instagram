@@ -1,25 +1,19 @@
 package display;
-
+import function.ImgSetSize;
 import javax.swing.*;
-import function.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class search extends JFrame {
     private JButton homeButton;
-    private JButton userHomeButton;
+    private JButton userhomeButton;
     private JButton searchButton;
     private JButton reelsButton;
     private JButton shopButton;
+    private JButton searchingButton;
+    private JPanel main;
     private JPanel bottom;
-    private JButton searching;
-
-//    private JButton homeButton;
-//    private JButton searchButton;
-//    private JButton reelsButton;
-//    private JButton shopButton;
-
+    private JPanel top;
 
     public search(int session) {
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
@@ -31,17 +25,18 @@ public class search extends JFrame {
         ImgSetSize reels = new ImgSetSize("src/IMG/reels.png", 50, 50);
         reelsButton.setIcon(reels.getImg());
 
-        ImgSetSize shop = new ImgSetSize("src/IMG/shop.png", 50, 50);
+        ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
-        userHomeButton.setIcon(home.getImg());
+        ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
+        userhomeButton.setIcon(home.getImg());
 
 
-        //setContentPane(main);
+        setContentPane(main);
         setSize(850, 1000);
         bottom.setSize(850, 50);
         setBounds(0, 0, 850, 1000);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         homeButton.addActionListener(new ActionListener() {
             @Override
@@ -49,13 +44,14 @@ public class search extends JFrame {
                 mainFeed a = new mainFeed(session);
                 setVisible(false);
                 a.setVisible(true);
-
             }
         });
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                search a = new search(session);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
         reelsButton.addActionListener(new ActionListener() {
@@ -64,7 +60,6 @@ public class search extends JFrame {
                 reels a = new reels(session);
                 setVisible(false);
                 a.setVisible(true);
-
             }
         });
         shopButton.addActionListener(new ActionListener() {
@@ -75,7 +70,7 @@ public class search extends JFrame {
                 a.setVisible(true);
             }
         });
-        userHomeButton.addActionListener(new ActionListener() {
+        userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 userFeed a = new userFeed(session);
@@ -83,7 +78,7 @@ public class search extends JFrame {
                 a.setVisible(true);
             }
         });
-        searching.addActionListener(new ActionListener() {
+        searchingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchTag a = new searchTag(session);
@@ -91,6 +86,9 @@ public class search extends JFrame {
                 a.setVisible(true);
             }
         });
-
     }
+
 }
+
+
+
