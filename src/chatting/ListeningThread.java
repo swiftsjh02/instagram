@@ -40,7 +40,7 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 				}
 				else if(t.getTypeofrequest() == 4){
 					String timenow = t.getTime();
-					timenow = timenow.substring(8, 10) + ":" + timenow.substring(10, 12);
+					// timenow = timenow.substring(8, 10) + ":" + timenow.substring(10, 12);
 					System.out.println("방 번호 : " + t.getRoomnumber());
 					System.out.println("현재 시간 : " + timenow);
 					System.out.println("보낸 사람 : " + t.getSender());
