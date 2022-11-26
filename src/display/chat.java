@@ -32,7 +32,17 @@ public class chat extends JFrame{
             System.out.println("LogOut");
         }
     }
+
     public chat(chatting_client client, String my_id, String room_id){
+
+        textField1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                send.doClick();
+                textField1.setText("");
+            }
+        });
+
         this.client = client;
         this.room_id = room_id;
         this.my_id = my_id;

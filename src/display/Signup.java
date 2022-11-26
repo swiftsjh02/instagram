@@ -6,8 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
 
-public class Signup extends JFrame {
+public class Signup extends JFrame{
     private JPanel panel1;
     private JTextField id;
     private JTextField email;
@@ -29,10 +31,16 @@ public class Signup extends JFrame {
         loginregister registermanager= new loginregister();
         setTitle("signup");
         setVisible(true);
+        pwd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btnOk.doClick();
+            }
+        });
+
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 char[] password= pwd.getPassword();
                 String emailfromclient= email.getText();
                 System.out.println("ID: " + emailfromclient + "\tPWD: " + password + "\n");
