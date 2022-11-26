@@ -26,7 +26,7 @@ public class story extends JFrame{
     private JButton userHomeButton;
     private JPanel bottom;
 
-    public story(int session_id){
+    public story(int session_id,String user_id){
         ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
         dmbt.setIcon(dm_size.getImg());
 
@@ -73,7 +73,7 @@ public class story extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session_id);
+                mainFeed a = new mainFeed(session_id,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }

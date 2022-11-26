@@ -7,9 +7,8 @@ import java.util.ArrayList;
 
 public class ListeningThread extends Thread { // 서버에서 보낸 메세지 읽는 Thread
 	Socket socket = null;
-	ArrayList<String> myroom_list = new ArrayList<>();
-
-	ArrayList<String> userlist_in_room= new ArrayList<>();
+	private static ArrayList<String> myroom_list;
+	private static ArrayList<String> userlist_in_room;
 
 	public ListeningThread(Socket socket,ArrayList<String> myroom_list) { // 생성자
 		this.socket = socket; // 받아온 Socket Parameter를 해당 클래스 Socket에 넣기
@@ -17,6 +16,9 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 	}
 
 	public ArrayList<String> get_myroom_list() {
+		for(int i = 0;i<myroom_list.size();i++){
+			System.out.println(myroom_list.get(i));
+		}
 		return myroom_list;
 	}
 	public ArrayList<String> get_users_in_room() {
@@ -46,6 +48,7 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 				}else if(t.getTypeofrequest() == 12) {
 					myroom_list=t.getList();
 					System.out.println("서버의 방목록 업데이트 결과가 도착했습니다.");
+
 				}else if(t.getTypeofrequest()==14){
 					userlist_in_room=t.getList();
 					System.out.println("방 안의 유저목록 업데이트 결과가 도착했습니다.");
@@ -55,6 +58,7 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 				}
 			}
 		} catch (SocketException e){
+			e.printStackTrace();
 			System.out.println("로그아웃 하였습니다.");
 		} catch (Exception e) {
 			System.out.println(e);

@@ -1,5 +1,6 @@
 package display;
 
+import chatting.ListeningThread;
 import chatting.chatting_client;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class invite extends JFrame{
 
     private String user_id;
     private chatting_client client;
-    public invite(chatting_client client, String user_id){
+    public invite(chatting_client client, String user_id, ListeningThread t1){
         this.client = client;
         this.user_id = user_id;
         setContentPane(main);
@@ -88,7 +89,7 @@ public class invite extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 //chatting_client에 List 전달
                 client.make_room(1,user_id,List);
-                dm a = new dm(client,user_id);
+                dm a = new dm(client,user_id,t1);
                 setVisible(false);
                 a.setVisible(true);
             }

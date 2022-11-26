@@ -114,7 +114,7 @@ public class chatting_client implements Runnable {
     public void get_room_list(int typeofrequest, String sender){
         protocol content = new protocol(typeofrequest, sender);
         chat_message(content);
-        sockt_close();
+
     }
 
     //방안의 유저 목록 요청 함수 type of request =13
@@ -122,7 +122,7 @@ public class chatting_client implements Runnable {
     public void get_user_list_in_room(int typeofrequest, String sender, String roomnumber){
         protocol content = new protocol(typeofrequest, sender, roomnumber);
         chat_message(content);
-        sockt_close();
+
     }
 
 
