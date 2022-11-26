@@ -125,6 +125,11 @@ public class chatting_client implements Runnable {
 
     }
 
+    public void get_all_user_list(int typeofrequest, String sender){
+        protocol content = new protocol(typeofrequest, sender);
+        chat_message(content);
+    }
+
 
 
 

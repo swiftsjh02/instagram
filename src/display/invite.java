@@ -8,9 +8,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class invite extends JFrame{
     private final static ArrayList<String> List= new ArrayList<String>();
+    private static ArrayList<String> friend_list = new ArrayList<String>();
+    //
     private JPanel main;
     private JButton create;
     private JScrollPane invite_scroll;
@@ -29,16 +32,16 @@ public class invite extends JFrame{
         setSize(850, 1000);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        ArrayList<String> friend_list = new ArrayList<String>();
         // client에서 list 받아오기 get_friend_list();
 
-        friend_list.add("a");
-        friend_list.add("apple");
-        friend_list.add("aasdss");
-        friend_list.add("bkd");
-        friend_list.add("ytre");
-
-
+        client.get_all_user_list(15,user_id);
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        friend_list = t1.getAll_user_list();
 
         invite_scroll.getVerticalScrollBar().setUnitIncrement(15);
 
@@ -87,6 +90,9 @@ public class invite extends JFrame{
         create.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                for(int i = 0;i< List.size();i++){
+                    System.out.println(List.get(i));
+                }
                 //chatting_client에 List 전달
                 client.make_room(1,user_id,List);
                 dm a = new dm(client,user_id,t1);
