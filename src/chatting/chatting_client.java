@@ -180,6 +180,7 @@ public class chatting_client {
                 System.out.println("메시지 보내기 입니다.");
                 System.out.println("roomnumber를 입력하세요");
                 roomnumber = keyboard.next().trim();
+                keyboard.nextLine();
                 boolean file_exist = false;
                 while (true) {
                     try {
