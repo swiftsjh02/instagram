@@ -26,6 +26,7 @@ public class Login extends JFrame {
         setTitle("AI-DB Instagram LogIn System");
         setVisible(true);
 
+
         OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,7 +36,7 @@ public class Login extends JFrame {
                 loginregister manager = new loginregister();
                 int session_id = manager.login(id,password);
                 if(session_id!=-1){
-                    mainFeed a = new mainFeed(session_id);
+                    mainFeed a = new mainFeed(session_id,id);
                     setVisible(false);
                     a.setVisible(true);
                 }
