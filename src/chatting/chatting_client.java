@@ -10,10 +10,14 @@ import chatting.file_client;
 import java.time.format.DateTimeFormatter;
 import java.time.*;
 
-public class chatting_client {
+public class chatting_client implements Runnable {
     public static Socket socket;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
+
+    public String user_id;
+
+    public ArrayList<String> my_room_list;
 
     private DataOutputStream dos;
 
@@ -42,7 +46,7 @@ public class chatting_client {
             System.out.println(e);
         }
     }
-
+    // 프로토콜로 담은 내용 보내기 함수
     public void chat_message(protocol content){
         try{
             this.oos.writeObject(content);
@@ -86,8 +90,21 @@ public class chatting_client {
 
     // 파일 보내는 경우
     public void send_file(int typeofrequest, String roomnumber, String file_path){
-        protocol content = new protocol(typeofrequest, roomnumber, file_path);
-        chat_message(content);
+        //protocol content = new protocol(typeofrequest, roomnumber, file_path);
+        //chat_message(content);
+        try {
+            file_client file = new file_client();
+            boolean file_exist = true;
+            filechoose choice = new filechoose();
+            String filename = choice.jFileChooserUtil();
+            Socket sc = new Socket("swiftsjh.tplinkdns.com", 25589);
+            String time = file.getServerDateTime();
+            new file_client(sc, filename, roomnumber, time);
+            send_messege(4, roomnumber, user_id, null, time, file_exist, time);
+            file_exist = false;
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
 
@@ -102,118 +119,126 @@ public class chatting_client {
             System.out.println(e3);
         }
     }
-    public static void main(String[] args){
-        Scanner keyboard = new Scanner(System.in);
+    @Override
+    public void run(){
+        //Scanner keyboard = new Scanner(System.in);
 
-        String roomnumber;
+        //String roomnumber;
 
         // user_id 입력받기
-        System.out.println("user_id를 입력하세요");
-        String user_id = keyboard.nextLine();
-        user_id.trim();
+        //System.out.println("user_id를 입력하세요");
+        //String user_id = keyboard.nextLine();
+        //user_id.trim();
 
         // chatting_client 객체 생성
-        chatting_client client = new chatting_client(user_id);
+        //chatting_client client = new chatting_client(user_id);
 
         // ListeningThread 객체 생성
         ListeningThread t1 = new ListeningThread(socket);
         t1.start(); // ListeningThread 시작
 
-        while(true) {
-            System.out.println("1. 방 생성");
-            System.out.println("2. 방 초대");
-            System.out.println("3. 방에서 나가기");
-            System.out.println("4. 메시지 보내기");
-            System.out.println("5. 로그아웃");
-            int type = keyboard.nextInt();
-            keyboard.nextLine();
-
-            if (type == 1) { // 방 생성
-                System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
-                ArrayList<String> list = new ArrayList<>();
-                while (true) {
-                    String user = keyboard.nextLine();
-                    user.trim();
-
-                    if (user.equals("0")) {
-                        break;
-                    }else{
-                        list.add(user);
-                    }
-
-                }
-                try {
-                    client.make_room(type, user_id, list);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (type == 2) { // 방에 초대하기
-                System.out.println("방 번호를 입력하세요");
-                roomnumber = keyboard.next().trim();
-                System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
-                ArrayList<String> list = new ArrayList<>();
-                while (true) {
-                    String user = keyboard.nextLine();
-                    user.trim();
-                    if (user.equals("0")) {
-                        break;
-                    }
-                    list.add(user);
-                }
-                try {
-                    client.invite_room(type, user_id, roomnumber, list);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (type == 3) { // 방에서 나가기
-                System.out.println("방 번호를 입력하세요");
-                roomnumber = keyboard.next().trim();
-                try {
-                    client.exit_room(type, user_id, roomnumber);
-                    continue;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (type == 4) { // 메시지 보내기
-                file_client file = new file_client();
-                String time;
-                System.out.println("메시지 보내기 입니다.");
-                System.out.println("roomnumber를 입력하세요");
-                roomnumber = keyboard.next().trim();
-                keyboard.nextLine();
-                boolean file_exist = false;
-                while (true) {
-                    try {
-                        String messege = keyboard.nextLine();
-                        if (messege.equals("exit")) {
-                            break;
-                        } else if (messege.equals("file")) {
-                            file_exist = true;
-                            filechoose choice= new filechoose();
-                            String filename= choice.jFileChooserUtil();
-                            Socket sc = new Socket("swiftsjh.tplinkdns.com", 25589);
-                            time = file.getServerDateTime();
-                            new file_client(sc, filename ,roomnumber, time);
-                            client.send_messege(type, roomnumber, user_id, null, time, file_exist, time);
-                            file_exist = false;
-                        }
-                        else {
-                            time = file.getServerDateTime();
-                            client.send_messege(type, roomnumber, user_id, messege, time, file_exist, null);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            } else if (type == 5) { // 로그아웃
-                System.out.println("로그아웃 입니다");
-                try {
-                    client.logout(5, user_id);
-                    break;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+//        while(true) {
+//            System.out.println("1. 방 생성");
+//            System.out.println("2. 방 초대");
+//            System.out.println("3. 방에서 나가기");
+//            System.out.println("4. 메시지 보내기");
+//            System.out.println("5. 로그아웃");
+//            int type=-1;
+//            try {
+//                type = Integer.parseInt(keyboard.nextLine());
+//            } catch (Exception e) {
+//                System.out.println("잘못된 입력입니다.");
+//                continue;
+//            }
+//
+//
+//            if (type == 1) { // 방 생성
+//                System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
+//                ArrayList<String> list = new ArrayList<>();
+//                while (true) {
+//                    String user = keyboard.nextLine();
+//                    user.trim();
+//
+//                    if (user.equals("0")) {
+//                        break;
+//                    }else{
+//                        list.add(user);
+//                    }
+//
+//                }
+//                try {
+//                    client.make_room(type, user_id, list);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            } else if (type == 2) { // 방에 초대하기
+//                System.out.println("방 번호를 입력하세요");
+//                roomnumber = keyboard.next().trim();
+//                keyboard.nextLine();
+//                System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
+//                ArrayList<String> list = new ArrayList<>();
+//                while (true) {
+//                    String user = keyboard.nextLine();
+//                    user.trim();
+//                    if (user.equals("0")) {
+//                        break;
+//                    }
+//                    list.add(user);
+//                }
+//                try {
+//                    client.invite_room(type, user_id, roomnumber, list);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            } else if (type == 3) { // 방에서 나가기
+//                System.out.println("방 번호를 입력하세요");
+//                roomnumber = keyboard.next().trim();
+//                try {
+//                    client.exit_room(type, user_id, roomnumber);
+//                    continue;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            } else if (type == 4) { // 메시지 보내기
+//                file_client file = new file_client();
+//                String time;
+//                System.out.println("메시지 보내기 입니다.");
+//                System.out.println("roomnumber를 입력하세요");
+//                roomnumber = keyboard.next().trim();
+//                keyboard.nextLine();
+//                boolean file_exist = false;
+//                while (true) {
+//                    try {
+//                        String messege = keyboard.nextLine();
+//                        if (messege.equals("exit")) {
+//                            break;
+//                        } else if (messege.equals("file")) {
+//                            file_exist = true;
+//                            filechoose choice= new filechoose();
+//                            String filename= choice.jFileChooserUtil();
+//                            Socket sc = new Socket("swiftsjh.tplinkdns.com", 25589);
+//                            time = file.getServerDateTime();
+//                            new file_client(sc, filename ,roomnumber, time);
+//                            client.send_messege(type, roomnumber, user_id, null, time, file_exist, time);
+//                            file_exist = false;
+//                        }
+//                        else {
+//                            time = file.getServerDateTime();
+//                            client.send_messege(type, roomnumber, user_id, messege, time, file_exist, null);
+//                        }
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            } else if (type == 5) { // 로그아웃
+//                System.out.println("로그아웃 입니다");
+//                try {
+//                    client.logout(5, user_id);
+//                    break;
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
     }
 }
