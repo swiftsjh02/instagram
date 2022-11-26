@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class protocol implements Serializable {
     private int typeofrequest;
-    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> list;
     private String sender;
     private String roomnumber;
     private String messege;

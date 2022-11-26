@@ -8,9 +8,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
 
 public class dm extends JFrame{
-    private static ArrayList<String> room_id = new ArrayList<String>();
+    private static ArrayList<String> room_id;
+    private static ArrayList<String> member_list;
     private JPanel main;
     private JButton createRoom;
     private JScrollPane roomPanel;
@@ -22,11 +25,26 @@ public class dm extends JFrame{
         this.t1 = t1;
         this.user_id = user_id;
         this.client = client;
+
+        ArrayList<String> a = new ArrayList<>();
+        a.add("1111");
+        a.add("2222");
+        client.make_room(1,user_id,a);
         // 방 목록 업데이트
         // client에서 방목록을 불러오기 room_id 형태 arrayList<string>
         client.get_room_list(11,user_id);
         room_id = t1.get_myroom_list();
 
+
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        for(int i = 0;i<room_id.size();i++){
+            System.out.println(room_id.get(i));
+        }
         setContentPane(main);
 
         setSize(850, 1000);
@@ -41,6 +59,8 @@ public class dm extends JFrame{
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         for(int i = 0;i<room_id.size();i++){
+            client.get_user_list_in_room(13,user_id,room_id.get(i));
+            member_list = t1.get_users_in_room();
             roomPanel pane = new roomPanel(member_list,room_id.get(i));
             gbc.fill = GridBagConstraints.BOTH;
             gbc.ipadx = 850;
@@ -56,22 +76,22 @@ public class dm extends JFrame{
         room.setVisible(true);
 
         //Listener에서 방목록이 추가 되었을때 string 룸 아이디 : idroom
-        if(){
-            room_id.add(idroom);
-            roomPanel pane = new roomPanel(member_list,idroom);
-            gbc.fill = GridBagConstraints.BOTH;
-            gbc.ipadx = 850;
-            gbc.ipady = 100;
-            gbc.gridx = 0;
-            gbc.gridy = i;
-            Gbag.setConstraints(pane,gbc);
-            room.add(pane);
-            room.updateUI();
-        }
+//        if(){
+//            room_id.add(idroom);
+//            roomPanel pane = new roomPanel(member_list,idroom);
+//            gbc.fill = GridBagConstraints.BOTH;
+//            gbc.ipadx = 850;
+//            gbc.ipady = 100;
+//            gbc.gridx = 0;
+//            gbc.gridy = i;
+//            Gbag.setConstraints(pane,gbc);
+//            room.add(pane);
+//            room.updateUI();
+//        }
         createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                invite a = new invite(client,user_id);
+                invite a = new invite(client,user_id,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -79,15 +99,19 @@ public class dm extends JFrame{
     }
     public class roomPanel extends JPanel{
 
+        private  ArrayList<String> member_list = new ArrayList<>();
         private String room_id;
 
         private JLabel member;
 
         private JButton in;
 
-        public roomPanel(String member , String id){
+        public roomPanel(ArrayList<String> member , String id){
+            this.member_list = member;
             this.room_id = id;
-            this.member.setText(member);
+            for(int i =0;i<member_list.size();i++){
+                this.member.setText(this.member.getText() + " " + member_list.get(i));
+            }
 
             this.in = new JButton();
 

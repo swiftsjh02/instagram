@@ -101,7 +101,7 @@ public class mainFeed extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                story a = new story(session);
+                story a = new story(session,user_id);
                 setVisible(false);
             }
         });
