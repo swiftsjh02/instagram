@@ -1,5 +1,6 @@
 package display;
 
+import chatting.ListeningThread;
 import chatting.chatting_client;
 
 import javax.swing.*;
@@ -9,20 +10,22 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class dm extends JFrame{
-    private final static ArrayList<String> room_id = new ArrayList<String>();
+    private static ArrayList<String> room_id = new ArrayList<String>();
     private JPanel main;
     private JButton createRoom;
     private JScrollPane roomPanel;
     private JPanel room;
     private String user_id;
-
+    private ListeningThread t1;
     private chatting_client client;
-    public dm(chatting_client client, String user_id){
+    public dm(chatting_client client, String user_id, ListeningThread t1){
+        this.t1 = t1;
         this.user_id = user_id;
         this.client = client;
         // 방 목록 업데이트
         // client에서 방목록을 불러오기 room_id 형태 arrayList<string>
-
+        client.get_room_list(11,user_id);
+        room_id = t1.get_myroom_list();
 
         setContentPane(main);
 
