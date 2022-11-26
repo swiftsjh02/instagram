@@ -17,6 +17,8 @@ public class chatting_client implements Runnable {
 
     public String user_id;
 
+    public ArrayList<String> my_room_list;
+
     private DataOutputStream dos;
 
     private BufferedOutputStream bos;
