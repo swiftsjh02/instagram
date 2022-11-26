@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class userFeed extends JFrame{
     private JPanel userinformation;
     private JButton homeButton;
-    private JButton userHomeButton;
+    private JButton userhomeButton;
     private JButton reelsButton;
     private JButton searchButton;
     private JButton shopButton;
@@ -44,7 +44,7 @@ public class userFeed extends JFrame{
         shopButton.setIcon(shop.getImg());
 
        ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
-       userHomeButton.setIcon(home.getImg());
+       userhomeButton.setIcon(home.getImg());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,12 +66,12 @@ public class userFeed extends JFrame{
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         for(int i = 0;i<post_list.size();i++){
-            post pane = new post(post_list.get(i));
+            post pane = new post();
             gbc.fill = GridBagConstraints.BOTH;
-            gbc.ipadx = 850;
-            gbc.ipady = 100;
-            gbc.gridx = 0;
-            gbc.gridy = i;
+            gbc.ipadx = 270;
+            gbc.ipady = 270;
+            gbc.gridx = i%3;
+            gbc.gridy = i/3;
             Gbag.setConstraints(pane,gbc);
             scroll.add(pane);
             scroll.updateUI();
@@ -119,11 +119,25 @@ public class userFeed extends JFrame{
                 a.setVisible(true);
             }
         });
-        userHomeButton.addActionListener(new ActionListener() {
+        userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
+    }
+    public class post extends JPanel{
+        private JButton post_num;
+
+        post(){
+            post_num = new JButton();
+            post_num.setSize(270,270);
+            post_num.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+        }
     }
 }
