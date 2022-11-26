@@ -47,6 +47,7 @@
                 </constraints>
                 <properties>
                   <alignmentX value="0.5"/>
+                  <background color="-1"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -56,6 +57,7 @@
                 </constraints>
                 <properties>
                   <alignmentX value="0.5"/>
+                  <background color="-1"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -65,6 +67,7 @@
                 </constraints>
                 <properties>
                   <alignmentX value="0.5"/>
+                  <background color="-1"/>
                   <text value=""/>
                 </properties>
               </component>

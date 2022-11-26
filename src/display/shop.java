@@ -50,7 +50,7 @@ public class shop extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search();
+                search a = new search(session);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -66,7 +66,7 @@ public class shop extends JFrame{
         userHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session);
+                userFeed a = new userFeed(session);
                 setVisible(false);
                 a.setVisible(true);
             }

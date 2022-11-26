@@ -110,7 +110,7 @@ public class mainFeed extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search();
+                search a = new search(session);
 
             }
         });
