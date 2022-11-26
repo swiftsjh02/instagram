@@ -12,10 +12,11 @@ public class dm extends JFrame{
     private JButton createRoom;
     private JScrollPane roomPanel;
     private JPanel room;
-
-    public dm(){
+    private String user_id;
+    public dm(String user_id){
+        this.user_id = user_id;
         // 방 목록 업데이트
-        // client에서 방목록을 불러오기 room_id
+        // client에서 방목록을 불러오기 room_id 형태 arrayList<string>
 
         setContentPane(main);
 
@@ -31,7 +32,7 @@ public class dm extends JFrame{
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         for(int i = 0;i<room_id.size();i++){
-            roomPanel pane = new roomPanel(room_id.get(i));
+            roomPanel pane = new roomPanel(member_list,room_id.get(i));
             gbc.fill = GridBagConstraints.BOTH;
             gbc.ipadx = 850;
             gbc.ipady = 100;
@@ -44,6 +45,20 @@ public class dm extends JFrame{
         roomPanel.setViewportView(room);
         roomPanel.setVisible(true);
         room.setVisible(true);
+
+        //Listener에서 방목록이 추가 되었을때 string 룸 아이디 : idroom
+        if(){
+            room_id.add(idroom);
+            roomPanel pane = new roomPanel(member_list,idroom);
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.ipadx = 850;
+            gbc.ipady = 100;
+            gbc.gridx = 0;
+            gbc.gridy = i;
+            Gbag.setConstraints(pane,gbc);
+            room.add(pane);
+            room.updateUI();
+        }
         createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,14 +76,26 @@ public class dm extends JFrame{
 
         private JButton in;
 
-        public roomPanel(String id){
+        public roomPanel(String member , String id){
             this.room_id = id;
+            this.member.setText(member);
 
             this.in = new JButton();
 
+            setLayout(new FlowLayout(FlowLayout.LEFT));
+            setSize(850,100);
 
+            add(in);
+            add(this.member);
 
-
+            in.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    chat a = new chat(user_id,room_id);
+                    setVisible(false);
+                    a.setVisible(true);
+                }
+            });
         }
     }
 }
