@@ -10,7 +10,6 @@ public class reels extends JFrame{
     private JPanel main;
     private JButton userhomeButton;
     private JButton homeButton;
-    private JButton userHomeButton;
     private JButton shopButton;
     private JButton reelsButton;
     private JButton searchButton;
@@ -36,8 +35,8 @@ public class reels extends JFrame{
         ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-        ImgSetSize userhome = new ImgSetSize("src/IMG/userhomefeed.jpg", 50, 50);
-        userHomeButton.setIcon(userhome.getImg());
+        ImgSetSize userhome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
+        userhomeButton.setIcon(userhome.getImg());
 
         ImgSetSize camera1 = new ImgSetSize("src/IMG/camera1.png", 50,50);
         camera.setIcon(camera1.getImg());
