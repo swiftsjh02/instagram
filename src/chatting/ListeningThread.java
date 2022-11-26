@@ -7,18 +7,20 @@ import java.util.ArrayList;
 
 public class ListeningThread extends Thread { // 서버에서 보낸 메세지 읽는 Thread
 	Socket socket = null;
-	private static ArrayList<String> myroom_list;
+	private static ArrayList<String> myroom_list = new ArrayList<>();
 	private static ArrayList<String> userlist_in_room;
+
+	private static ArrayList<String> all_user_list = new ArrayList<>();
 
 	public ListeningThread(Socket socket,ArrayList<String> myroom_list) { // 생성자
 		this.socket = socket; // 받아온 Socket Parameter를 해당 클래스 Socket에 넣기
 		this.myroom_list=myroom_list;
 	}
+	public ArrayList<String> getAll_user_list() {
+		return all_user_list;
+	}
 
 	public ArrayList<String> get_myroom_list() {
-		for(int i = 0;i<myroom_list.size();i++){
-			System.out.println(myroom_list.get(i));
-		}
 		return myroom_list;
 	}
 	public ArrayList<String> get_users_in_room() {
@@ -52,6 +54,10 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 				}else if(t.getTypeofrequest()==14){
 					userlist_in_room=t.getList();
 					System.out.println("방 안의 유저목록 업데이트 결과가 도착했습니다.");
+				}
+				else if(t.getTypeofrequest()==16){
+					all_user_list=t.getList();
+					System.out.println("모든 유저 목록 도착했습니다.");
 				}
 				else{
 					System.out.println("잘못된 요청입니다.");
