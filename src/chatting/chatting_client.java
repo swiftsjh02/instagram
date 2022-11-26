@@ -25,6 +25,8 @@ public class chatting_client implements Runnable {
 
     private PrintWriter pw;
 
+    private ListeningThread t1;
+
     // chatting_client client = new chatting_client(); 소켓 연결
     // client.make_room(1, user_id, 참여자리스트); 방 생성
     // client.invite_room(2, user_id, 방번호, 참여자리스트); 방 초대
@@ -129,6 +131,10 @@ public class chatting_client implements Runnable {
             System.out.println(e3);
         }
     }
+
+    public ListeningThread get_listening(){
+        return t1;
+    }
     @Override
     public void run(){
         //Scanner keyboard = new Scanner(System.in);
@@ -146,6 +152,7 @@ public class chatting_client implements Runnable {
         // ListeningThread 객체 생성
         ListeningThread t1 = new ListeningThread(socket,my_room_list);
         t1.start(); // ListeningThread 시작
+        this.t1 = t1;
 
 //        while(true) {
 //            System.out.println("1. 방 생성");

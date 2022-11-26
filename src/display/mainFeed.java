@@ -30,6 +30,7 @@ public class mainFeed extends JFrame{
     private JPanel home_main;
     private JPanel home;
 
+    private ListeningThread t1;
     public String user_id;
     public int session_id;
 
@@ -51,12 +52,14 @@ public class mainFeed extends JFrame{
 
         chatting_client client = new chatting_client(user_id);
         client.run();
+        this.t1 = client.get_listening();
 //         client.send_messege();
 //         client.invite_room();
 //         client.make_room();
 //         client.exit_room();
 //         client.logout();
 //         client.send_file();
+
 
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
@@ -151,7 +154,7 @@ public class mainFeed extends JFrame{
         dm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dm a = new dm(client,user_id);
+                dm a = new dm(client,user_id,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
