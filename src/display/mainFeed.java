@@ -96,7 +96,8 @@ public class mainFeed extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 search a = new search(session);
-
+                setVisible(false);
+                a.setVisible(true);
             }
         });
 
