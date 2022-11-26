@@ -43,7 +43,6 @@ public class chatting_client implements Runnable {
             this.pw = new PrintWriter(bos);
             pw.println(user_id);
             pw.flush();
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -74,7 +73,6 @@ public class chatting_client implements Runnable {
     public void exit_room(int typeofrequest, String sender, String roomnumber){
         protocol content = new protocol(typeofrequest, sender, roomnumber);
         chat_message(content);
-
     }
 
     // 메시지 보내기
