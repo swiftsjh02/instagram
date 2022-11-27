@@ -54,7 +54,7 @@ public class file_client extends Thread{
                 os=socket.getOutputStream();
                 InputStream is=socket.getInputStream();
                 pw = new PrintWriter(os);
-                pw.println(Integer.toString(type));
+                pw.println(Integer.toString(type)); //타입
                 pw.flush();
                 pw.println(roomnumber); //1방넘버
                 pw.flush();
@@ -106,10 +106,9 @@ public class file_client extends Thread{
                 file =  new File(filename);
                 pw.println((int) file.length()); //4파일크기
                 pw.flush();
-                time.setTime();
-                String name_send=time.getTime();
 
-                A.send_messege(4,roomnumber,A.user_id,"파일 전송 완료",time.getTime(),true,name_send+filetype);
+
+                A.send_messege(4,roomnumber,A.user_id,"파일 전송 완료",time.getTime(),true,name_send1+filetype);
 
                 os=socket.getOutputStream();
                 dataOutput = new DataOutputStream(os); //output 스크림 생성
@@ -154,8 +153,8 @@ public class file_client extends Thread{
                         if(progress/(float)totalSize2*100 % 0.5 == 0){
                             System.out.println("전송 진행률: "+String.format("%.1f",progress/(float)totalSize2*100)+"%");
                         }
-                        progress++;
 
+                        progress++;
                     }//while문
                     bufferedOutput.write(bytes);  //소켓 버퍼에 write
                 }//if문
