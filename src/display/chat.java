@@ -80,10 +80,10 @@ public class chat extends JFrame{
 
         this.t1 = t1;
         try {
-            reader = new BufferedInputStream(new FileInputStream("chatting_data\\"+room_id+".txt"));
+            reader = new BufferedInputStream(new FileInputStream("chatting_data/"+room_id+".txt"));
         }catch (Exception e){
             try {
-                reader = new BufferedInputStream(new FileInputStream("chatting_data\\" + room_id + ".txt"));
+                reader = new BufferedInputStream(new FileInputStream("chatting_data/" + room_id + ".txt"));
             }catch (Exception e1){
                 e1.printStackTrace();
             }
@@ -157,7 +157,7 @@ public class chat extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 file_client A= new file_client(null,null,room_id,null,1,client);
-                A.run();
+                A.start();
             }
         });
         exit.addActionListener(new ActionListener() {

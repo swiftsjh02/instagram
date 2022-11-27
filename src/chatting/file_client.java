@@ -9,7 +9,7 @@ import java.time.*;
 import java.util.concurrent.*;
 
 
-public class file_client implements Runnable {
+public class file_client extends Thread{
 
 
     DataOutputStream dataOutput = null;
@@ -46,6 +46,10 @@ public class file_client implements Runnable {
         if(socket!=null){
             try {
 
+                protocol time = new protocol();
+                time.setTime();
+                String name_send1=time.getTime();
+
                 String filetype = filename.substring(filename.lastIndexOf("."));
                 os=socket.getOutputStream();
                 InputStream is=socket.getInputStream();
@@ -55,7 +59,7 @@ public class file_client implements Runnable {
                 pw.println(roomnumber); //1방넘버
                 pw.flush();
                 System.out.println(time);
-                pw.println(time); //2파일이름
+                pw.println(name_send1); //2파일이름
                 pw.flush();
                 pw.println(filetype); //3파일타입
                 pw.flush();
@@ -102,6 +106,10 @@ public class file_client implements Runnable {
                 file =  new File(filename);
                 pw.println((int) file.length()); //4파일크기
                 pw.flush();
+                time.setTime();
+                String name_send=time.getTime();
+
+                A.send_messege(4,roomnumber,A.user_id,"파일 전송 완료",time.getTime(),true,name_send+filetype);
 
                 os=socket.getOutputStream();
                 dataOutput = new DataOutputStream(os); //output 스크림 생성
@@ -168,10 +176,6 @@ public class file_client implements Runnable {
                     e.printStackTrace();
                 }
                 System.out.println("file transfer complete");
-                protocol time = new protocol();
-                time.setTime();
-                A.send_messege(4,roomnumber,A.user_id,"파일 전송 완료",time.getTime(),true,time.getTime()+filetype);
-
             }//finally
         }//main
     }
