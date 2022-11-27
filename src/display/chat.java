@@ -2,6 +2,7 @@ package display;
 
 import chatting.ListeningThread;
 import chatting.chatting_client;
+import chatting.file_client;
 import chatting.protocol;
 
 import javax.swing.*;
@@ -158,7 +159,8 @@ public class chat extends JFrame{
         file.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                file_client A= new file_client(null,null,room_id,null,1,client);
+                A.start();
             }
         });
         exit.addActionListener(new ActionListener() {
