@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
@@ -46,6 +47,8 @@ public class dm extends JFrame{
         }
         setContentPane(main);
 
+
+
         setSize(850, 1000);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(0,0,850,1000);
@@ -59,6 +62,7 @@ public class dm extends JFrame{
         gbc.weighty = 1.0;
         for(int i = 0;i<room_id.size();i++){
             client.get_user_list_in_room(13,user_id,room_id.get(i));
+
             try {
                 TimeUnit.MILLISECONDS.sleep(500);
             }
@@ -139,7 +143,7 @@ public class dm extends JFrame{
             in.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    chat a = new chat(client,user_id,room_id);
+                    chat a = new chat(client,user_id,room_id,t1);
                     a.setVisible(true);
                     dispose();
                 }
