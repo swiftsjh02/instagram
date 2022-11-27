@@ -9,7 +9,8 @@ import java.time.*;
 
 
 public class file_client {
-    public file_client (){}
+
+
     DataOutputStream dataOutput = null;
     OutputStream os=null;
     Socket socket = null;
@@ -35,12 +36,16 @@ public class file_client {
 //        }
 //    }
 
-    public file_client(Socket socket, String fileName, String roomnumber, String time) {
+    public file_client(Socket socket, String fileName, String roomnumber, String time,int type) { //type ==1 ->파일 전송
+                                                                                                //2-> 파일 받기
         try {
-            // roomnumber 전송
+
             String filetype = fileName.substring(fileName.lastIndexOf("."));
             os=socket.getOutputStream();
+            InputStream is=socket.getInputStream();
             pw = new PrintWriter(os);
+            pw.println(Integer.toString(type));
+            pw.flush();
             pw.println(roomnumber); //1방넘버
             pw.flush();
             System.out.println(time);
@@ -49,9 +54,48 @@ public class file_client {
             pw.println(filetype); //3파일타입
             pw.flush();
 
+            if(type==2){
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String file_size=br.readLine();
+                System.out.println("파일크기:"+file_size);
+                filetype=br.readLine();
+                System.out.println("파일타입:"+filetype);
+                fileName = fileName+filetype;
+                byte[] buf = new byte[104857600];      //100MB 단위로 파일을 쓰기 위한 byte타입 배열
+                FileOutputStream fileOutput = new FileOutputStream("chatting_data/"+roomnumber+"/"+fileName, false);
+                BufferedInputStream bufferdInput = new BufferedInputStream(dataInput);
+                int totalSize = Integer.parseInt(file_size);
+                int i = 0;  //buf 배열 인덱스용 변수
+                //전송받은 파일 사이즈가 100MB 보다 크다면 100MB 단위로 배열에 저장 후 파일에 write 하고
+                //파일에 write한 100MB만큼을  파일 사이즈에서 제외하는 while문!!!
+                while (totalSize > 104857600) {
+                    while (i < 104857600) {
+                        buf[i] = (byte) bufferdInput.read();
+                        i++;    //배열인덱스 이동
+                    }//while(i < 104857600)문
+                    totalSize -= 104857600;  //파일사이즈 - 100MB
+                    i = 0;                   //배열 인덱스 초기화
+                    fileOutput.write(buf);   //파일에 write
+                }//while(totalSize > 104857600)문
+
+                //100MB보다 같거나 작은 남은 사이즈 혹은 원래의 사이즈가 100MB 보다 작을 시 if문 내용이 실행 되어
+                //파일을 write 함
+                if (totalSize <= 104857600) {
+                    i = 0;                     //배열 인덱스 초기화
+                    buf = new byte[totalSize]; //100MB보다 같거나 작으므로 totalSize로 배열크기 다시 생성
+                    while (i < totalSize) {
+                        buf[i] = (byte) bufferdInput.read();
+                        i++;      //배열인덱스 이동
+                    }//while문
+                    fileOutput.write(buf);  //파일에 write
+                }//if문
+                fileOutput.flush();
+                System.out.println("file receive complete");
+            }
+
 
             // 파일 전송
-            file = new File(fileName);
+            file =  new File(fileName);
             pw.println((int) file.length()); //4파일크기
             pw.flush();
 
