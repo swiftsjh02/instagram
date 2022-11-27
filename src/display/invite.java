@@ -107,8 +107,8 @@ public class invite extends JFrame{
                     e1.printStackTrace();
                 }
                 ArrayList<String> b = t1.get_myroom_list();
-                System.out.println("chatting_data\\" + b.get(b.size()-1) + ".txt");
-                File file =new File("chatting_data\\" + b.get(b.size()-1) + ".txt");
+                System.out.println("chatting_data/" + b.get(b.size()-1) + ".txt");
+                File file =new File("chatting_data/" + b.get(b.size()-1) + ".txt");
                 try{
                     FileWriter fw =new FileWriter(file,true);
                     BufferedWriter bw= new BufferedWriter(fw);
