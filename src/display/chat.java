@@ -47,7 +47,7 @@ public class chat extends JFrame{
                             s=s.substring(0,i);
                             System.out.println(s);
                             String w[] = s.split(":");
-                            if(w[3] != "true"){
+                            if(w[3].contains("false")){
                                 jta.append(w[0].substring(8,10) +" : "+ w[0].substring(10,12) + " : "+ w[0].substring(12,14) + " ["+ w[1]+"] >> "+ w[2] + "\n");
                             }
                             else{
@@ -123,6 +123,20 @@ public class chat extends JFrame{
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
+
+        JPanel a = new JPanel();
+        a.setLayout(new FlowLayout(FlowLayout.LEFT));
+        a.setSize(850,1000);
+        a.add(jta);
+
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.ipadx = 850;
+        gbc.ipady = 100;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        Gbag.setConstraints(a,gbc);
+        scroll_panel.add(a);
+        scroll_panel.updateUI();
 
         log_Scroll.setViewportView(scroll_panel);
         log_Scroll.setVisible(true);
