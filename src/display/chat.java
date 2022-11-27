@@ -2,16 +2,18 @@ package display;
 
 import chatting.chatting_client;
 import chatting.protocol;
+import chatting.wow;
 import function.loginregister;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.concurrent.ExecutionException;
+
+import static java.lang.Thread.sleep;
 
 public class chat extends JFrame implements Runnable{
     private JPanel main;
@@ -25,6 +27,9 @@ public class chat extends JFrame implements Runnable{
     private String my_id;
 
     private chatting_client client;
+
+    boolean running = true;
+    BufferedInputStream reader = null;
 
     public void readFile(File file,Long fileLength) throws IOException {
         String line = null;
@@ -43,24 +48,44 @@ public class chat extends JFrame implements Runnable{
     }
 
     public void run(){
-
-        File file = new File("chatting_data\\"+room_id+".txt");
-        System.out.println(file.getAbsolutePath());
-        if(file.exists() && file.canRead()){
-
+        int i=0;
+        byte[] b = new byte[100000];
+        while (running) {
             try {
-                long fileLength = file.length();
-                readFile(file, 0L);
-                while (true) {
-                    if (fileLength < file.length()) {
-                        readFile(file, fileLength);
-                        fileLength = file.length();
+                if (reader.available() > 0) {
+                    byte tmp = (byte)reader.read();
+                    if(tmp==13 || tmp==10){
+                        String s = new String(b, StandardCharsets.UTF_8);
+                        s=s.substring(0,i);
+                        System.out.println(s);
+                        b= new byte[100000];
+                        i=0;
+
+                        message_log pane = new message_log(user_id, user_messsage);
+                        gbc.fill = GridBagConstraints.BOTH;
+                        gbc.ipadx = 850;
+                        gbc.ipady = 50;
+                        gbc.gridx = 0;
+                        gbc.gridy = text_line*50;
+                        Gbag.setConstraints(pane,gbc);
+                        scroll_panel.add(pane);
+                        scroll_panel.updateUI();
+                        text_line += 1;
+                    }else{
+                        b[i]=tmp;
+                        i++;
+                    }
+                } else {
+                    try {
+                        sleep(100);
+                    } catch (InterruptedException ex) {
+                        running = false;
                     }
                 }
-            }catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-    }
+        }
     }
 
     class JFrameWindowClosingEventHandler extends WindowAdapter {
@@ -73,6 +98,14 @@ public class chat extends JFrame implements Runnable{
     }
 
     public chat(chatting_client client, String my_id, String room_id){
+
+        try {
+            reader = new BufferedInputStream(new FileInputStream("chatting_data\\65ae42cb8042dfefdc124bfdfb7e5038.txt"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
 
 
         textField1.addKeyListener(new KeyListener() {
@@ -94,7 +127,7 @@ public class chat extends JFrame implements Runnable{
         this.room_id = room_id;
         this.my_id = my_id;
 
-        run();
+
 
         setContentPane(main);
 
@@ -132,19 +165,7 @@ public class chat extends JFrame implements Runnable{
 //        scroll_panel.setVisible(true);
 //
 //        //만약 listener에서 message를 받아오면 String(형태 user_id : message)
-//        if(){
-//            //split
-//            message_log pane = new message_log(user_id, user_messsage);
-//            gbc.fill = GridBagConstraints.BOTH;
-//            gbc.ipadx = 850;
-//            gbc.ipady = 50;
-//            gbc.gridx = 0;
-//            gbc.gridy = text_line*50;
-//            Gbag.setConstraints(pane,gbc);
-//            scroll_panel.add(pane);
-//            scroll_panel.updateUI();
-//            text_line += 1;
-//        }
+
         send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -155,6 +176,7 @@ public class chat extends JFrame implements Runnable{
                 client.send_messege(4,room_id,my_id,message,time.getTime(),false,time.getTime());
             }
         });
+
     }
 
     public class message_log extends JPanel{
