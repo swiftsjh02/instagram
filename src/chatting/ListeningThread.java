@@ -37,7 +37,7 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 			File file =new File("chatting_data/" + room_id + ".txt");
 			FileWriter fw =new FileWriter(file,true);
 			BufferedWriter bw= new BufferedWriter(fw);
-			bw.append(content.getTime()+":"+ content.getSender()+":"+":"+msg+content.isFile_exist() + ":" + content.getFile_name()+":" +"\n");
+			bw.append(content.getTime()+":"+ content.getSender()+":"+msg+":"+content.isFile_exist() + ":" + content.getFile_name()+":" +"\n");
 			bw.close();
 			return  true;
 		}catch (Exception e){

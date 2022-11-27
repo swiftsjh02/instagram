@@ -46,8 +46,13 @@ public class chat extends JFrame{
                             String s = new String(b, StandardCharsets.UTF_8);
                             s=s.substring(0,i);
                             System.out.println(s);
-                            jta.append(s);
-                            jta.append("\n");
+                            String w[] = s.split(":");
+                            if(w[3] != "true"){
+                                jta.append(w[0].substring(8,10) +" : "+ w[0].substring(10,12) + " : "+ w[0].substring(12,14) + " ["+ w[1]+"] >> "+ w[2] + "\n");
+                            }
+                            else{
+                                jta.append(w[0].substring(8,10) +" : "+ w[0].substring(10,12) + " : "+ w[0].substring(12,14) + " ["+ w[1]+"] >> "+ "파일 :" + w[4] + "\n");
+                            }
                             jta.setCaretPosition(jta.getDocument().getLength());
                             // jta.requestFocus();
                             b= new byte[100000];
@@ -78,7 +83,7 @@ public class chat extends JFrame{
             reader = new BufferedInputStream(new FileInputStream("chatting_data\\"+room_id+".txt"));
         }catch (Exception e){
             try {
-                reader = new BufferedInputStream(new FileInputStream("chatting_data/" + room_id + ".txt"));
+                reader = new BufferedInputStream(new FileInputStream("chatting_data\\" + room_id + ".txt"));
             }catch (Exception e1){
                 e1.printStackTrace();
             }
