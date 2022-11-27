@@ -2,20 +2,15 @@ package display;
 
 import chatting.chatting_client;
 import chatting.protocol;
-import chatting.wow;
-import function.loginregister;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
-import java.util.concurrent.ExecutionException;
 
-import static java.lang.Thread.sleep;
 
-public class chat extends JFrame implements Runnable{
+public class chat extends JFrame{
     private JPanel main;
     private JPanel message;
     private JTextField textField1;
@@ -23,6 +18,7 @@ public class chat extends JFrame implements Runnable{
     private JPanel message_user;
     private JScrollPane log_Scroll;
     private JPanel scroll_panel;
+    private JTextArea jta;
     private String room_id;
     private String my_id;
 
@@ -31,62 +27,42 @@ public class chat extends JFrame implements Runnable{
     boolean running = true;
     BufferedInputStream reader = null;
 
-    public void readFile(File file,Long fileLength) throws IOException {
-        String line = null;
 
-        try {
-            BufferedReader in = new BufferedReader(new java.io.FileReader(file));
-            in.skip(fileLength);
-            while ((line = in.readLine()) != null) {
-                System.out.println(line);
-            }
-            in.close();
+    private class read extends Thread{
 
-        }catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public void run(){
-        int i=0;
-        byte[] b = new byte[100000];
-        while (running) {
-            try {
-                if (reader.available() > 0) {
-                    byte tmp = (byte)reader.read();
-                    if(tmp==13 || tmp==10){
-                        String s = new String(b, StandardCharsets.UTF_8);
-                        s=s.substring(0,i);
-                        System.out.println(s);
-                        b= new byte[100000];
-                        i=0;
-
-//                        message_log pane = new message_log(user_id, user_messsage);
-//                        gbc.fill = GridBagConstraints.BOTH;
-//                        gbc.ipadx = 850;
-//                        gbc.ipady = 50;
-//                        gbc.gridx = 0;
-//                        gbc.gridy = text_line*50;
-//                        Gbag.setConstraints(pane,gbc);
-//                        scroll_panel.add(pane);
-//                        scroll_panel.updateUI();
-//                        text_line += 1;
-                    }else{
-                        b[i]=tmp;
-                        i++;
+        public void run() {
+            int i=0;
+            byte[] b = new byte[100000];
+            while (running) {
+                try {
+                    if (reader.available() > 0) {
+                        byte tmp = (byte)reader.read();
+                        if(tmp==13 || tmp==10){
+                            String s = new String(b, StandardCharsets.UTF_8);
+                            s=s.substring(0,i);
+                            System.out.println(s);
+                            jta.append(s);
+                            jta.append("\n");
+                            b= new byte[100000];
+                            i=0;
+                        }else{
+                            b[i]=tmp;
+                            i++;
+                        }
+                    } else {
+                        try {
+                            sleep(100);
+                        } catch (InterruptedException ex) {
+                            running = false;
+                        }
                     }
-                } else {
-                    try {
-                        sleep(100);
-                    } catch (InterruptedException ex) {
-                        running = false;
-                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
+
 
     class JFrameWindowClosingEventHandler extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
@@ -105,7 +81,7 @@ public class chat extends JFrame implements Runnable{
             e.printStackTrace();
         }
 
-
+        new read().start();
 
 
         textField1.addKeyListener(new KeyListener() {
@@ -158,9 +134,9 @@ public class chat extends JFrame implements Runnable{
 //            scroll_panel.updateUI();
 //            text_line += 1;
 //        }
-//        log_Scroll.setViewportView(scroll_panel);
-//        log_Scroll.setVisible(true);
-//        scroll_panel.setVisible(true);
+        log_Scroll.setViewportView(scroll_panel);
+        log_Scroll.setVisible(true);
+        scroll_panel.setVisible(true);
 //
 //        //만약 listener에서 message를 받아오면 String(형태 user_id : message)
 
