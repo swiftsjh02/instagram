@@ -80,7 +80,11 @@ public class chat extends JFrame{
         try {
             reader = new BufferedInputStream(new FileInputStream("chatting_data\\"+room_id+".txt"));
         }catch (Exception e){
-            e.printStackTrace();
+            try {
+                reader = new BufferedInputStream(new FileInputStream("chatting_data/" + room_id + ".txt"));
+            }catch (Exception e1){
+                e1.printStackTrace();
+            }
         }
 
         new read().start();
