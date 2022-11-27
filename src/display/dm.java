@@ -34,7 +34,7 @@ public class dm extends JFrame{
         // client에서 방목록을 불러오기 room_id 형태 arrayList<string>
         client.get_room_list(11,user_id);
         try {
-            TimeUnit.MILLISECONDS.sleep(150);
+            TimeUnit.MILLISECONDS.sleep(500);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -63,7 +63,7 @@ public class dm extends JFrame{
         for(int i = 0;i<room_id.size();i++){
             client.get_user_list_in_room(13,user_id,room_id.get(i));
             try {
-                TimeUnit.MILLISECONDS.sleep(150);
+                TimeUnit.MILLISECONDS.sleep(500);
             }
             catch(Exception e){
                 e.printStackTrace();
