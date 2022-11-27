@@ -10,25 +10,26 @@ import java.util.ArrayList;
 
 
 public class userFeed extends JFrame{
-    private JPanel userinformation;
     private JButton homeButton;
     private JButton userhomeButton;
     private JButton reelsButton;
     private JButton searchButton;
     private JButton shopButton;
     private JPanel bottom;
+    private JPanel top;
+    private JPanel profile;
+    private JPanel post;
     private JPanel main;
-    private JButton button3;
-    private JLabel id;
-    private JButton profilename;
-    private JLabel arrowDown;
 
 
     private final static ArrayList<Integer> List= new ArrayList<>();
-    private JPanel top;
     private JButton create;
     private JScrollPane post_scroll;
     private JPanel scroll;
+    private JButton uploadButton;
+    private JButton moreButton;
+    private JButton editProfileButton;
+    private JLabel related;
 
     public userFeed(int session){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
@@ -43,8 +44,8 @@ public class userFeed extends JFrame{
         ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-       ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
-       userhomeButton.setIcon(home.getImg());
+        ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
+        userhomeButton.setIcon(home.getImg());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
