@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
@@ -40,14 +41,13 @@ public class dm extends JFrame{
             e.printStackTrace();
         }
         room_id = t1.get_myroom_list();
-        room_id = t1.get_myroom_list();
-
-
 
         for(int i = 0;i<room_id.size();i++){
             System.out.println(room_id.get(i));
         }
         setContentPane(main);
+
+
 
         setSize(850, 1000);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -62,13 +62,14 @@ public class dm extends JFrame{
         gbc.weighty = 1.0;
         for(int i = 0;i<room_id.size();i++){
             client.get_user_list_in_room(13,user_id,room_id.get(i));
+
             try {
                 TimeUnit.MILLISECONDS.sleep(500);
             }
             catch(Exception e){
                 e.printStackTrace();
             }
-            room_id = t1.get_myroom_list();
+//            room_id = t1.get_myroom_list();
             member_list = t1.get_users_in_room();
             roomPanel pane = new roomPanel(member_list,room_id.get(i));
             gbc.fill = GridBagConstraints.BOTH;
@@ -115,6 +116,8 @@ public class dm extends JFrame{
 
         private JButton in;
 
+        private JButton out;
+
         public roomPanel(ArrayList<String> member , String id){
             this.member_list = member;
             this.room_id = id;
@@ -122,23 +125,37 @@ public class dm extends JFrame{
             String a = new String();
             for(int i =0;i<member_list.size();i++){
                 a = a + " " + member_list.get(i);
+                System.out.println(member_list.get(i));
             }
             this.member.setText(a);
-            this.in = new JButton();
+            this.in = new JButton("in");
+            this.out = new JButton("out");
 
             setLayout(new FlowLayout(FlowLayout.LEFT));
             setSize(850,100);
             this.in.setSize(100,100);
+            this.out.setSize(100,100);
             this.member.setSize(750,100);
             add(this.in);
+            add(this.out);
             add(this.member);
 
             in.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    chat a = new chat(client,user_id,room_id);
-                    main.setVisible(false);
+                    chat a = new chat(client,user_id,room_id,t1);
                     a.setVisible(true);
+                    dispose();
+                }
+            });
+
+            out.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    client.exit_room(3,user_id,room_id);
+                    dm a = new dm(client, user_id,t1);
+                    a.setVisible(true);
+                    dispose();
                 }
             });
         }

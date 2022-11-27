@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -95,9 +99,27 @@ public class invite extends JFrame{
                 }
                 //chatting_client에 List 전달
                 client.make_room(1,user_id,List);
+                try {
+                    TimeUnit.MILLISECONDS.sleep(500);
+                }
+                catch(Exception e1){
+                    e1.printStackTrace();
+                }
+                ArrayList<String> b = t1.get_myroom_list();
+                File file =new File("chatting_data\\" + b.get(b.size()-1) + ".txt");
+                try{
+                    FileWriter fw =new FileWriter(file,true);
+                    BufferedWriter bw= new BufferedWriter(fw);
+                    bw.append(" ");
+                    bw.close();
+                }
+                catch(IOException e2){
+                    e2.printStackTrace();
+                }
+
                 dm a = new dm(client,user_id,t1);
-                setVisible(false);
                 a.setVisible(true);
+                dispose();
             }
         });
     }
