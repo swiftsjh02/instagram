@@ -1,12 +1,17 @@
 package display;
 
 import chatting.chatting_client;
+import chatting.protocol;
 import function.loginregister;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.concurrent.ExecutionException;
 
 public class chat extends JFrame implements Runnable{
     private JPanel main;
@@ -21,9 +26,43 @@ public class chat extends JFrame implements Runnable{
 
     private chatting_client client;
 
+    public void readFile(File file,Long fileLength) throws IOException {
+        String line = null;
+
+        try {
+            BufferedReader in = new BufferedReader(new java.io.FileReader(file));
+            in.skip(fileLength);
+            while ((line = in.readLine()) != null) {
+                System.out.println(line);
+            }
+            in.close();
+
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public void run(){
 
+        File file = new File("chatting_data/"+room_id+".txt");
+        System.out.println(file.getAbsolutePath());
+        if(file.exists() && file.canRead()){
+
+            try {
+                long fileLength = file.length();
+                readFile(file, 0L);
+                while (true) {
+                    if (fileLength < file.length()) {
+                        readFile(file, fileLength);
+                        fileLength = file.length();
+                    }
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
     }
+    }
+
     class JFrameWindowClosingEventHandler extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
             JFrame frame = (JFrame)e.getWindow();
@@ -35,6 +74,8 @@ public class chat extends JFrame implements Runnable{
 
     public chat(chatting_client client, String my_id, String room_id){
 
+        run();
+
         textField1.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {}
@@ -42,8 +83,8 @@ public class chat extends JFrame implements Runnable{
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    textField1.setText("");
                     send.doClick();
+                    textField1.setText("");
                 }
             }
             @Override
@@ -107,10 +148,10 @@ public class chat extends JFrame implements Runnable{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String message = textField1.getText();
-                LocalDate now = LocalDate.now();
-                String time = now.toString();
+                protocol time = new protocol();
+                time.setTime();
                 //client에 message와 room_id보내기
-                client.send_messege(4,room_id,my_id,message,time,false,null);
+                client.send_messege(4,room_id,my_id,message,time.getTime(),false,time.getTime());
             }
         });
     }
@@ -137,4 +178,5 @@ public class chat extends JFrame implements Runnable{
             setVisible(true);
         }
     }
-}
+   }
+
