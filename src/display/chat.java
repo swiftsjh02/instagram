@@ -43,6 +43,8 @@ public class chat extends JFrame{
                             System.out.println(s);
                             jta.append(s);
                             jta.append("\n");
+                            jta.setCaretPosition(jta.getDocument().getLength());
+                            // jta.requestFocus();
                             b= new byte[100000];
                             i=0;
                         }else{
