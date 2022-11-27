@@ -78,7 +78,7 @@ public class chat extends JFrame{
     public chat(chatting_client client, String my_id, String room_id){
 
         try {
-            reader = new BufferedInputStream(new FileInputStream("chatting_data\\65ae42cb8042dfefdc124bfdfb7e5038.txt"));
+            reader = new BufferedInputStream(new FileInputStream("chatting_data\\"+room_id+".txt"));
         }catch (Exception e){
             e.printStackTrace();
         }
