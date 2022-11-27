@@ -5,10 +5,7 @@ import function.loginregister;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.time.LocalDate;
 
 public class chat extends JFrame{
@@ -35,12 +32,19 @@ public class chat extends JFrame{
 
     public chat(chatting_client client, String my_id, String room_id){
 
-        textField1.addActionListener(new ActionListener() {
+        textField1.addKeyListener(new KeyListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                send.doClick();
-                textField1.setText("");
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    textField1.setText("");
+                    send.doClick();
+                }
             }
+            @Override
+            public void keyReleased(KeyEvent e) {}
         });
 
         this.client = client;

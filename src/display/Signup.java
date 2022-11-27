@@ -4,10 +4,7 @@ import function.loginregister;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class Signup extends JFrame{
     private JPanel panel1;
@@ -31,11 +28,160 @@ public class Signup extends JFrame{
         loginregister registermanager= new loginregister();
         setTitle("signup");
         setVisible(true);
-        pwd.addActionListener(new ActionListener() {
+
+        // 마우스 클릭 했을 때 텍스트 지우기
+        mobileNumberOrEmailTextField.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                btnOk.doClick();
+            public void mouseClicked(MouseEvent e) {
+                mobileNumberOrEmailTextField.setText("");
             }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if(mobileNumberOrEmailTextField.getText().equals("")){
+                    mobileNumberOrEmailTextField.setText("Mobile Number or Email");
+                }
+            }
+        });
+
+        fullNameTextField.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                fullNameTextField.setText("");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if(fullNameTextField.getText().equals("")){
+                    fullNameTextField.setText("Full Name");
+                }
+            }
+        });
+
+        email.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                email.setText("");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if(email.getText().equals("")){
+                    email.setText("Username");
+                }
+            }
+        });
+
+        pwd.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                pwd.setText("");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                String pwdText = new String(pwd.getPassword());
+                if(pwdText.equals("")){
+                    pwd.setText("비밀번호486");
+                }
+
+            }
+        });
+
+        // 탭키나 엔터키 눌렀을때의 이벤트
+        mobileNumberOrEmailTextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_TAB){
+                    fullNameTextField.requestFocus();
+                    fullNameTextField.setText("");
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
+        fullNameTextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_TAB){
+                    email.requestFocus();
+                    email.setText("");
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
+
+        email.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_TAB){
+                    pwd.requestFocus();
+                    pwd.setText("");
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
+
+
+        pwd.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    btnOk.doClick();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {}
         });
 
         button1.addActionListener(new ActionListener() {

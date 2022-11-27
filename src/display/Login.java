@@ -1,7 +1,6 @@
 package display;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import function.*;
 
 public class Login extends JFrame {
@@ -26,12 +25,78 @@ public class Login extends JFrame {
         setTitle("AI-DB Instagram LogIn System");
         setVisible(true);
 
-        txtpwd.addActionListener(new ActionListener() {
+        // 마우스 클릭 했을 때 텍스트 지우기
+        txtId.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                OKButton.doClick();
+            public void mouseClicked(MouseEvent e) {
+                // 마우스 클릭했을때
+                txtId.setText("");
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if(txtId.getText().equals("")){
+                    txtId.setText("전화번호, 사용자이름 또는 이메일");
+                }
             }
         });
+
+        txtpwd.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // 마우스 클릭했을때
+                txtpwd.setText("");
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {
+                String pwd = new String(txtpwd.getPassword());
+                if (pwd.equals("")) {
+                    txtpwd.setText("비밀번호486");
+                }
+            }
+        });
+
+        // 엔터키 눌렀을 때 로그인, 탭키를 눌렀을 때 다음칸으로 이동하고 택스트 지우기
+        txtId.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_TAB){
+                    txtpwd.setText("");
+                    txtpwd.requestFocus();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
+
+        txtpwd.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    OKButton.doClick();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
+
 
         OKButton.addActionListener(new ActionListener() {
             @Override
