@@ -96,8 +96,8 @@ public class invite extends JFrame{
                 //chatting_client에 List 전달
                 client.make_room(1,user_id,List);
                 dm a = new dm(client,user_id,t1);
-                setVisible(false);
                 a.setVisible(true);
+                dispose();
             }
         });
     }
