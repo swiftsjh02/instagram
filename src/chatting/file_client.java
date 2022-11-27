@@ -175,6 +175,7 @@ public class file_client extends Thread{
                     e.printStackTrace();
                 }
                 System.out.println("file transfer complete");
+                interrupt();
             }//finally
         }//main
     }
