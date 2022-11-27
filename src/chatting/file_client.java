@@ -20,6 +20,10 @@ public class file_client implements Runnable {
     DataInputStream dataInput = null;
     BufferedOutputStream bufferedOutput = null; //output 속도 향상을 위한 BufferedOutputStream
 
+    String filetype;
+
+    chatting_client A=null;
+
     String roomnumber;
 
     int type;
@@ -164,19 +168,23 @@ public class file_client implements Runnable {
                     e.printStackTrace();
                 }
                 System.out.println("file transfer complete");
-                System.exit(0);
+                protocol time = new protocol();
+                time.setTime();
+                A.send_messege(4,roomnumber,A.user_id,"파일 전송 완료",time.getTime(),true,time.getTime()+filetype);
+
             }//finally
         }//main
     }
 
 
-    public file_client(Socket socket, String fileName, String roomnumber, String time,int type)
+    public file_client(Socket socket, String fileName, String roomnumber, String time,int type,chatting_client A)
     {
         this.socket=socket;
         this.filename=fileName;
         this.roomnumber=roomnumber;
         this.time=time;
         this.type=type;
+        this.A=A;
     }
 
 }//ServerSend 클래스

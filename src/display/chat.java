@@ -137,13 +137,8 @@ public class chat extends JFrame{
         file.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                file_client A= new file_client(null,null,room_id,null,1);
+                file_client A= new file_client(null,null,room_id,null,1,client);
                 A.run();
-                client.send_file(1,room_id,my_id);
-                protocol time = new protocol();
-                time.setTime();
-                String filetype =A.filename.substring(A.filename.lastIndexOf("."));
-                client.send_messege(4,room_id,my_id,"파일을 보냈습니다.",time.getTime(),true,time.getTime()+filetype);
             }
         });
         exit.addActionListener(new ActionListener() {

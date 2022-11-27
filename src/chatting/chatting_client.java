@@ -89,7 +89,7 @@ public class chatting_client implements Runnable {
     }
 
     // 파일 보내는 경우
-    public void send_file(int typeofrequest, String roomnumber, String file_path){
+    public void send_file(int typeofrequest, String roomnumber, String file_path,chatting_client A){
         //protocol content = new protocol(typeofrequest, roomnumber, file_path);
         //chat_message(content);
         try {
@@ -101,8 +101,8 @@ public class chatting_client implements Runnable {
             Socket sc = new Socket("swiftsjh.tplinkdns.com", 25589);
             protocol time = new protocol();
             time.setTime();
-            file=new file_client(sc, filename, roomnumber, time.getTime(),1);
-            send_messege(4, roomnumber, user_id, null, time.getTime(), file_exist, time.getTime()+filetype);
+            file=new file_client(sc, filename, roomnumber, time.getTime(),1,A);
+            A.send_messege(4, roomnumber, user_id, null, time.getTime(), file_exist, time.getTime()+filetype);
             file_exist = false;
         }catch (Exception e){
             System.out.println(e);
