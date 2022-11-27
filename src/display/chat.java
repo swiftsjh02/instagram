@@ -48,10 +48,10 @@ public class chat extends JFrame{
                             System.out.println(s);
                             String w[] = s.split(":");
                             if(w[3].contains("false")){
-                                jta.append(w[0].substring(8,10) +" : "+ w[0].substring(10,12) + " : "+ w[0].substring(12,14) + " ["+ w[1]+"] >> "+ w[2] + "\n");
+                                jta.append(w[0].substring(8,10) +":"+ w[0].substring(10,12) + "["+ w[1]+"]>>  "+ w[2] + "\n");
                             }
                             else{
-                                jta.append(w[0].substring(8,10) +" : "+ w[0].substring(10,12) + " : "+ w[0].substring(12,14) + " ["+ w[1]+"] >> "+ "파일 : " + w[4] + "\n");
+                                jta.append(w[0].substring(8,10) +":"+ w[0].substring(10,12) + "["+ w[1]+"]>>  "+ "파일 : " + w[4] + "\n");
                             }
                             jta.setCaretPosition(jta.getDocument().getLength());
                             // jta.requestFocus();
@@ -116,6 +116,9 @@ public class chat extends JFrame{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(0,0,850,1000);
 
+        jta.setEditable(false);
+        jta.setSize(850, 1000);
+
         log_Scroll.getVerticalScrollBar().setUnitIncrement(15);
 
         GridBagLayout Gbag = new GridBagLayout();
@@ -131,7 +134,7 @@ public class chat extends JFrame{
 
         gbc.fill = GridBagConstraints.BOTH;
         gbc.ipadx = 850;
-        gbc.ipady = 100;
+        gbc.ipady = 1000;
         gbc.gridx = 0;
         gbc.gridy = 0;
         Gbag.setConstraints(a,gbc);

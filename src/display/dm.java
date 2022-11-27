@@ -153,6 +153,16 @@ public class dm extends JFrame{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     client.exit_room(3,user_id,room_id);
+                    File b = new File("chatting_data/" + room_id + ".txt");
+                    System.out.println("chatting_data/" + room_id + ".txt");
+                    if(b.exists()){
+                        System.out.println("있다");
+                        b.delete();
+                    }
+                    else{
+                        System.out.println("없다");
+                    }
+
                     dm a = new dm(client, user_id,t1);
                     a.setVisible(true);
                     dispose();
