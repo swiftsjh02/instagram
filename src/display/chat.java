@@ -61,16 +61,16 @@ public class chat extends JFrame implements Runnable{
                         b= new byte[100000];
                         i=0;
 
-                        message_log pane = new message_log(user_id, user_messsage);
-                        gbc.fill = GridBagConstraints.BOTH;
-                        gbc.ipadx = 850;
-                        gbc.ipady = 50;
-                        gbc.gridx = 0;
-                        gbc.gridy = text_line*50;
-                        Gbag.setConstraints(pane,gbc);
-                        scroll_panel.add(pane);
-                        scroll_panel.updateUI();
-                        text_line += 1;
+//                        message_log pane = new message_log(user_id, user_messsage);
+//                        gbc.fill = GridBagConstraints.BOTH;
+//                        gbc.ipadx = 850;
+//                        gbc.ipady = 50;
+//                        gbc.gridx = 0;
+//                        gbc.gridy = text_line*50;
+//                        Gbag.setConstraints(pane,gbc);
+//                        scroll_panel.add(pane);
+//                        scroll_panel.updateUI();
+//                        text_line += 1;
                     }else{
                         b[i]=tmp;
                         i++;
@@ -126,8 +126,6 @@ public class chat extends JFrame implements Runnable{
         this.client = client;
         this.room_id = room_id;
         this.my_id = my_id;
-
-
 
         setContentPane(main);
 
