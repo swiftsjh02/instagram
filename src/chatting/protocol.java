@@ -133,7 +133,7 @@ public class protocol implements Serializable {
     }
     public void setTime() {
         LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyMMddHHmmss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         this.time = now.format(formatter);
     }
     public void setFile_exist(boolean file_exist) {
