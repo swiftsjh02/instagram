@@ -121,6 +121,7 @@ public class Signup extends JFrame{
         });
 
         // 탭키나 엔터키 눌렀을때의 이벤트
+        mobileNumberOrEmailTextField.setFocusTraversalKeysEnabled(false);
         mobileNumberOrEmailTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {}
@@ -135,6 +136,7 @@ public class Signup extends JFrame{
             @Override
             public void keyReleased(KeyEvent e) {}
         });
+        fullNameTextField.setFocusTraversalKeysEnabled(false);
         fullNameTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {}
@@ -150,6 +152,7 @@ public class Signup extends JFrame{
             public void keyReleased(KeyEvent e) {}
         });
 
+        email.setFocusTraversalKeysEnabled(false);
         email.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {}
