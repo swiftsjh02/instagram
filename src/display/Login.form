@@ -75,7 +75,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="전화번호, 사용자이름 또는 이메일"/>
+              <text value=""/>
             </properties>
           </component>
         </children>
@@ -95,7 +95,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="비밀번호486"/>
+              <text value=""/>
             </properties>
           </component>
         </children>

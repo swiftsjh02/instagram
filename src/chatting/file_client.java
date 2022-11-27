@@ -10,13 +10,6 @@ import java.time.*;
 
 public class file_client {
     public file_client (){}
-    public String getServerDateTime(){
-        String DateTime=null;
-        LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyMMddHHmmss");
-        DateTime = now.format(formatter);
-        return DateTime;
-    }
     DataOutputStream dataOutput = null;
     OutputStream os=null;
     Socket socket = null;

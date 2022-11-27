@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.time.LocalDate;
 
-public class chat extends JFrame{
+public class chat extends JFrame implements Runnable{
     private JPanel main;
     private JPanel message;
     private JTextField textField1;
@@ -21,6 +21,9 @@ public class chat extends JFrame{
 
     private chatting_client client;
 
+    public void run(){
+
+    }
     class JFrameWindowClosingEventHandler extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
             JFrame frame = (JFrame)e.getWindow();

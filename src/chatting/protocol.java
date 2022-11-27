@@ -1,6 +1,9 @@
 package chatting;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class protocol implements Serializable {
@@ -128,8 +131,10 @@ public class protocol implements Serializable {
     public void setMessege(String messege) {
         this.messege = messege;
     }
-    public void setTime(String time) {
-        this.time = time;
+    public void setTime() {
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyMMddHHmmss");
+        this.time = now.format(formatter);
     }
     public void setFile_exist(boolean file_exist) {
         this.file_exist = file_exist;
