@@ -105,17 +105,17 @@ public class invite extends JFrame{
                 catch(Exception e1){
                     e1.printStackTrace();
                 }
-                ArrayList<String> b = t1.get_myroom_list();
-                File file =new File("chatting_data\\" + b.get(b.size()-1) + ".txt");
-                try{
-                    FileWriter fw =new FileWriter(file,true);
-                    BufferedWriter bw= new BufferedWriter(fw);
-                    bw.append(" ");
-                    bw.close();
-                }
-                catch(IOException e2){
-                    e2.printStackTrace();
-                }
+//                ArrayList<String> b = t1.get_myroom_list();
+//                File file =new File("chatting_data\\" + b.get(b.size()-1) + ".txt");
+//                try{
+//                    FileWriter fw =new FileWriter(file,true);
+//                    BufferedWriter bw= new BufferedWriter(fw);
+//                    bw.append(" ");
+//                    bw.close();
+//                }
+//                catch(IOException e2){
+//                    e2.printStackTrace();
+//                }
 
                 dm a = new dm(client,user_id,t1);
                 a.setVisible(true);
