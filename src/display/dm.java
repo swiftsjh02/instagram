@@ -139,6 +139,7 @@ public class dm extends JFrame{
                     chat a = new chat(client,user_id,room_id);
                     main.setVisible(false);
                     a.setVisible(true);
+                    a.run();
                     dispose();
                 }
             });
