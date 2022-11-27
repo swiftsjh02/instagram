@@ -13,6 +13,8 @@ public class Login extends JFrame {
 
 
     public Login() {
+        txtId.setText("전화번호, 사용자이름 또는 이메일");
+        txtpwd.setText("비밀번호486");
         ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 800, 400);
         Icon.setIcon(mainphoto.getImg());
         Icon.setVisible(true);
@@ -75,8 +77,8 @@ public class Login extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_TAB){
-                    txtpwd.setText("");
                     txtpwd.requestFocus();
+                    txtpwd.setText("");
                 }
             }
             @Override

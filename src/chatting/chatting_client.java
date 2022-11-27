@@ -98,9 +98,10 @@ public class chatting_client implements Runnable {
             filechoose choice = new filechoose();
             String filename = choice.jFileChooserUtil();
             Socket sc = new Socket("swiftsjh.tplinkdns.com", 25589);
-            String time = file.getServerDateTime();
-            new file_client(sc, filename, roomnumber, time);
-            send_messege(4, roomnumber, user_id, null, time, file_exist, time);
+            protocol time = new protocol();
+            time.setTime();
+            new file_client(sc, filename, roomnumber, time.getTime());
+            send_messege(4, roomnumber, user_id, null, time.getTime(), file_exist, time.getTime());
             file_exist = false;
         }catch (Exception e){
             System.out.println(e);
