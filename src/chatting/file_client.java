@@ -58,9 +58,6 @@ public class file_client {
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String file_size=br.readLine();
                 System.out.println("파일크기:"+file_size);
-                filetype=br.readLine();
-                System.out.println("파일타입:"+filetype);
-                fileName = fileName+filetype;
                 byte[] buf = new byte[104857600];      //100MB 단위로 파일을 쓰기 위한 byte타입 배열
                 FileOutputStream fileOutput = new FileOutputStream("chatting_data/"+roomnumber+"/"+fileName, false);
                 BufferedInputStream bufferdInput = new BufferedInputStream(dataInput);
@@ -91,6 +88,7 @@ public class file_client {
                 }//if문
                 fileOutput.flush();
                 System.out.println("file receive complete");
+                socket.close();
             }
 
 
