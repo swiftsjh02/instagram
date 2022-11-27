@@ -44,7 +44,7 @@ public class chat extends JFrame implements Runnable{
 
     public void run(){
 
-        File file = new File("chatting_data/"+room_id+".txt");
+        File file = new File("chatting_data\\"+room_id+".txt");
         System.out.println(file.getAbsolutePath());
         if(file.exists() && file.canRead()){
 
