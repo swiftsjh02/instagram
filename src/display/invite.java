@@ -36,7 +36,7 @@ public class invite extends JFrame{
 
         client.get_all_user_list(15,user_id);
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(150);
         }
         catch(Exception e){
             e.printStackTrace();

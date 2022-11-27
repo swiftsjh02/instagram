@@ -34,11 +34,12 @@ public class dm extends JFrame{
         // client에서 방목록을 불러오기 room_id 형태 arrayList<string>
         client.get_room_list(11,user_id);
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(150);
         }
         catch(Exception e){
             e.printStackTrace();
         }
+        room_id = t1.get_myroom_list();
         room_id = t1.get_myroom_list();
 
 
@@ -62,11 +63,12 @@ public class dm extends JFrame{
         for(int i = 0;i<room_id.size();i++){
             client.get_user_list_in_room(13,user_id,room_id.get(i));
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(150);
             }
             catch(Exception e){
                 e.printStackTrace();
             }
+            room_id = t1.get_myroom_list();
             member_list = t1.get_users_in_room();
             roomPanel pane = new roomPanel(member_list,room_id.get(i));
             gbc.fill = GridBagConstraints.BOTH;
@@ -137,6 +139,7 @@ public class dm extends JFrame{
                     chat a = new chat(client,user_id,room_id);
                     main.setVisible(false);
                     a.setVisible(true);
+                    dispose();
                 }
             });
         }
