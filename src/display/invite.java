@@ -112,7 +112,6 @@ public class invite extends JFrame{
                 try{
                     FileWriter fw =new FileWriter(file,true);
                     BufferedWriter bw= new BufferedWriter(fw);
-                    bw.append("좀 돼라");
                     bw.close();
                 }
                 catch(IOException e2){
