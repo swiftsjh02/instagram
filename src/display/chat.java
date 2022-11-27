@@ -74,7 +74,6 @@ public class chat extends JFrame implements Runnable{
 
     public chat(chatting_client client, String my_id, String room_id){
 
-        run();
 
         textField1.addKeyListener(new KeyListener() {
             @Override
@@ -94,6 +93,8 @@ public class chat extends JFrame implements Runnable{
         this.client = client;
         this.room_id = room_id;
         this.my_id = my_id;
+
+        run();
 
         setContentPane(main);
 
