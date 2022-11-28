@@ -48,12 +48,11 @@ public class file_client{
     }
 
     public class sending implements Runnable{
-        public void run()
-    {
+        public void run() {
         if(type==1) {
             Socket socket = null;
             filechoose choice = new filechoose();
-            String filename = choice.jFileChooserUtil();
+            filename = choice.jFileChooserUtil();
         }else{
             directorychoose flch =new directorychoose();
             path = flch.jFileChooserUtil();
@@ -71,7 +70,7 @@ public class file_client{
         time.setTime();
         String name_send1=time.getTime();
 
-        String filetype=filename.substring(filename.lastIndexOf("."));
+        String filetype = filename.substring(filename.lastIndexOf("."));
         os=socket.getOutputStream();
         InputStream is=socket.getInputStream();
         pw=new PrintWriter(os);
@@ -94,16 +93,15 @@ public class file_client{
         if(type==2){
             //파일 받기
 
-
             BufferedReader br=new BufferedReader(new InputStreamReader(is));
             File tmp = new File(path+filename);
             pw.println("1");
             pw.flush();
             String file_size= br.readLine();
-            System.out.println(file_size);
+            System.out.println(file_size); // 66589840, 66589840
             byte[]buf=new byte[104857600];      //100MB 단위로 파일을 쓰기 위한 byte타입 배열
 
-            FileOutputStream fileOutput=new FileOutputStream(path + filename,false);
+            FileOutputStream fileOutput=new FileOutputStream(path + "/" + filename,false);
             BufferedInputStream bufferdInput=new BufferedInputStream(dataInput);
             int totalSize=Integer.parseInt(file_size);
             int i=0;  //buf 배열 인덱스용 변수
