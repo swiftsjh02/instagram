@@ -33,6 +33,7 @@ public class userFeed extends JFrame{
 
     private int session;
     public userFeed(int session,String user_id){
+
         this.session = session;
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
