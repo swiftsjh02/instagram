@@ -10,7 +10,7 @@ public class reels extends JFrame{
     private JPanel main;
     private JButton userhomeButton;
     private JButton homeButton;
-    private JButton shopButton;
+    private JButton userhome;
     private JButton reelsButton;
     private JButton searchButton;
     private JLabel camera;
@@ -21,6 +21,7 @@ public class reels extends JFrame{
     private JButton commentsButton;
     private JButton follow;
     private JPanel bottom;
+    private JButton shopButton;
 
     public reels(int session){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
@@ -33,7 +34,7 @@ public class reels extends JFrame{
         reelsButton.setIcon(reels.getImg());
 
         ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
-        shopButton.setIcon(shop.getImg());
+        userhome.setIcon(shop.getImg());
 
         ImgSetSize userhome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
         userhomeButton.setIcon(userhome.getImg());
@@ -41,16 +42,16 @@ public class reels extends JFrame{
         ImgSetSize camera1 = new ImgSetSize("src/IMG/camera1.png", 50,50);
         camera.setIcon(camera1.getImg());
 
-        ImgSetSize like = new ImgSetSize("src/IMG/like.png", 50,50);
+        ImgSetSize like = new ImgSetSize("src/IMG/reels_like.png", 50,50);
         likeButton.setIcon(like.getImg());
 
-        ImgSetSize comments = new ImgSetSize("src/IMG/comments.png", 50,50);
+        ImgSetSize comments = new ImgSetSize("src/IMG/reels_comment.png", 50,50);
         commentsButton.setIcon(comments.getImg());
 
-        ImgSetSize dm = new ImgSetSize("src/IMG/dm.png", 50,50);
+        ImgSetSize dm = new ImgSetSize("src/IMG/reels_dm.png", 50,50);
         dmButton.setIcon(dm.getImg());
 
-        ImgSetSize more = new ImgSetSize("src/IMG/more.png", 50,50);
+        ImgSetSize more = new ImgSetSize("src/IMG/reels_more.png", 50,50);
         moreButton.setIcon(more.getImg());
 
 
@@ -81,7 +82,7 @@ public class reels extends JFrame{
 
             }
         });
-        shopButton.addActionListener(new ActionListener() {
+        this.userhome.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 shop a = new shop(session);

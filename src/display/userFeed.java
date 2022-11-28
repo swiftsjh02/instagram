@@ -47,6 +47,12 @@ public class userFeed extends JFrame{
         ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
         userhomeButton.setIcon(home.getImg());
 
+        ImgSetSize upload = new ImgSetSize("src/IMG/user_upload.png", 50, 50);
+        uploadButton.setIcon(home.getImg());
+
+        ImgSetSize more = new ImgSetSize("src/IMG/user_more.png", 50, 50);
+        moreButton.setIcon(home.getImg());
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         ArrayList<Integer> post_list = new ArrayList<Integer>();
