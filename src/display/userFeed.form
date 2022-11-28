@@ -144,7 +144,9 @@
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-1"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="d4fed" class="javax.swing.JLabel">
@@ -182,7 +184,9 @@
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-1"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="b8a63" class="javax.swing.JLabel">
@@ -220,7 +224,9 @@
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-1"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="37269" class="javax.swing.JLabel">
@@ -310,7 +316,7 @@
         <children>
           <component id="1ac4a" class="javax.swing.JButton" binding="editProfileButton" default-binding="true">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-3223858"/>
@@ -324,7 +330,8 @@
             </constraints>
             <properties>
               <foreground color="-16777216"/>
-              <text value="related"/>
+              <icon value="IMG/related.png"/>
+              <text value=""/>
             </properties>
           </component>
         </children>
@@ -375,20 +382,22 @@
         <children>
           <component id="8d8f2" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <foreground color="-16777216"/>
-              <text value="postFeed"/>
+              <icon value="IMG/user_feed.png"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="22309" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <foreground color="-16777216"/>
-              <text value="postTagged"/>
+              <icon value="IMG/user_tag.png"/>
+              <text value=""/>
             </properties>
           </component>
         </children>
