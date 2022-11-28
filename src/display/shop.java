@@ -15,6 +15,8 @@ public class shop extends JFrame{
     private JPanel bottom;
     private JButton homeButton;
     private JPanel main;
+    private JButton searchButton1;
+    private JButton editVideoButton;
 
     public shop(int session,String user_id){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
