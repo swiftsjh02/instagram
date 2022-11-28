@@ -23,7 +23,7 @@ public class reels extends JFrame{
     private JPanel bottom;
     private JButton shopButton;
 
-    public reels(int session){
+    public reels(int session,String user_id){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -63,7 +63,7 @@ public class reels extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a  = new mainFeed(session);
+                mainFeed a  = new mainFeed(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -71,7 +71,7 @@ public class reels extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search(session);
+                search a = new search(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -85,7 +85,7 @@ public class reels extends JFrame{
         this.userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                shop a = new shop(session);
+                shop a = new shop(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -93,7 +93,7 @@ public class reels extends JFrame{
         userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session);
+                userFeed a = new userFeed(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
