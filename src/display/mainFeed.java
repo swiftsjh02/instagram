@@ -70,11 +70,12 @@ public class mainFeed extends JFrame{
         ImgSetSize reels = new ImgSetSize("src/IMG/reels.png", 50, 50);
         reelsButton.setIcon(reels.getImg());
 
-        ImgSetSize shop = new ImgSetSize("src/IMG/shop.png", 50, 50);
+        ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-//        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
-//        userHomeButton.setIcon(home.getImg());
+       ImgSetSize userhome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
+       userHomeButton.setIcon(home.getImg());
+
 
         ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 100, 50);
         icon.setIcon(mainphoto.getImg());
@@ -109,29 +110,34 @@ public class mainFeed extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search();
-
+                search a = new search(session,user_id);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
 
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                reels a = new reels(session,user_id);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
 
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                shop a = new shop(session,user_id);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
 
         userHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed();
+                userFeed a = new userFeed(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }

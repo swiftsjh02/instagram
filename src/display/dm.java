@@ -157,6 +157,7 @@ public class dm extends JFrame{
                     System.out.println("chatting_data/" + room_id + ".txt");
                     if(b.exists()){
                         System.out.println("있다");
+
                         b.delete();
                     }
                     else{

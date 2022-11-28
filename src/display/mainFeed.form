@@ -5,7 +5,9 @@
     <constraints>
       <xy x="20" y="20" width="2296" height="834"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-1"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="c6d10" binding="home_main" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -15,7 +17,9 @@
             <maximum-size width="800" height="800"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-1"/>
+        </properties>
         <border type="none"/>
         <children>
           <grid id="99802" binding="topbar" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -43,25 +47,31 @@
               </hspacer>
               <component id="3a440" class="javax.swing.JButton" binding="dm">
                 <constraints>
-                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <alignmentX value="0.5"/>
+                  <background color="-1"/>
                   <text value=""/>
                 </properties>
               </component>
               <component id="b8450" class="javax.swing.JButton" binding="heart">
                 <constraints>
-                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <alignmentX value="0.5"/>
+                  <background color="-1"/>
                   <text value=""/>
                 </properties>
               </component>
               <component id="24477" class="javax.swing.JButton" binding="add">
                 <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <alignmentX value="0.5"/>
+                  <background color="-1"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -71,7 +81,10 @@
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-1"/>
+              <foreground color="-1"/>
+            </properties>
             <border type="none"/>
             <children/>
           </scrollpane>
@@ -86,6 +99,7 @@
         </constraints>
         <properties>
           <background color="-1"/>
+          <foreground color="-1"/>
         </properties>
         <border type="none"/>
         <children>
@@ -95,7 +109,8 @@
             </constraints>
             <properties>
               <background color="-1"/>
-              <text value="UserHome"/>
+              <foreground color="-1"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="b47e1" class="javax.swing.JButton" binding="searchButton" default-binding="true">
@@ -116,6 +131,7 @@
             </constraints>
             <properties>
               <background color="-1"/>
+              <foreground color="-1"/>
               <text value=""/>
             </properties>
           </component>
@@ -125,6 +141,7 @@
             </constraints>
             <properties>
               <background color="-1"/>
+              <foreground color="-1"/>
               <text value=""/>
             </properties>
           </component>
@@ -135,6 +152,7 @@
             <properties>
               <alignmentX value="0.5"/>
               <background color="-1"/>
+              <foreground color="-1"/>
               <text value=""/>
             </properties>
           </component>
