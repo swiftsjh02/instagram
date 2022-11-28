@@ -160,7 +160,6 @@ public class chat extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 file_client A= new file_client(null,null,room_id,null,1,client);
-                A.start();
             }
         });
         exit.addActionListener(new ActionListener() {
