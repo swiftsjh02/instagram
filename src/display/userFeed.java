@@ -31,7 +31,9 @@ public class userFeed extends JFrame{
     private JButton editProfileButton;
     private JLabel related;
 
+    private int session;
     public userFeed(int session){
+        this.session = session;
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -45,13 +47,13 @@ public class userFeed extends JFrame{
         shopButton.setIcon(shop.getImg());
 
         ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
-        userhomeButton.setIcon(home.getImg());
+        userhomeButton.setIcon(userHome.getImg());
 
         ImgSetSize upload = new ImgSetSize("src/IMG/user_upload.png", 50, 50);
-        uploadButton.setIcon(home.getImg());
+        uploadButton.setIcon(upload.getImg());
 
         ImgSetSize more = new ImgSetSize("src/IMG/user_more.png", 50, 50);
-        moreButton.setIcon(home.getImg());
+        moreButton.setIcon(more.getImg());
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

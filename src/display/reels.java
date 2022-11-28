@@ -34,10 +34,10 @@ public class reels extends JFrame{
         reelsButton.setIcon(reels.getImg());
 
         ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
-        userhome.setIcon(shop.getImg());
+        shopButton.setIcon(shop.getImg());
 
-        ImgSetSize userhome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
-        userhomeButton.setIcon(userhome.getImg());
+        ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
+        userhomeButton.setIcon(userHome.getImg());
 
         ImgSetSize camera1 = new ImgSetSize("src/IMG/camera1.png", 50,50);
         camera.setIcon(camera1.getImg());
@@ -82,7 +82,7 @@ public class reels extends JFrame{
 
             }
         });
-        this.userhome.addActionListener(new ActionListener() {
+        this.userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 shop a = new shop(session);
