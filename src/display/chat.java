@@ -162,8 +162,8 @@ public class chat extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String fileName = new String();
-                file_client B = new file_client(null,fileName ,room_id,null,2, client);
-                // file_client A = new file_client(null,null,room_id,null,1,client);
+                //file_client B = new file_client(null,fileName ,room_id,null,2, client);
+                file_client A = new file_client(null,null,room_id,null,1,client);
             }
         });
         exit.addActionListener(new ActionListener() {
@@ -183,7 +183,7 @@ public class chat extends JFrame{
                 }
                 else{
                     String a = file_down_text.getText();
-                    //a 경로 다운
+                    file_client B = new file_client(null,a ,room_id,null,2, client);
                 }
             }
         });

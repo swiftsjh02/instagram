@@ -32,6 +32,8 @@ public class file_client{
 
     public String filename;
 
+    String path;
+
 
     public file_client(Socket socket, String fileName, String roomnumber, String time,int type,chatting_client A)
     {
@@ -48,9 +50,14 @@ public class file_client{
     public class sending implements Runnable{
         public void run()
     {
-        Socket socket=null;
-        filechoose choice=new filechoose();
-        String filename=choice.jFileChooserUtil();
+        if(type==1) {
+            Socket socket = null;
+            filechoose choice = new filechoose();
+            String filename = choice.jFileChooserUtil();
+        }else{
+            directorychoose flch =new directorychoose();
+            path = flch.jFileChooserUtil();
+        }
 
         try{
         socket=new Socket("swiftsjh.tplinkdns.com",25589); //서버에 접속
@@ -73,19 +80,27 @@ public class file_client{
         pw.println(roomnumber); //1방넘버
         pw.flush();
         System.out.println(time);
-        pw.println(name_send1); //2파일이름
-        pw.flush();
+        if (type == 1) {
+            pw.println(name_send1); //2파일이름
+            pw.flush();
+        }
+        else {
+            pw.println(filename.substring(0, filename.lastIndexOf("."))); //2파일이름
+            pw.flush();
+        }
         pw.println(filetype); //3파일타입
         pw.flush();
 
         if(type==2){
             //파일 받기
-            directorychoose flch =new directorychoose();
-            String path = flch.jFileChooserUtil();
+
 
             BufferedReader br=new BufferedReader(new InputStreamReader(is));
-            String file_size=br.readLine();
-            System.out.println("파일크기:"+file_size);
+            File tmp = new File(path+filename);
+            pw.println("1");
+            pw.flush();
+            String file_size= br.readLine();
+            System.out.println(file_size);
             byte[]buf=new byte[104857600];      //100MB 단위로 파일을 쓰기 위한 byte타입 배열
 
             FileOutputStream fileOutput=new FileOutputStream(path + filename,false);
