@@ -98,7 +98,7 @@
             <properties>
               <background color="-1"/>
               <foreground color="-16777216"/>
-              <icon value="IMG/user_upload.PNG"/>
+              <icon value="IMG/user_upload.png"/>
               <text value=""/>
             </properties>
           </component>
