@@ -183,7 +183,8 @@ public class chat extends JFrame{
                 }
                 else{
                     String a = file_down_text.getText();
-                    file_client B = new file_client(null,a ,room_id,null,2, client);
+                    a.trim();
+                    file_client B = new file_client(null, a ,room_id,null,2, client);
                 }
             }
         });
