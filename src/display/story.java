@@ -8,14 +8,10 @@ import java.awt.event.ActionListener;
 
 
 public class story extends JFrame{
-    private JTextArea 메시지보내기;
-    private JPanel dm;
     private JButton option;
     private JButton exit;
     private JButton likebt;
     private JButton dmbt;
-    private JButton id;
-    private JPanel like;
     public JPanel main;
     private JButton story;
     private JLabel profile;
@@ -25,6 +21,8 @@ public class story extends JFrame{
     private JButton shopButton;
     private JButton userHomeButton;
     private JPanel bottom;
+    private JButton likeButton;
+    private JButton dmButton;
 
     public story(int session_id,String user_id){
         ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
