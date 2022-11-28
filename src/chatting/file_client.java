@@ -1,5 +1,6 @@
 package chatting;
 
+import javax.sound.sampled.*;
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
@@ -116,6 +117,7 @@ public class file_client{
                         }//if문
                         fileOutput.flush();
                         System.out.println("file receive complete");
+                        abc();
                     } else {
                         // 파일 전송
                         File file = new File(filename);
@@ -173,14 +175,42 @@ public class file_client{
                             bufferedOutput.write(bytes);  //소켓 버퍼에 write
                         }//if문
                         bufferedOutput.flush();
+                        abc();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.out.println("file transfer complete");
+
+
+
             }
 
         }
+
+    public void abc() {
+        File bgm;
+        AudioInputStream stream;
+        AudioFormat format;
+        DataLine.Info info;
+
+        bgm = new File("Audio/1.wav"); // 사용시에는 개별 폴더로 변경할 것
+
+        Clip clip;
+
+        try {
+            stream = AudioSystem.getAudioInputStream(bgm);
+            format = stream.getFormat();
+            info = new DataLine.Info(Clip.class, format);
+            clip = (Clip)AudioSystem.getLine(info);
+            clip.open(stream);
+            clip.start();
+
+        } catch (Exception e) {
+            System.out.println("err : " + e);
+        }
+
+    }
 
 
     }
