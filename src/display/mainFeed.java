@@ -8,6 +8,7 @@ import java.beans.Visibility;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import function.*;
+import chatting.*;
 
 
 public class mainFeed extends JFrame{
@@ -29,6 +30,8 @@ public class mainFeed extends JFrame{
     private JPanel home_main;
     private JPanel home;
 
+    private ListeningThread t1;
+    public String user_id;
     public int session_id;
 
 
@@ -42,9 +45,21 @@ public class mainFeed extends JFrame{
         }
     }
 
-    public mainFeed(int session){
+    public mainFeed(int session,String user_id){
 
         session_id=session;
+        this.user_id=user_id;
+
+        chatting_client client = new chatting_client(user_id);
+        client.run();
+        this.t1 = client.get_listening();
+//         client.send_messege();
+//         client.invite_room();
+//         client.make_room();
+//         client.exit_room();
+//         client.logout();
+//         client.send_file();
+
 
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
@@ -87,7 +102,7 @@ public class mainFeed extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                story a = new story(session);
+                story a = new story(session,user_id);
                 setVisible(false);
             }
         });
@@ -145,7 +160,7 @@ public class mainFeed extends JFrame{
         dm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dm a = new dm();
+                dm a = new dm(client,user_id,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
