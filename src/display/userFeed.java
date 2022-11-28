@@ -33,6 +33,7 @@ public class userFeed extends JFrame{
 
     private int session;
     public userFeed(int session,String user_id){
+
         this.session = session;
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
@@ -66,6 +67,10 @@ public class userFeed extends JFrame{
         post_list.add(5);
         post_list.add(6);
         post_list.add(7);
+        post_list.add(8);
+        post_list.add(9);
+        post_list.add(10);
+        post_list.add(11);
 
         post_scroll.getVerticalScrollBar().setUnitIncrement(15);
 
@@ -77,8 +82,8 @@ public class userFeed extends JFrame{
         for(int i = 0;i<post_list.size();i++){
             post pane = new post();
             gbc.fill = GridBagConstraints.BOTH;
-            gbc.ipadx = 270;
-            gbc.ipady = 270;
+            gbc.ipadx = 200;
+            gbc.ipady = 200;
             gbc.gridx = i%3;
             gbc.gridy = i/3;
             Gbag.setConstraints(pane,gbc);
@@ -139,8 +144,13 @@ public class userFeed extends JFrame{
         private JButton post_num;
 
         post(){
+            setLayout(new GridLayout(1,1));
+            setSize(200,200);
             post_num = new JButton();
-            post_num.setSize(270,270);
+            post_num.setSize(200,200);
+            add(post_num);
+
+
             post_num.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
