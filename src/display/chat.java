@@ -23,6 +23,8 @@ public class chat extends JFrame{
     private JTextArea jta;
     private JButton file;
     private JButton exit;
+    private JTextField file_down_text;
+    private JButton file_down;
     private String room_id;
     private String my_id;
 
@@ -168,6 +170,38 @@ public class chat extends JFrame{
                 dm a = new dm(client,my_id,t1);
                 a.setVisible(true);
                 dispose();
+            }
+        });
+        file_down.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(file_down_text.isEnabled() == false){
+                    file_down_text.setEnabled(true);
+                    file_down_text.setText("파일 주소 입력");
+                }
+                else{
+                    String a = file_down_text.getText();
+                    //a 경로 다운
+                }
+            }
+        });
+        file_down_text.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // 마우스 클릭했을때
+                file_down_text.setText("");
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if(file_down_text.getText().equals("")){
+                    file_down_text.setText("파일 주소 입력");
+                }
             }
         });
     }
