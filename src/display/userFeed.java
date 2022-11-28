@@ -32,7 +32,7 @@ public class userFeed extends JFrame{
     private JLabel related;
 
     private int session;
-    public userFeed(int session){
+    public userFeed(int session,String user_id){
         this.session = session;
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
@@ -99,7 +99,7 @@ public class userFeed extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a  = new mainFeed(session);
+                mainFeed a  = new mainFeed(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -107,7 +107,7 @@ public class userFeed extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search(session);
+                search a = new search(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -115,7 +115,7 @@ public class userFeed extends JFrame{
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reels a = new reels(session);
+                reels a = new reels(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -123,7 +123,7 @@ public class userFeed extends JFrame{
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                shop a = new shop(session);
+                shop a = new shop(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }

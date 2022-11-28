@@ -15,7 +15,7 @@ public class search extends JFrame {
     private JPanel bottom;
     private JPanel top;
 
-    public search(int session) {
+    public search(int session,String user_id) {
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -41,7 +41,7 @@ public class search extends JFrame {
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session);
+                mainFeed a = new mainFeed(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -49,7 +49,7 @@ public class search extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search(session);
+                search a = new search(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -57,7 +57,7 @@ public class search extends JFrame {
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reels a = new reels(session);
+                reels a = new reels(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -65,7 +65,7 @@ public class search extends JFrame {
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                shop a = new shop(session);
+                shop a = new shop(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -73,7 +73,7 @@ public class search extends JFrame {
         userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session);
+                userFeed a = new userFeed(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -81,7 +81,7 @@ public class search extends JFrame {
         searchingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                searchTag a = new searchTag(session);
+                searchTag a = new searchTag(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }

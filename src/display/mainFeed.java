@@ -110,7 +110,7 @@ public class mainFeed extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search(session);
+                search a = new search(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -119,7 +119,7 @@ public class mainFeed extends JFrame{
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reels a = new reels(session);
+                reels a = new reels(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -128,7 +128,7 @@ public class mainFeed extends JFrame{
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                shop a = new shop(session);
+                shop a = new shop(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -137,7 +137,7 @@ public class mainFeed extends JFrame{
         userHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session);
+                userFeed a = new userFeed(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }

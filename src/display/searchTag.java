@@ -20,7 +20,7 @@ public class searchTag extends JFrame {
     private JPanel bottom;
     private JPanel main;
 
-    public searchTag(int session) {
+    public searchTag(int session,String user_id) {
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -46,7 +46,7 @@ public class searchTag extends JFrame {
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session);
+                mainFeed a = new mainFeed(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
 
@@ -55,7 +55,7 @@ public class searchTag extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search(session);
+                search a = new search(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -63,7 +63,7 @@ public class searchTag extends JFrame {
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reels a = new reels(session);
+                reels a = new reels(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -71,7 +71,7 @@ public class searchTag extends JFrame {
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                shop a = new shop(session);
+                shop a = new shop(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -79,7 +79,7 @@ public class searchTag extends JFrame {
         userHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session);
+                userFeed a = new userFeed(session,user_id);
                 setVisible(false);
                 a.setVisible(true);
             }
