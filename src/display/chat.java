@@ -159,7 +159,9 @@ public class chat extends JFrame{
         file.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                file_client A= new file_client(null,null,room_id,null,1,client);
+                String fileName = new String();
+                file_client B = new file_client(null,fileName ,room_id,null,2, client);
+                // file_client A = new file_client(null,null,room_id,null,1,client);
             }
         });
         exit.addActionListener(new ActionListener() {
