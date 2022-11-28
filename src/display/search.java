@@ -28,7 +28,7 @@ public class search extends JFrame {
         ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-        ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
+        ImgSetSize userFeed = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
         userhomeButton.setIcon(home.getImg());
 
 
