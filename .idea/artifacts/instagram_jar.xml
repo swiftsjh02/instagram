@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="instagram:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/instagram_jar</output-path>
+    <root id="archive" name="instagram.jar">
+      <element id="module-output" name="instagram" />
+      <element id="library" level="project" name="mysql-connector-java-8.0.30" />
+    </root>
+  </artifact>
+</component>
