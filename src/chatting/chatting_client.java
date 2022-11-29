@@ -2,97 +2,75 @@ package chatting;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.time.LocalDate;
-import java.time.LocalDate;
-import java.util.Scanner;
-import chatting.file_client;
-import java.time.format.DateTimeFormatter;
-import java.time.*;
 
-public class chatting_client implements Runnable {
-    public static Socket socket;
-    private ObjectOutputStream oos;
-    private ObjectInputStream ois;
-
-    public String user_id;
-
-    public ArrayList<String> my_room_list;
-
-    private DataOutputStream dos;
-
-    private BufferedOutputStream bos;
-
-    private PrintWriter pw;
-
-    private ListeningThread t1;
-
+public class chatting_client implements Runnable { // 채팅 클라이언트
     // chatting_client client = new chatting_client(); 소켓 연결
     // client.make_room(1, user_id, 참여자리스트); 방 생성
     // client.invite_room(2, user_id, 방번호, 참여자리스트); 방 초대
     // client.delete_room(3, user_id, 방번호); 방 제거
     // client.send_messege(4, 방번호, user_id, 메시지, 시간, 파일유무, 파일경로); 메시지 보내기
+    // client.get_room_list(11, user_id); 방 목록 받아오기
+    // client.get_room_member(12, user_id, 방번호); 방 멤버 받아오기
+    // client.get_room_messege(13, user_id, 방번호); 방 메시지 받아오기
+    // client.get_user_list_in_room(14, user_id, 방번호); 방에 있는 유저 목록 받아오기
+    // socket.close(); 소켓 닫기
+    public static Socket socket; // 소켓
+    private ObjectOutputStream oos; // 출력 스트림
+    private ObjectInputStream ois; // 입력 스트림
+
+    public String user_id; // 사용자 아이디
+    public ArrayList<String> my_room_list; // 내가 속한 방 목록
+    private DataOutputStream dos; // 파일 전송용 출력 스트림
+    private BufferedOutputStream bos; // 파일 전송용 버퍼
+    private PrintWriter pw; // 파일 전송용 출력 스트림
+    private ListeningThread t1; // 채팅 메시지 수신용 스레드
 
     public chatting_client(String user_id) {
         try {
-            this.socket = new Socket("swiftsjh.tplinkdns.com", 25588);
+            this.socket = new Socket("swiftsjh.tplinkdns.com", 25588); // 소켓 연결
             this.oos = new ObjectOutputStream(socket.getOutputStream());
             this.ois = new ObjectInputStream(socket.getInputStream());
             this.dos = new DataOutputStream(socket.getOutputStream());
             this.bos =new BufferedOutputStream(socket.getOutputStream());
             this.pw = new PrintWriter(bos);
-            pw.println(user_id);
+            pw.println(user_id); // 사용자 아이디 전송
             pw.flush();
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-    // 프로토콜로 담은 내용 보내기 함수
     public void chat_message(protocol content){
         try{
-            this.oos.writeObject(content);
+            this.oos.writeObject(content); // 프로토콜로 담은 내용 전송
             this.oos.flush();
         }
         catch(Exception e2){
             System.out.println(e2);
         }
     }
-    // 방 생성인 경우
     public void make_room(int typeofrequest, String sender, ArrayList<String> list){
         protocol content = new protocol(typeofrequest, sender, list);
-        chat_message(content);
+        chat_message(content); // 방 생성
     }
-
-    // 방 초대
     public void invite_room(int typeofrequest, String sender, String roomnumber, ArrayList<String> list){
         protocol content = new protocol(typeofrequest, sender, roomnumber, list);
-        chat_message(content);
+        chat_message(content); // 방 초대
     }
-
-    // 방에서 나가기
     public void exit_room(int typeofrequest, String sender, String roomnumber){
         protocol content = new protocol(typeofrequest, sender, roomnumber);
-        chat_message(content);
+        chat_message(content); // 방 나가기
     }
-
-    // 메시지 보내기
     public void send_messege(int typeofrequest, String roomnumber, String sender, String messege, String time, boolean file_exist, String file_name){
         protocol content = new protocol(typeofrequest, roomnumber, sender, messege, time, file_exist, file_name);
-        chat_message(content);
+        chat_message(content); // 메시지 보내기
     }
-
-    // 로그아웃
     public void logout(int typeofrequest, String sender){
         protocol content = new protocol(typeofrequest, sender);
         chat_message(content);
-        sockt_close();
+        sockt_close(); // 로그아웃
     }
-
-    // 파일 보내는 경우
     public void send_file(int typeofrequest, String roomnumber, String file_path,chatting_client A){
-        //protocol content = new protocol(typeofrequest, roomnumber, file_path);
-        //chat_message(content);
-        try {
+        try { // 파일 전송
             file_client file;
             boolean file_exist = true;
             filechoose choice = new filechoose();
@@ -108,34 +86,20 @@ public class chatting_client implements Runnable {
             System.out.println(e);
         }
     }
-
-    //방 목록 요청 함수 type of request =11
-    //방 목록 유청 함수 응답 type of request =12
     public void get_room_list(int typeofrequest, String sender){
         protocol content = new protocol(typeofrequest, sender);
-        chat_message(content);
-
+        chat_message(content); // 방 목록 받아오기
     }
-
-    //방안의 유저 목록 요청 함수 type of request =13
-    //방안의 유저 목록 요청 함수 응답 type of request =14
     public void get_user_list_in_room(int typeofrequest, String sender, String roomnumber){
         protocol content = new protocol(typeofrequest, sender, roomnumber);
-        chat_message(content);
-
+        chat_message(content); // 방에 있는 유저 목록 받아오기
     }
-
     public void get_all_user_list(int typeofrequest, String sender){
         protocol content = new protocol(typeofrequest, sender);
-        chat_message(content);
+        chat_message(content); // 전체 유저 목록 받아오기
     }
-
-
-
-
-    // 연결 끊기
     public void sockt_close(){
-        try{
+        try{ // 소켓 닫기
             this.oos.close();
             this.ois.close();
             this.socket.close();
@@ -144,131 +108,15 @@ public class chatting_client implements Runnable {
             System.out.println(e3);
         }
     }
-
     public ListeningThread get_listening(){
+        // 채팅 메시지 수신용 스레드
         return t1;
     }
     @Override
     public void run(){
-        //Scanner keyboard = new Scanner(System.in);
-
-        //String roomnumber;
-
-        // user_id 입력받기
-        //System.out.println("user_id를 입력하세요");
-        //String user_id = keyboard.nextLine();
-        //user_id.trim();
-
-        // chatting_client 객체 생성
-        //chatting_client client = new chatting_client(user_id);
-
         // ListeningThread 객체 생성
         ListeningThread t1 = new ListeningThread(socket,my_room_list);
         t1.start(); // ListeningThread 시작
         this.t1 = t1;
-
-//        while(true) {
-//            System.out.println("1. 방 생성");
-//            System.out.println("2. 방 초대");
-//            System.out.println("3. 방에서 나가기");
-//            System.out.println("4. 메시지 보내기");
-//            System.out.println("5. 로그아웃");
-//            int type=-1;
-//            try {
-//                type = Integer.parseInt(keyboard.nextLine());
-//            } catch (Exception e) {
-//                System.out.println("잘못된 입력입니다.");
-//                continue;
-//            }
-//
-//
-//            if (type == 1) { // 방 생성
-//                System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
-//                ArrayList<String> list = new ArrayList<>();
-//                while (true) {
-//                    String user = keyboard.nextLine();
-//                    user.trim();
-//
-//                    if (user.equals("0")) {
-//                        break;
-//                    }else{
-//                        list.add(user);
-//                    }
-//
-//                }
-//                try {
-//                    client.make_room(type, user_id, list);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            } else if (type == 2) { // 방에 초대하기
-//                System.out.println("방 번호를 입력하세요");
-//                roomnumber = keyboard.next().trim();
-//                keyboard.nextLine();
-//                System.out.println("참여자 리스트를 입력하세요, 0을 입력하면 종료합니다.");
-//                ArrayList<String> list = new ArrayList<>();
-//                while (true) {
-//                    String user = keyboard.nextLine();
-//                    user.trim();
-//                    if (user.equals("0")) {
-//                        break;
-//                    }
-//                    list.add(user);
-//                }
-//                try {
-//                    client.invite_room(type, user_id, roomnumber, list);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            } else if (type == 3) { // 방에서 나가기
-//                System.out.println("방 번호를 입력하세요");
-//                roomnumber = keyboard.next().trim();
-//                try {
-//                    client.exit_room(type, user_id, roomnumber);
-//                    continue;
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            } else if (type == 4) { // 메시지 보내기
-//                file_client file = new file_client();
-//                String time;
-//                System.out.println("메시지 보내기 입니다.");
-//                System.out.println("roomnumber를 입력하세요");
-//                roomnumber = keyboard.next().trim();
-//                keyboard.nextLine();
-//                boolean file_exist = false;
-//                while (true) {
-//                    try {
-//                        String messege = keyboard.nextLine();
-//                        if (messege.equals("exit")) {
-//                            break;
-//                        } else if (messege.equals("file")) {
-//                            file_exist = true;
-//                            filechoose choice= new filechoose();
-//                            String filename= choice.jFileChooserUtil();
-//                            Socket sc = new Socket("swiftsjh.tplinkdns.com", 25589);
-//                            time = file.getServerDateTime();
-//                            new file_client(sc, filename ,roomnumber, time);
-//                            client.send_messege(type, roomnumber, user_id, null, time, file_exist, time);
-//                            file_exist = false;
-//                        }
-//                        else {
-//                            time = file.getServerDateTime();
-//                            client.send_messege(type, roomnumber, user_id, messege, time, file_exist, null);
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            } else if (type == 5) { // 로그아웃
-//                System.out.println("로그아웃 입니다");
-//                try {
-//                    client.logout(5, user_id);
-//                    break;
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
     }
 }

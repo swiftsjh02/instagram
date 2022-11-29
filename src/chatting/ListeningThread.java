@@ -3,26 +3,20 @@ package chatting;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ListeningThread extends Thread { // 서버에서 보낸 메세지 읽는 Thread
 	Socket socket = null;
 	private static ArrayList<String> myroom_list = new ArrayList<>();
 	private static ArrayList<String> userlist_in_room;
-
 	private static ArrayList<String> all_user_list = new ArrayList<>();
-
-	public ListeningThread(Socket socket,ArrayList<String> myroom_list) { // 생성자
+	public ListeningThread(Socket socket,ArrayList<String> myroom_list) {
 		this.socket = socket; // 받아온 Socket Parameter를 해당 클래스 Socket에 넣기
 		this.myroom_list=myroom_list;
 	}
 	public ArrayList<String> getAll_user_list() {
 		return all_user_list;
 	}
-
 	public ArrayList<String> get_myroom_list() {
 		return myroom_list;
 	}
