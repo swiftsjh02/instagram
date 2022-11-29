@@ -3,13 +3,8 @@ package chatting;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 public class file_server implements Runnable {
-
-
-    private static class ConnectThread extends Thread
-    {
+    private static class ConnectThread extends Thread {
         ServerSocket serverSocket;
         int count = 1;
 

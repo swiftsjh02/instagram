@@ -13,6 +13,8 @@ public class Login extends JFrame {
 
 
     public Login() {
+        // 캐싱된 체팅 파일들 모두 지우기
+        new clean_cache("chatting_data/");
         txtId.setText("전화번호, 사용자이름 또는 이메일");
         txtpwd.setText("비밀번호486");
         ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 800, 400);

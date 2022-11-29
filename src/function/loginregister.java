@@ -4,12 +4,9 @@ import java.io.*;
 import java.net.*;
 
 public class loginregister {
-
     public static int port = 9898;
     public static String host = "swiftsjh.tplinkdns.com";
-
     public static md5 encryptor= new md5();
-
     public int register(String id,String password){
         try{
             Socket socket = new Socket(host,port);
@@ -48,14 +45,14 @@ public class loginregister {
     }
     public int login(String id,String password){
         try{
+            int id_len =id.getBytes().length;
+            int pwd_len=password.getBytes().length;
             Socket socket= new Socket(host,port);
             OutputStream os=socket.getOutputStream();
             InputStream is=socket.getInputStream();
             DataOutputStream ds= new DataOutputStream(os);
             DataInputStream di=new DataInputStream(is);
             PrintWriter pw= new PrintWriter(os);
-            int id_len =id.getBytes().length;
-            int pwd_len=password.getBytes().length;
             String enc_password=encryptor.encMD5(password);
             ds.writeInt(200); //200 means register status code
             ds.flush();

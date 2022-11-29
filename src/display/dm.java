@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
-import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
 public class dm extends JFrame{
@@ -27,16 +26,11 @@ public class dm extends JFrame{
         this.client = client;
 
         ArrayList<String> a = new ArrayList<>();
-
-
-//        a.add("1");
-//        a.add("2");
-//        client.make_room(1,user_id,a);
         // 방 목록 업데이트
         // client에서 방목록을 불러오기 room_id 형태 arrayList<string>
         client.get_room_list(11,user_id);
         try {
-            TimeUnit.MILLISECONDS.sleep(500);
+            TimeUnit.MILLISECONDS.sleep(1000);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -45,7 +39,7 @@ public class dm extends JFrame{
 
         for(int i = 0;i<room_id.size();i++){
             System.out.println(room_id.get(i));
-            file_client2 file_2= new file_client2(null,room_id.get(i),room_id.get(i),"1",2,client);
+            new cache_download(null,room_id.get(i),room_id.get(i),"1",2,client);
         }
         setContentPane(main);
 
@@ -87,19 +81,6 @@ public class dm extends JFrame{
         roomPanel.setVisible(true);
         room.setVisible(true);
 
-        //Listener에서 방목록이 추가 되었을때 string 룸 아이디 : idroom
-//        if(){
-//            room_id.add(idroom);
-//            roomPanel pane = new roomPanel(member_list,idroom);
-//            gbc.fill = GridBagConstraints.BOTH;
-//            gbc.ipadx = 850;
-//            gbc.ipady = 100;
-//            gbc.gridx = 0;
-//            gbc.gridy = i;
-//            Gbag.setConstraints(pane,gbc);
-//            room.add(pane);
-//            room.updateUI();
-//        }
         createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -110,16 +91,11 @@ public class dm extends JFrame{
         });
     }
     public class roomPanel extends JPanel{
-
         private  ArrayList<String> member_list = new ArrayList<>();
         private String room_id;
-
         private JLabel member;
-
         private JButton in;
-
         private JButton out;
-
         public roomPanel(ArrayList<String> member , String id){
             this.member_list = member;
             this.room_id = id;
@@ -141,7 +117,6 @@ public class dm extends JFrame{
             add(this.in);
             add(this.out);
             add(this.member);
-
             in.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -150,7 +125,6 @@ public class dm extends JFrame{
                     dispose();
                 }
             });
-
             out.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -171,6 +145,6 @@ public class dm extends JFrame{
                     dispose();
                 }
             });
-        }
-    }
-}
+        } // 생성자
+    } // roomPanel
+} // dm

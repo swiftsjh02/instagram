@@ -30,8 +30,8 @@ public class protocol implements Serializable {
     // 팔로워 정보 불러오기 (팔로워 정보가 담긴 list 요청) = 7
     // 팔로잉 정보 불러오기 (팔로잉 정보가 담긴 list 요청) = 8
     // 유저가 속한 방 목록 불러오기 (방 정보가 담긴 list 요청) = 11
-    // 전송 프로토콜
-    // 에러 메시지 전송 (에러 메시지 전송)
+    // 유저가 속한 방 목록 불러오기 (방 정보가 담긴 list 요청) = 12
+    // 파일 전송 요청 = 13
 
     // 방 생성인 경우 1 or 유저가 속한 방 목록 불러오기
     public protocol(int typeofrequest, String sender, ArrayList<String> list){

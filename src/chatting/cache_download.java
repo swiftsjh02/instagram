@@ -1,35 +1,17 @@
 package chatting;
 
-import javax.sound.sampled.*;
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.*;
-import java.util.concurrent.*;
-
-
-public class file_client2{
+public class cache_download { // 캐시 다운로드
     Socket socket = null;
-
     String filetype;
-
     chatting_client A=null;
-
     String roomnumber;
-
     int type;
-
     String time;
-
     public String filename;
-
     String path;
-
-
-    public file_client2(Socket socket, String fileName, String roomnumber, String time,int type,chatting_client A)
-    {
+    public cache_download(Socket socket, String fileName, String roomnumber, String time,int type,chatting_client A) {
         this.socket=socket;
         this.filename=fileName;
         this.roomnumber=roomnumber;
@@ -42,17 +24,12 @@ public class file_client2{
 
     public class sending implements Runnable{
         public void run() {
-
-            path="chatting_data/"+roomnumber+"/"+".txt";
-
+            path="chatting_data/"+roomnumber+"/"+".txt"; // 캐시 파일 경로
             try {
                 Socket S = new Socket("swiftsjh.tplinkdns.com", 25589); //서버에 접속
-
                 protocol time = new protocol();
                 time.setTime();
                 String name_send1 = time.getTime();
-
-
                 OutputStream os = S.getOutputStream();
                 PrintWriter pw = new PrintWriter(os);
                 pw.println(Integer.toString(type)); //타입
@@ -111,24 +88,10 @@ public class file_client2{
                     }//if문
                     fileOutput.flush();
                     System.out.println("file receive complete");
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("file transfer complete");
-
-
-
         }
-
     }
-
-
-
-    }
-
-
-
-
-
+}
