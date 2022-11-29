@@ -82,7 +82,7 @@ public class reels extends JFrame{
 
             }
         });
-        this.userhomeButton.addActionListener(new ActionListener() {
+        shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 shop a = new shop(session,user_id);
