@@ -1,7 +1,6 @@
 package display;
 
-import chatting.ListeningThread;
-import chatting.chatting_client;
+import chatting.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +27,8 @@ public class dm extends JFrame{
         this.client = client;
 
         ArrayList<String> a = new ArrayList<>();
+
+
 //        a.add("1");
 //        a.add("2");
 //        client.make_room(1,user_id,a);
@@ -44,6 +45,7 @@ public class dm extends JFrame{
 
         for(int i = 0;i<room_id.size();i++){
             System.out.println(room_id.get(i));
+            file_client2 file_2= new file_client2(null,room_id.get(i),room_id.get(i),"1",2,client);
         }
         setContentPane(main);
 
