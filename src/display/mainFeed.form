@@ -62,6 +62,7 @@
                 <properties>
                   <alignmentX value="0.5"/>
                   <background color="-1"/>
+                  <icon value="IMG/likes2.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -72,6 +73,7 @@
                 <properties>
                   <alignmentX value="0.5"/>
                   <background color="-1"/>
+                  <icon value="IMG/addfeed.png"/>
                   <text value=""/>
                 </properties>
               </component>

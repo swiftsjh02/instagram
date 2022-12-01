@@ -10,6 +10,7 @@ public class reels extends JFrame{
     private JPanel main;
     private JButton userhomeButton;
     private JButton homeButton;
+
     private JButton userhome;
     private JButton reelsButton;
     private JButton searchButton;
