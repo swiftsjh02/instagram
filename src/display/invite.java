@@ -2,6 +2,7 @@ package display;
 
 import chatting.ListeningThread;
 import chatting.chatting_client;
+import function.ImgSetSize;
 
 import javax.swing.*;
 import java.awt.*;
@@ -139,9 +140,14 @@ public class invite extends JFrame{
 
             setSize(850,100);
             invite_friend = new JButton("invite");
-            //invite_friend.setSize(50,50);
+            ImgSetSize invite = new ImgSetSize("src/IMG/invite_invite.png", 50, 50);
+            invite_friend.setIcon(invite.getImg());
+            invite_friend.setBackground(Color.WHITE);
 
             remove_friend = new JButton("remove");
+            ImgSetSize remove = new ImgSetSize("src/IMG/invite_exit.png", 50, 50);
+            remove_friend.setIcon(remove.getImg());
+            remove_friend.setBackground(Color.WHITE);
 
             friend_name = new JLabel();
             friend_name.setText(String.valueOf(friend_id));
