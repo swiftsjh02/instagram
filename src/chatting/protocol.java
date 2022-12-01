@@ -32,8 +32,10 @@ public class protocol implements Serializable {
 
     // 체팅방 유저 목록 불러오기 (유저 정보가 담긴 list 요청) = 6
     // 팔로우 하기 (팔로우 요청) = 7
+    // 팔로우 취소 8
 
-    // 팔로잉 정보 불러오기 (팔로잉 정보가 담긴 list 요청) = 8
+
+
     // 유저가 속한 방 목록 불러오기 (방 정보가 담긴 list 요청) = 11
     // 유저가 속한 방 목록 불러오기 (방 정보가 담긴 list 요청) = 12
     // 파일 전송 요청 = 13
@@ -53,13 +55,19 @@ public class protocol implements Serializable {
         this.list = list;
     }
 
-    // 방에서 나가기 3, 팔로우 요청 7
+    // 방에서 나가기 3, 팔로우 요청 7, 팔로우 취소 8
     public protocol(int a, String b, String c){
-        this.typeofrequest = a;
-        this.sender = b;
-        this.roomnumber = c;
-        this.follow = c;
+        if(typeofrequest == 3){
+            this.typeofrequest = a;
+            this.sender = b;
+            this.roomnumber = c;
         }
+        else if(typeofrequest == 7 || typeofrequest == 8){
+            this.typeofrequest = a;
+            this.sender = b;
+            this.follow = c;
+        }
+    }
 
     // 메시지 보내기 4
     public protocol(int typeofrequest, String roomnumber, String sender, String messege, String time, boolean file_exist, String file_name){
@@ -143,6 +151,7 @@ public class protocol implements Serializable {
     public void setFile_name(String file_name) {
         this.file_name = file_name;
     }
+
+
+
 }
-
-
