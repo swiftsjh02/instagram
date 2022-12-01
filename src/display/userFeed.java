@@ -30,11 +30,13 @@ public class userFeed extends JFrame{
     private JButton moreButton;
     private JButton editProfileButton;
     private JLabel related;
+    private JLabel user_name;
 
     private int session;
     public userFeed(int session,String user_id){
 
         this.session = session;
+        this.user_name.setText(user_id);
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
