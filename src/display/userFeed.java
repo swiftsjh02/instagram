@@ -65,15 +65,14 @@ public class userFeed extends JFrame{
         ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
         userhomeButton.setIcon(userHome.getImg());
 
-        security.setSize( 50,  50);
-        ImgSetSize security = new ImgSetSize("src/IMG/security.png", 50, 50);
+        ImgSetSize lock = new ImgSetSize("src/IMG/security.png", 50, 50);
+        security.setIcon(lock.getImg());
 
-        feedList.setSize(50,50);
-        ImgSetSize feedList = new ImgSetSize("src/IMG/feedList.png", 50, 50);
+        ImgSetSize feedLl = new ImgSetSize("src/IMG/feedList.png", 50, 50);
+        feedList.setIcon(feedLl.getImg());
 
-        feedTag.setSize(50, 50);
-        ImgSetSize feedTag = new ImgSetSize("src/IMG/feedTag.png", 50, 50);
-
+        ImgSetSize feedRl = new ImgSetSize("src/IMG/feedTag.png", 50, 50);
+        feedTag.setIcon(feedRl.getImg());
 
         ImgSetSize upload = new ImgSetSize("src/IMG/addfeed.png", 50, 50);
         uploadButton.setIcon(upload.getImg());
