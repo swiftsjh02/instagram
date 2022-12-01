@@ -25,6 +25,8 @@ public class chat extends JFrame{
     private JButton exit;
     private JTextField file_down_text;
     private JButton file_down;
+    private JButton button1;
+    private JButton button2;
     private String room_id;
     private String my_id;
 
