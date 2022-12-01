@@ -30,6 +30,14 @@ public class userFeed extends JFrame{
     private JButton moreButton;
     private JButton editProfileButton;
     private JLabel related;
+    private JLabel security;
+    private JLabel arrowDown;
+
+    private JLabel feedList;
+    private JLabel feedTag;
+    private JPanel userLeftRight;
+    private JPanel userLeft;
+    private JPanel userRight;
 
     private int session;
     public userFeed(int session,String user_id){
@@ -50,7 +58,17 @@ public class userFeed extends JFrame{
         ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
         userhomeButton.setIcon(userHome.getImg());
 
-        ImgSetSize upload = new ImgSetSize("src/IMG/user_upload.png", 50, 50);
+        security.setSize( 50,  50);
+        ImgSetSize security = new ImgSetSize("src/IMG/security.png", 50, 50);
+
+        feedList.setSize(50,50);
+        ImgSetSize feedList = new ImgSetSize("src/IMG/feedList.png", 50, 50);
+
+        feedTag.setSize(50, 50);
+        ImgSetSize feedTag = new ImgSetSize("src/IMG/feedTag.png", 50, 50);
+
+
+        ImgSetSize upload = new ImgSetSize("src/IMG/addfeed.png", 50, 50);
         uploadButton.setIcon(upload.getImg());
 
         ImgSetSize more = new ImgSetSize("src/IMG/user_more.png", 50, 50);
