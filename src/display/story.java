@@ -21,10 +21,11 @@ public class story extends JFrame{
     private JButton searchButton;
     private JButton reelsButton;
     private JButton shopButton;
-    private JButton userHomeButton;
     private JPanel bottom;
-    private JButton likeButton;
-    private JButton dmButton;
+    private JTextField textField1;
+    private JButton story_dm;
+    private JButton like;
+    private JButton exit;
 
     public story(int session_id, String user_id, chatting_client client, ListeningThread t1){
         ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
@@ -47,8 +48,8 @@ public class story extends JFrame{
 
         //bottom button
 
-        ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
-        homeButton.setIcon(home.getImg());
+        ImgSetSize quit = new ImgSetSize("src/IMG/exit.jpg", 50, 50);
+        exitButton.setIcon(quit.getImg());
 
         ImgSetSize search = new ImgSetSize("src/IMG/search.png", 50, 50);
         searchButton.setIcon(search.getImg());
