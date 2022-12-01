@@ -26,7 +26,8 @@
             </constraints>
             <properties>
               <background color="-1"/>
-              <text value="room"/>
+              <icon value="IMG/dm_room.png"/>
+              <text value=""/>
             </properties>
           </component>
           <hspacer id="e038e">
