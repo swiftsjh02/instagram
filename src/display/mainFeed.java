@@ -80,10 +80,10 @@ public class mainFeed extends JFrame{
         ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 100, 50);
         icon.setIcon(mainphoto.getImg());
 
-        ImgSetSize add_size = new ImgSetSize("src/IMG/addfeed.jpg", 50, 50);
+        ImgSetSize add_size = new ImgSetSize("src/IMG/addfeed.png", 50, 50);
         add.setIcon(add_size.getImg());
 
-        ImgSetSize notification = new ImgSetSize("src/IMG/notification.jpg", 50, 50);
+        ImgSetSize notification = new ImgSetSize("src/IMG/likes2.png", 50, 50);
         heart.setIcon(notification.getImg());
 
         ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
