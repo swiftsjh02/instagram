@@ -30,7 +30,6 @@ public class mainFeed extends JFrame{
     private JPanel home_main;
     private JPanel home;
 
-    private ListeningThread t1;
     public String user_id;
     public int session_id;
 
@@ -45,14 +44,11 @@ public class mainFeed extends JFrame{
         }
     }
 
-    public mainFeed(int session,String user_id){
+    public mainFeed(int session,String user_id,chatting_client client,ListeningThread t1){
 
         session_id=session;
         this.user_id=user_id;
 
-        chatting_client client = new chatting_client(user_id);
-        client.run();
-        this.t1 = client.get_listening();
 //         client.send_messege();
 //         client.invite_room();
 //         client.make_room();
@@ -102,7 +98,7 @@ public class mainFeed extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                story a = new story(session,user_id);
+                story a = new story(session,user_id,client,t1);
                 setVisible(false);
             }
         });
@@ -110,7 +106,7 @@ public class mainFeed extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search(session,user_id);
+                search a = new search(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -119,7 +115,7 @@ public class mainFeed extends JFrame{
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reels a = new reels(session,user_id);
+                reels a = new reels(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -128,7 +124,7 @@ public class mainFeed extends JFrame{
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                shop a = new shop(session,user_id);
+                shop a = new shop(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -137,7 +133,7 @@ public class mainFeed extends JFrame{
         userHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session,user_id);
+                userFeed a = new userFeed(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }

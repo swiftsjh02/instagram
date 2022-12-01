@@ -1,6 +1,9 @@
 package display;
 import javax.swing.*;
 import java.awt.event.*;
+
+import chatting.ListeningThread;
+import chatting.chatting_client;
 import function.*;
 
 public class Login extends JFrame {
@@ -116,7 +119,10 @@ public class Login extends JFrame {
                 loginregister manager = new loginregister();
                 int session_id = manager.login(id,password);
                 if(session_id!=-1){
-                    mainFeed a = new mainFeed(session_id,id);
+                    chatting_client client = new chatting_client(id);
+                    client.run();
+                    ListeningThread t1 = client.get_listening();
+                    mainFeed a = new mainFeed(session_id,id,client,t1);
                     setVisible(false);
                     a.setVisible(true);
                 }

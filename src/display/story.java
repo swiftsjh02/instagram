@@ -1,5 +1,7 @@
 package display;
 
+import chatting.ListeningThread;
+import chatting.chatting_client;
 import function.ImgSetSize;
 
 import javax.swing.*;
@@ -24,7 +26,7 @@ public class story extends JFrame{
     private JButton likeButton;
     private JButton dmButton;
 
-    public story(int session_id,String user_id){
+    public story(int session_id, String user_id, chatting_client client, ListeningThread t1){
         ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
         dmbt.setIcon(dm_size.getImg());
 
@@ -71,7 +73,7 @@ public class story extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session_id,user_id);
+                mainFeed a = new mainFeed(session_id,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
