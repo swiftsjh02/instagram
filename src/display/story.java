@@ -1,5 +1,7 @@
 package display;
 
+import chatting.ListeningThread;
+import chatting.chatting_client;
 import function.ImgSetSize;
 
 import javax.swing.*;
@@ -8,13 +10,8 @@ import java.awt.event.ActionListener;
 
 
 public class story extends JFrame{
-    private JButton option;
-    private JButton exit;
-    private JButton likebt;
-    private JButton dmbt;
+
     public JPanel main;
-    private JButton story;
-    private JLabel profile;
     private JButton homeButton;
     private JButton searchButton;
     private JButton reelsButton;
@@ -24,24 +21,7 @@ public class story extends JFrame{
     private JButton likeButton;
     private JButton dmButton;
 
-    public story(int session_id,String user_id){
-        ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
-        dmbt.setIcon(dm_size.getImg());
-
-        ImgSetSize like = new ImgSetSize("src/IMG/notification.jpg", 50, 50);
-        likebt.setIcon(like.getImg());
-
-        ImgSetSize testpng = new ImgSetSize("src/IMG/storytest.png", 560, 640);
-        story.setIcon(testpng.getImg());
-
-        ImgSetSize testprofile = new ImgSetSize("src/IMG/testprofile.png", 50, 50);
-        profile.setIcon(testprofile.getImg());
-
-        ImgSetSize optionbt = new ImgSetSize("src/IMG/testprofile.png", 50, 50);
-        option.setIcon(optionbt.getImg());
-
-        ImgSetSize exitbt = new ImgSetSize("src/IMG/testprofile.png", 50, 50);
-        exit.setIcon(exitbt.getImg());
+    public story(int session_id, String user_id, chatting_client client, ListeningThread t1){
 
         //bottom button
 
@@ -71,7 +51,7 @@ public class story extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session_id,user_id);
+                mainFeed a = new mainFeed(session_id,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
