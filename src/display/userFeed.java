@@ -2,6 +2,7 @@ package display;
 
 import chatting.ListeningThread;
 import chatting.chatting_client;
+import chatting.protocol;
 import function.ImgSetSize;
 
 import javax.swing.*;
@@ -22,7 +23,9 @@ public class userFeed extends JFrame{
     private JPanel profile;
     private JPanel post;
     private JPanel main;
+    private String user_id;
 
+    private chatting_client client;
 
     private final static ArrayList<Integer> List= new ArrayList<>();
     private JButton create;
@@ -44,7 +47,9 @@ public class userFeed extends JFrame{
     private int session;
     public userFeed(int session, String user_id, chatting_client client, ListeningThread t1){
 
+        this.user_id = user_id;
         this.session = session;
+        this.client = client;
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
