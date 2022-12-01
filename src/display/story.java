@@ -49,7 +49,7 @@ public class story extends JFrame{
         //bottom button
 
         ImgSetSize quit = new ImgSetSize("src/IMG/exit.jpg", 50, 50);
-        exitButton.setIcon(quit.getImg());
+        //exitButton.setIcon(quit.getImg());
 
         ImgSetSize search = new ImgSetSize("src/IMG/search.png", 50, 50);
         searchButton.setIcon(search.getImg());
