@@ -1,6 +1,9 @@
 package display;
 
 import javax.swing.*;
+
+import chatting.ListeningThread;
+import chatting.chatting_client;
 import function.*;
 
 import java.awt.event.ActionEvent;
@@ -23,7 +26,7 @@ public class reels extends JFrame{
     private JPanel bottom;
     private JButton shopButton;
 
-    public reels(int session,String user_id){
+    public reels(int session, String user_id, chatting_client client, ListeningThread t1){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -63,40 +66,46 @@ public class reels extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a  = new mainFeed(session,user_id);
+                story a = new story(session,user_id,client,t1);
                 setVisible(false);
-                a.setVisible(true);
             }
         });
+
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search(session,user_id);
+                search a = new search(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
+
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                reels a = new reels(session,user_id,client,t1);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
+
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                shop a = new shop(session,user_id);
+                shop a = new shop(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
+
         userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session,user_id);
+                userFeed a = new userFeed(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
+
     }
 }
