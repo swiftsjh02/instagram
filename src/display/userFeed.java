@@ -134,6 +134,8 @@ public class userFeed extends JFrame{
         scroll.setVisible(true);
 
         client.get_post_num(10, user_id);
+        client.get_following_num(19, user_id);
+        client.get_follow_num(20, user_id);
         try {
             TimeUnit.MILLISECONDS.sleep(500);
         }
@@ -141,6 +143,8 @@ public class userFeed extends JFrame{
             e.printStackTrace();
         }
         postNum.setText(String.valueOf(t1.getPost_num()));
+        followerNum.setText(String.valueOf(t1.get_follow_num()));
+        followingNum.setText(String.valueOf(t1.getFollowing_num()));
 
 
         if(user_id == id){
