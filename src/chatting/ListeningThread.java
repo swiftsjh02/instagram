@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class ListeningThread extends Thread { // 서버에서 보낸 메세지 읽는 Thread
 	Socket socket = null;
 	String follow_yes_or_no;
+
+	int post_num=-1;
 	private static ArrayList<String> myroom_list = new ArrayList<>();
 	private static ArrayList<String> userlist_in_room;
 	private static ArrayList<String> all_user_list = new ArrayList<>();
@@ -17,6 +19,9 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 	}
 	public ArrayList<String> getAll_user_list() {
 		return all_user_list;
+	}
+	public int getPost_num() {
+		return post_num;
 	}
 	public ArrayList<String> get_myroom_list() {
 		return myroom_list;
@@ -70,6 +75,9 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 				else if(t.getTypeofrequest() == 9){
 					follow_yes_or_no = t.getFollow();
 					System.out.println("팔로우 여부");
+				}else if(t.getTypeofrequest()==10) {
+					post_num=t.getPostNum();
+
 				}else if(t.getTypeofrequest() == 12) {
 					myroom_list=t.getList();
 					System.out.println("서버의 방목록 업데이트 결과가 도착했습니다.");

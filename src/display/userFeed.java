@@ -46,6 +46,9 @@ public class userFeed extends JFrame{
     private JPanel userLeft;
     private JPanel userRight;
     private JLabel user_id_gui;
+    private JLabel postNum;
+    private JLabel followerNum;
+    private JLabel followingNum;
 
     private String follow_exist;
 
@@ -127,6 +130,13 @@ public class userFeed extends JFrame{
         post_scroll.setViewportView(scroll);
         post_scroll.setVisible(true);
         scroll.setVisible(true);
+
+        client.get_post_num(10, user_id);
+        while (t1.getPost_num()==-1){
+
+        }
+        postNum.setText(String.valueOf(t1.getPost_num()));
+
 
         if(user_id == id){
             profile_follow.setText("editprofile");

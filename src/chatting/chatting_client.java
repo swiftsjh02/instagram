@@ -102,6 +102,11 @@ public class chatting_client implements Runnable { // 채팅 클라이언트
         protocol content = new protocol(typeofrequest, sender);
         chat_message(content); // 전체 유저 목록 받아오기
     }
+
+    public void get_post_num(int typeofrequest, String sender){
+        protocol content = new protocol(typeofrequest, sender);
+        chat_message(content); // 게시글 개수 받아오기
+    }
     public void sockt_close(){
         try{ // 소켓 닫기
             this.oos.close();
