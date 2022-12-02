@@ -17,12 +17,15 @@ public class story extends JFrame{
     private JButton reelsButton;
     private JButton shopButton;
     private JPanel bottom;
-    private JTextField textField1;
+    private JTextField sendMessageTextField;
     private JButton story_dm;
     private JButton like;
     private JButton exit;
+    private JPanel top;
+    private JButton more;
 
     public story(int session_id, String user_id, chatting_client client, ListeningThread t1){
+
 
         setContentPane(main);
         setSize(850,1000);
@@ -31,8 +34,21 @@ public class story extends JFrame{
         setVisible(true);
         //dispose();
 
+        ImgSetSize storyLike = new ImgSetSize("src/IMG/reels_like.png", 50, 50);
+        like.setIcon(storyLike.getImg());
 
-        homeButton.addActionListener(new ActionListener() {
+        ImgSetSize storyDm = new ImgSetSize("src/IMG/reels_dm.png", 50, 50);
+        story_dm.setIcon(storyDm.getImg());
+
+        ImgSetSize storyExit = new ImgSetSize("src/IMG/exit.png", 50, 50);
+        exit.setIcon(storyExit.getImg());
+
+        ImgSetSize storyMore = new ImgSetSize("src/IMG/reels_more.png", 50, 50);
+        more.setIcon(storyMore.getImg());
+
+
+
+        exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainFeed a = new mainFeed(session_id,user_id,client,t1);

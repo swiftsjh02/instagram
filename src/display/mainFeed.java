@@ -1,10 +1,8 @@
 package display;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.Visibility;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import function.*;
@@ -28,6 +26,7 @@ public class mainFeed extends JFrame{
     private JScrollPane post;
 
     private JPanel home_main;
+    private JButton story;
     private JPanel home;
 
     public String user_id;
@@ -73,8 +72,11 @@ public class mainFeed extends JFrame{
        userHomeButton.setIcon(home.getImg());
 
 
-        ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 100, 50);
+        ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 200, 80);
         icon.setIcon(mainphoto.getImg());
+
+        ImgSetSize storyEdit = new ImgSetSize("src/IMG/story.jpg", 70, 100);
+        story.setIcon(storyEdit.getImg());
 
         ImgSetSize add_size = new ImgSetSize("src/IMG/addfeed.png", 50, 50);
         add.setIcon(add_size.getImg());
@@ -98,8 +100,9 @@ public class mainFeed extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                story a = new story(session,user_id,client,t1);
+                mainFeed a = new mainFeed(session,user_id,client,t1);
                 setVisible(false);
+                a.setVisible(true);
             }
         });
 
@@ -163,6 +166,14 @@ public class mainFeed extends JFrame{
         });
 
 
+        story.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                story a = new story(session,user_id,client,t1);
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
     }
 
 
