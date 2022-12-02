@@ -132,8 +132,11 @@ public class userFeed extends JFrame{
         scroll.setVisible(true);
 
         client.get_post_num(10, user_id);
-        while (t1.getPost_num()==-1){
-
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
         postNum.setText(String.valueOf(t1.getPost_num()));
 
@@ -218,7 +221,9 @@ public class userFeed extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if(user_id == id){
                     //profile_수정
-
+                    editprofile a = new editprofile(session,user_id,client,t1);
+                    setVisible(false);
+                    a.setVisible(true);
                 }
                 else{
                     user_id_gui.setText(id);

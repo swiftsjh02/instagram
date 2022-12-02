@@ -173,7 +173,7 @@ public class chat extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 dm a = new dm(client,my_id,t1);
                 a.setVisible(true);
-                dispose();
+                setVisible(false);
             }
         });
         file_down.addActionListener(new ActionListener() {
