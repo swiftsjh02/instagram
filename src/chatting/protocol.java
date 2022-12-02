@@ -20,6 +20,7 @@ public class protocol implements Serializable {
     private String following;
     private String follow;
 
+    private boolean follow_yes_or_no;
 
     public protocol(){}
 
@@ -53,13 +54,13 @@ public class protocol implements Serializable {
         this.list = list;
     }
 
-    // 방에서 나가기 3, 팔로우 요청 7
+    // 방에서 나가기 3, 팔로우 요청 7 ,팔로우 여부 확인 9
     public protocol(int a, String b, String c){
         this.typeofrequest = a;
         this.sender = b;
         this.roomnumber = c;
         this.follow = c;
-        }
+    }
 
     // 메시지 보내기 4
     public protocol(int typeofrequest, String roomnumber, String sender, String messege, String time, boolean file_exist, String file_name){
@@ -109,6 +110,7 @@ public class protocol implements Serializable {
         return file_name;
     }
 
+    public boolean getFollowExist(){return follow_yes_or_no;}
     public String getFollow() {
         return follow;
     }
@@ -143,6 +145,7 @@ public class protocol implements Serializable {
     public void setFile_name(String file_name) {
         this.file_name = file_name;
     }
+
 }
 
 

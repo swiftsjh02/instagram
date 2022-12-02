@@ -101,7 +101,7 @@ public class reels extends JFrame{
         userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session,user_id,client,t1);
+                userFeed a = new userFeed(session,user_id,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
