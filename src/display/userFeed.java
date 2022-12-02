@@ -2,7 +2,6 @@ package display;
 
 import chatting.ListeningThread;
 import chatting.chatting_client;
-import chatting.protocol;
 import function.ImgSetSize;
 
 import javax.swing.*;
@@ -10,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class userFeed extends JFrame{
@@ -33,7 +33,7 @@ public class userFeed extends JFrame{
     private JPanel scroll;
     private JButton uploadButton;
     private JButton moreButton;
-    private JButton editProfileButton;
+    private JButton profile_follow;
     private JLabel related;
     private JLabel security;
     private JLabel arrowDown;
@@ -44,12 +44,19 @@ public class userFeed extends JFrame{
     private JPanel userLeft;
     private JPanel userRight;
 
+    private boolean follow_exist;
+
+    private String id;
+
     private int session;
-    public userFeed(int session, String user_id, chatting_client client, ListeningThread t1){
+    public userFeed(int session, String user_id, String id,chatting_client client, ListeningThread t1){
 
         this.user_id = user_id;
         this.session = session;
         this.client = client;
+        this.id = id;
+
+
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -118,6 +125,27 @@ public class userFeed extends JFrame{
         post_scroll.setVisible(true);
         scroll.setVisible(true);
 
+        if(user_id == id){
+            profile_follow.setText("editprofile");
+        }
+        else{
+            client.follow_bool(9,user_id,id);
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            boolean a = t1.get_follow_exist();
+            follow_exist =a;
+            if(a){
+                profile_follow.setText("unfollow");
+            }
+            else{
+                profile_follow.setText("follow");
+            }
+        }
+
 
         setContentPane(main);
         setSize(850,1000);
@@ -163,12 +191,30 @@ public class userFeed extends JFrame{
         userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session,user_id,client,t1);
+                userFeed a = new userFeed(session,user_id,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
 
+        profile_follow.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(user_id == id){
+                    //profile_수정
+
+                }
+                else{
+                    //follow
+                    if(follow_exist){
+                        //unfollow 요청
+                    }
+                    else{
+                        //follow 요청
+                    }
+                }
+            }
+        });
     }
     public class post extends JPanel{
         private JButton post_num;

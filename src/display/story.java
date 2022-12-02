@@ -46,23 +46,6 @@ public class story extends JFrame{
         ImgSetSize exitbt = new ImgSetSize("src/IMG/testprofile.png", 50, 50);
         exit.setIcon(exitbt.getImg());
 
-        //bottom button
-
-        ImgSetSize quit = new ImgSetSize("src/IMG/exit.jpg", 50, 50);
-        //exitButton.setIcon(quit.getImg());
-
-        ImgSetSize search = new ImgSetSize("src/IMG/search.png", 50, 50);
-        searchButton.setIcon(search.getImg());
-
-        ImgSetSize reels = new ImgSetSize("src/IMG/reels.png", 50, 50);
-        reelsButton.setIcon(reels.getImg());
-
-        ImgSetSize shop = new ImgSetSize("src/IMG/shop.png", 50, 50);
-        shopButton.setIcon(shop.getImg());
-
-//        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
-//        userHomeButton.setIcon(home.getImg());
-
         setContentPane(main);
         setSize(850,1000);
         bottom.setSize(850,50);
