@@ -81,6 +81,9 @@ public class searchTag extends JFrame {
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         for(int i = 0;i<friend_list.size();i++){
+            if(friend_list.get(i).equals(user_id)){
+                continue;
+            }
             friend pane = new friend(friend_list.get(i));
             gbc.fill = GridBagConstraints.BOTH;
             gbc.ipadx = 600;
@@ -100,7 +103,7 @@ public class searchTag extends JFrame {
                 String email = search_text.getText();
                 scoll.removeAll();
                 for(int i = 0;i< friend_list.size();i++){
-                    if(friend_list.get(i).contains(email)){
+                    if(friend_list.get(i).contains(email)&&!friend_list.get(i).equals(user_id)){
                         friend pane = new friend(friend_list.get(i));
                         gbc.fill = GridBagConstraints.BOTH;
                         gbc.ipadx = 600;
@@ -167,7 +170,7 @@ public class searchTag extends JFrame {
                 String email = search_text.getText();
                 scoll.removeAll();
                 for(int i = 0;i< friend_list.size();i++){
-                    if(friend_list.get(i).contains(email)){
+                    if(friend_list.get(i).contains(email)&&!friend_list.get(i).equals(user_id)){
                         friend pane = new friend(friend_list.get(i));
                         gbc.fill = GridBagConstraints.BOTH;
                         gbc.ipadx = 600;

@@ -43,6 +43,7 @@ public class userFeed extends JFrame{
     private JPanel userLeftRight;
     private JPanel userLeft;
     private JPanel userRight;
+    private JLabel user_id_gui;
 
     private boolean follow_exist;
 
@@ -127,8 +128,10 @@ public class userFeed extends JFrame{
 
         if(user_id == id){
             profile_follow.setText("editprofile");
+            user_id_gui.setText(user_id);
         }
         else{
+            user_id_gui.setText(id);
             client.follow_bool(9,user_id,id);
             try {
                 TimeUnit.MILLISECONDS.sleep(500);
