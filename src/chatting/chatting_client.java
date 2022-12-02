@@ -64,6 +64,10 @@ public class chatting_client implements Runnable { // 채팅 클라이언트
         protocol content = new protocol(typeofrequest, roomnumber, sender, messege, time, file_exist, file_name);
         chat_message(content); // 메시지 보내기
     }
+    public void follow_bool(int typeofrequest, String sender, String id){
+        protocol content = new protocol(typeofrequest,sender,id);
+        chat_message(content);
+    }
     public void logout(int typeofrequest, String sender){
         protocol content = new protocol(typeofrequest, sender);
         chat_message(content);
