@@ -16,8 +16,6 @@ public class protocol implements Serializable {
 
     private int follow_num;
 
-    private int follower_num;
-
     private int post_num;
     private boolean file_exist;
     private String file_name;
@@ -119,10 +117,6 @@ public class protocol implements Serializable {
     }
     public String getFile_name() {
         return file_name;
-    }
-
-    public int get_follower_num() {
-        return follower_num;
     }
 
     public int getFollow_num(){

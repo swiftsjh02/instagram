@@ -4,7 +4,6 @@ import chatting.ListeningThread;
 import chatting.chatting_client;
 import function.ImgSetSize;
 import function.follow;
-import function.get_data;
 import function.unfollow;
 
 import javax.swing.*;
@@ -135,20 +134,17 @@ public class userFeed extends JFrame{
         scroll.setVisible(true);
 
         client.get_post_num(10, user_id);
-        client.get_following_num(19, user_id);// 팔로잉
-        client.get_follow_num(20, user_id); //팔로워
-        get_data getData = new get_data();
-        getData.setType10(10, user_id);
-        getData.start();
-        getData.setType19(19, user_id);
-        getData.start();
-        getData.setType20(20, user_id);
-        getData.start();
-
-
-        postNum.setText(String.valueOf(getData.getPostNum()));
-        followerNum.setText(String.valueOf(getData.getFollowerNum()));
-        followingNum.setText(String.valueOf(getData.getFollowNum()));
+        client.get_following_num(19, user_id);
+        client.get_follow_num(20, user_id);
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        postNum.setText(String.valueOf(t1.getPost_num()));
+        followerNum.setText(String.valueOf(t1.get_follow_num()));
+        followingNum.setText(String.valueOf(t1.getFollowing_num()));
 
 
         if(user_id == id){
