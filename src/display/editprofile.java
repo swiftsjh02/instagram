@@ -3,6 +3,8 @@ package display;
 import function.ImgSetSize;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class editprofile extends JFrame {
     private JPanel main;
@@ -25,5 +27,13 @@ public class editprofile extends JFrame {
 
         ImgSetSize profileRight = new ImgSetSize("src/IMG/avatar.jpg", 50, 50);
         profile2.setIcon(profileRight.getImg());
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                userFeed a = new userFeed();
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
     }
 }
