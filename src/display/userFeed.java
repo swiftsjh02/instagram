@@ -3,6 +3,8 @@ package display;
 import chatting.ListeningThread;
 import chatting.chatting_client;
 import function.ImgSetSize;
+import function.follow;
+import function.unfollow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +47,7 @@ public class userFeed extends JFrame{
     private JPanel userRight;
     private JLabel user_id_gui;
 
-    private boolean follow_exist;
+    private String follow_exist;
 
     private String id;
 
@@ -139,9 +141,9 @@ public class userFeed extends JFrame{
             catch(Exception e){
                 e.printStackTrace();
             }
-            boolean a = t1.get_follow_exist();
+            String a = t1.get_follow_exist();
             follow_exist =a;
-            if(a){
+            if(a.equals("true")){
                 profile_follow.setText("unfollow");
             }
             else{
@@ -209,12 +211,27 @@ public class userFeed extends JFrame{
 
                 }
                 else{
+                    user_id_gui.setText(id);
+                    client.follow_bool(9,user_id,id);
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(500);
+                    }
+                    catch(Exception ea){
+                        ea.printStackTrace();
+                    }
+                    String a = t1.get_follow_exist();
+                    follow_exist =a;
                     //follow
-                    if(follow_exist){
+                    if(follow_exist.equals("true")){
                         //unfollow 요청
+                        profile_follow.setText("follow");
+                        new unfollow(user_id,id,client);
                     }
                     else{
                         //follow 요청
+                        profile_follow.setText("unfollow");
+                        new follow(user_id,id,client);
+
                     }
                 }
             }

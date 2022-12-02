@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ListeningThread extends Thread { // 서버에서 보낸 메세지 읽는 Thread
 	Socket socket = null;
-	boolean follow_yes_or_no;
+	String follow_yes_or_no;
 	private static ArrayList<String> myroom_list = new ArrayList<>();
 	private static ArrayList<String> userlist_in_room;
 	private static ArrayList<String> all_user_list = new ArrayList<>();
@@ -25,7 +25,7 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 		return userlist_in_room;
 	}
 
-	public boolean get_follow_exist(){return follow_yes_or_no;}
+	public String get_follow_exist(){return follow_yes_or_no;}
 	public boolean caching(protocol content){
 		String room_id=content.getRoomnumber();
 		String msg=content.getMessege();
@@ -68,7 +68,7 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 					System.out.println("파일명 : " + t.getFile_name());
 				}
 				else if(t.getTypeofrequest() == 9){
-					follow_yes_or_no = t.getFollowExist();
+					follow_yes_or_no = t.getFollow();
 					System.out.println("팔로우 여부");
 				}else if(t.getTypeofrequest() == 12) {
 					myroom_list=t.getList();
