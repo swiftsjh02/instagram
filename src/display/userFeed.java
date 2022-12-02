@@ -132,10 +132,17 @@ public class userFeed extends JFrame{
         scroll.setVisible(true);
 
         client.get_post_num(10, user_id);
-        while (t1.getPost_num()==-1){
-
+        client.get_following_num(19, user_id);
+        client.get_follow_num(20, user_id);
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
         postNum.setText(String.valueOf(t1.getPost_num()));
+        followerNum.setText(String.valueOf(t1.get_follow_num()));
+        followingNum.setText(String.valueOf(t1.getFollowing_num()));
 
 
         if(user_id == id){
@@ -218,7 +225,9 @@ public class userFeed extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if(user_id == id){
                     //profile_수정
-
+                    editprofile a = new editprofile(session,user_id,client,t1);
+                    setVisible(false);
+                    a.setVisible(true);
                 }
                 else{
                     user_id_gui.setText(id);

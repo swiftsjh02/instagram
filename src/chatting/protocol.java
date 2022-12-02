@@ -14,6 +14,8 @@ public class protocol implements Serializable {
     private String messege;
     private String time;
 
+    private int follow_num;
+
     private int post_num;
     private boolean file_exist;
     private String file_name;
@@ -116,6 +118,11 @@ public class protocol implements Serializable {
     public String getFile_name() {
         return file_name;
     }
+
+    public int getFollow_num(){
+        return follow_num;
+    }
+
 
     public boolean getFollowExist(){return follow_yes_or_no;}
     public String getFollow() {
