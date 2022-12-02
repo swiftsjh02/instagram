@@ -26,7 +26,6 @@ public class searchTag extends JFrame {
     private JPanel bottom;
     private JPanel main;
     private JTextField search_text;
-    private JButton search;
     private JScrollPane sroll_pane;
     private JPanel scoll;
     private JPanel pane;
@@ -156,9 +155,33 @@ public class searchTag extends JFrame {
         userHomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session,user_id,user_id,client,t1);
+                userFeed a = new userFeed(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
+            }
+        });
+
+        accountButton.addActionListener(new ActionListener() { //계정 검색시 누르는 버튼
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String email = search_text.getText();
+                scoll.removeAll();
+                for(int i = 0;i< friend_list.size();i++){
+                    if(friend_list.get(i).contains(email)){
+                        friend pane = new friend(friend_list.get(i));
+                        gbc.fill = GridBagConstraints.BOTH;
+                        gbc.ipadx = 600;
+                        gbc.ipady = 100;
+                        gbc.gridx = 0;
+                        gbc.gridy = i;
+                        Gbag.setConstraints(pane,gbc);
+                        scoll.add(pane);
+                        scoll.updateUI();
+                    }
+                }
+                sroll_pane.setViewportView(scoll);
+                sroll_pane.setVisible(true);
+                scoll.setVisible(true);
             }
         });
 
@@ -182,7 +205,9 @@ public class searchTag extends JFrame {
             user.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                        userFeed a = new userFeed(session,user_id,friend_id,client,t1);
+                        userFeed a = new userFeed(session,user_id,client,t1);
+                        setVisible(false);
+                        a.setVisible(true);
                 }
             });
 
