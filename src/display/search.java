@@ -83,8 +83,9 @@ public class search extends JFrame {
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                story a = new story(session,user_id,client,t1);
+                mainFeed a = new mainFeed(session,user_id,client,t1);
                 setVisible(false);
+                a.setVisible(true);
             }
         });
 

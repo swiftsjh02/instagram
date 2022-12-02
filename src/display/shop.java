@@ -48,6 +48,7 @@ public class shop extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 mainFeed a = new mainFeed(session,user_id,client,t1);
                 setVisible(false);
+                a.setVisible(true);
             }
         });
 
