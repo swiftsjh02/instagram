@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -17,10 +18,14 @@ public class dm extends JFrame{
     private JButton createRoom;
     private JScrollPane roomPanel;
     private JPanel room;
+    private JButton exit;
     private String user_id;
     private ListeningThread t1;
     private chatting_client client;
-    public dm(chatting_client client, String user_id, ListeningThread t1){
+
+    private int session;
+    public dm(int session, chatting_client client, String user_id, ListeningThread t1){
+        this.session = session;
         this.t1 = t1;
         this.user_id = user_id;
         this.client = client;
@@ -37,8 +42,6 @@ public class dm extends JFrame{
             new cache_download(null,room_id.get(i),room_id.get(i),"1",2,client);
         }
         setContentPane(main);
-
-
 
         setSize(850, 1000);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +75,16 @@ public class dm extends JFrame{
         createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                invite a = new invite(client,user_id,t1);
+                invite a = new invite(session,client,user_id,t1);
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
+
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFeed a = new mainFeed(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -108,7 +120,7 @@ public class dm extends JFrame{
             in.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    chat a = new chat(client,user_id,room_id,t1);
+                    chat a = new chat(session,client,user_id,room_id,t1);
                     a.setVisible(true);
                     dispose();
                 }
@@ -128,7 +140,7 @@ public class dm extends JFrame{
                         System.out.println("없다");
                     }
 
-                    dm a = new dm(client, user_id,t1);
+                    dm a = new dm(session, client, user_id,t1);
                     a.setVisible(true);
                     dispose();
                 }

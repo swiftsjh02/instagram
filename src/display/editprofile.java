@@ -35,6 +35,12 @@ public class editprofile extends JFrame {
         this.client = client;
         this.t1 = t1;
 
+        setContentPane(main);
+
+        setSize(850, 1000);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBounds(0,0,850,1000);
+
         ImgSetSize profileLeft = new ImgSetSize("src/IMG/editprofile.jpg", 50, 50);
         profile.setIcon(profileLeft.getImg());
 
