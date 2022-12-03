@@ -1,6 +1,7 @@
 package display;
 
 import chatting.*;
+import function.get_data;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,18 +25,13 @@ public class dm extends JFrame{
         this.t1 = t1;
         this.user_id = user_id;
         this.client = client;
-
-        ArrayList<String> a = new ArrayList<>();
         // 방 목록 업데이트
         // client에서 방목록을 불러오기 room_id 형태 arrayList<string>
-        client.get_room_list(11,user_id);
-        try {
-            TimeUnit.MILLISECONDS.sleep(1000);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        room_id = t1.get_myroom_list();
+
+        get_data getData = new get_data();
+        getData.setType11(11, user_id);
+        getData.start();
+        room_id = getData.getMy_room_list();
 
         for(int i = 0;i<room_id.size();i++){
             System.out.println(room_id.get(i));
@@ -57,16 +53,9 @@ public class dm extends JFrame{
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         for(int i = 0;i<room_id.size();i++){
-            client.get_user_list_in_room(13,user_id,room_id.get(i));
-
-            try {
-                TimeUnit.MILLISECONDS.sleep(500);
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-//            room_id = t1.get_myroom_list();
-            member_list = t1.get_users_in_room();
+            getData.setType12(12, user_id, room_id.get(i));
+            getData.start();
+            member_list = getData.get_users_in_room();
             roomPanel pane = new roomPanel(member_list,room_id.get(i));
             gbc.fill = GridBagConstraints.BOTH;
             gbc.ipadx = 850;

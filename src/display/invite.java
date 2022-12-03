@@ -3,6 +3,7 @@ package display;
 import chatting.ListeningThread;
 import chatting.chatting_client;
 import function.ImgSetSize;
+import function.get_data;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,14 +40,10 @@ public class invite extends JFrame{
 
         // client에서 list 받아오기 get_friend_list();
 
-        client.get_all_user_list(15,user_id);
-        try {
-            TimeUnit.MILLISECONDS.sleep(500);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        friend_list = t1.getAll_user_list();
+        get_data getData = new get_data();
+        getData.setType15(15, user_id);
+        getData.start();
+        friend_list = getData.getAllUserList();
 
         invite_scroll.getVerticalScrollBar().setUnitIncrement(15);
 
