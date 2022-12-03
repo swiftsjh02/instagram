@@ -205,8 +205,8 @@ public class searchTag extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                         userFeed a = new userFeed(session,user_id,friend_id,client,t1);
-                        setVisible(false);
                         a.setVisible(true);
+                        dispose();
                 }
             });
 
