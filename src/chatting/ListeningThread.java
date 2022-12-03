@@ -10,9 +10,6 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 	String follow_yes_or_no;
 
 	int post_num=-1;
-
-	int follower_num=-1;
-	int follow_num=-1;
 	private static ArrayList<String> myroom_list = new ArrayList<>();
 	private static ArrayList<String> userlist_in_room;
 	private static ArrayList<String> all_user_list = new ArrayList<>();
@@ -34,15 +31,6 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 	}
 
 	public String get_follow_exist(){return follow_yes_or_no;}
-
-	public int get_follow_num(){
-		return follow_num;
-	}
-
-
-	public int get_follower_num(){
-		return follower_num;
-	}
 	public boolean caching(protocol content){
 		String room_id=content.getRoomnumber();
 		String msg=content.getMessege();
@@ -89,19 +77,16 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 					System.out.println("팔로우 여부");
 				}else if(t.getTypeofrequest()==10) {
 					post_num=t.getPostNum();
-				}else if(t.getTypeofrequest()==19) {
-					follow_num=t.getFollow_num();
-				}else if(t.getTypeofrequest()==20) {
-				    follower_num=t.get_follower_num();
-				}else if(t.getTypeofrequest() == 12) {
+					System.out.println("게시물 개수");
+				}else if(t.getTypeofrequest() == 11) {
 					myroom_list=t.getList();
 					System.out.println("서버의 방목록 업데이트 결과가 도착했습니다.");
 
-				}else if(t.getTypeofrequest()==14){
+				}else if(t.getTypeofrequest()==12){
 					userlist_in_room=t.getList();
 					System.out.println("방 안의 유저목록 업데이트 결과가 도착했습니다.");
 				}
-				else if(t.getTypeofrequest()==16){
+				else if(t.getTypeofrequest()==15){
 					all_user_list=t.getList();
 					System.out.println("모든 유저 목록 도착했습니다.");
 				}

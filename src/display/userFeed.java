@@ -56,13 +56,15 @@ public class userFeed extends JFrame{
     private String id;
 
     private int session;
+
+    private ListeningThread t1;
     public userFeed(int session, String user_id, String id,chatting_client client, ListeningThread t1){
 
         this.user_id = user_id;
         this.session = session;
         this.client = client;
         this.id = id;
-
+        this.t1 = t1;
 
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
@@ -274,7 +276,9 @@ public class userFeed extends JFrame{
             post_num.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    display.post a = new display.post(session,user_id,client,t1);
+                    setVisible(false);
+                    a.setVisible(true);
                 }
             });
         }

@@ -101,7 +101,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="4e43e" class="javax.swing.JTextField" binding="문구입력TextField" default-binding="true">
+              <component id="4e43e" class="javax.swing.JTextField" binding="wordText">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="4" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="73"/>
@@ -247,14 +247,14 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="6c836" class="javax.swing.JLabel" binding="tag">
+                  <component id="f3a72" class="javax.swing.JTextField" binding="tag">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
                     </constraints>
                     <properties>
-                      <background color="-1"/>
-                      <foreground color="-16777216"/>
-                      <text value="사람 태그하기"/>
+                      <text value="tag"/>
                     </properties>
                   </component>
                 </children>
