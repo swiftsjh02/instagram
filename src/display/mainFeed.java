@@ -218,6 +218,7 @@ public class mainFeed extends JFrame{
 
         private JLabel img;
 
+        private JLabel poster;
         private JTextArea feedMessage;
 
         private JTextArea feedTag;
@@ -245,6 +246,7 @@ public class mainFeed extends JFrame{
 
 
             setSize(600,800);
+            setBackground(new Color(0,0,0));
             GridBagLayout Gbag = new GridBagLayout();
             setLayout(Gbag);
             GridBagConstraints gbc = new GridBagConstraints();
@@ -252,17 +254,29 @@ public class mainFeed extends JFrame{
             gbc.weighty = 1.0;
             gbc.fill = GridBagConstraints.BOTH;
 
+            poster = new JLabel(writer);
+            poster.setForeground(new Color(255,255,255));
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = 8;
+            gbc.gridheight = 1;
+            gbc.weightx = 1.0;
+            gbc.weighty = 0.1;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
+            add(poster,gbc);
+
             //이미지 추가
             img = new JLabel();
             img.setSize(600,400);
             ImgSetSize image = new ImgSetSize("post/"+writer+"/"+file_name, 800, 400);
             img.setIcon(image.getImg());
             gbc.gridx = 0;
-            gbc.gridy = 0;
+            gbc.gridy = 1;
             gbc.gridwidth = 8;
-            gbc.gridheight = 8;
+            gbc.gridheight = 7;
             gbc.weightx = 1.0;
-            gbc.weighty = 0.8;
+            gbc.weighty = 0.7;
             gbc.ipadx = 0;
             gbc.ipady = 0;
             add(img,gbc);
@@ -345,8 +359,7 @@ public class mainFeed extends JFrame{
             like_button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String a = comment.getText();
-                    //댓글 보내기
+
                 }
             });
         }
