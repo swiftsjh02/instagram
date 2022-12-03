@@ -57,13 +57,25 @@ public class addFeed extends JFrame{
                 String tag_split[] = tag_not_split.split("#");
 
                 for(int i =0;i < tag_split.length;i++){
-                    Tag.add(tag_split[i]);
+                    Tag.add(tag_split[i].trim());
                     System.out.println(tag_split[i]);
                 }
 
                 get_data feed = new get_data();
                 feed.setType17(17,user_id,message,Tag,imgName);
                 feed.start();
+
+                mainFeed a = new mainFeed(session,user_id,client,t1);
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFeed a = new mainFeed(session,user_id,client,t1);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
     }

@@ -36,6 +36,8 @@ public class get_data {
     private String message;
     private String file_name;
 
+    private String feed_id;
+
     public void setType9(int typeofrequset, String user_id, String id){
         this.typeofrequest = typeofrequset;
         this.user_id = user_id;
@@ -74,6 +76,14 @@ public class get_data {
         this.message = message;
         this.file_name = file;
     }
+    public void setType18(int typeofrequest, String feed_id) {
+        this.typeofrequest = typeofrequest;
+        this.feed_id = feed_id;
+    }
+    public void setType16(int typeofrequest, String user_id) {
+        this.typeofrequest = typeofrequest;
+        this.user_id = user_id;
+    }
     public void request(protocol content){
         try{
             this.oos.writeObject(content); // 프로토콜로 담은 내용 전송
@@ -108,7 +118,18 @@ public class get_data {
     public String getFollow_yes_or_no() {
         return follow_yes_or_no;
     }
-
+    public String getMessage(){
+        return message;
+    }
+    public String getFile_name(){
+        return file_name;
+    }
+    public ArrayList<String> getTag_list(){
+        return Tag_list;
+    }
+    public ArrayList<String> getfeed_list(){
+        return list;
+    }
     public void start(){
         try{
             Socket socket = new Socket("swiftsjh.tplinkdns.com",9998);
@@ -213,10 +234,46 @@ public class get_data {
                         System.out.println(e);
                     }
                 }
-            }else if(typeofrequest == 17){
+            }
+            else if(typeofrequest == 16) {
+                protocol p = new protocol(typeofrequest, user_id);
+                request(p);
+                this.ois = new ObjectInputStream(is);
+                while (true) {
+                    try {
+                        protocol t = (protocol) ois.readObject();
+                        if (t.getTypeofrequest() == 16) {
+                            list = t.getList();
+                            break;
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                }
+            }
+            else if(typeofrequest == 17){
                 protocol p = new protocol(typeofrequest, user_id, message, Tag_list, file_name);
                 request(p);
-
+                this.ois = new ObjectInputStream(is);
+            }
+            else if(typeofrequest == 18){
+                protocol p = new protocol(typeofrequest, feed_id);
+                request(p);
+                this.ois = new ObjectInputStream(is);
+                while(true){
+                    try{
+                        protocol t = (protocol) ois.readObject();
+                        if(t.getTypeofrequest() == 18){
+                            message = t.getMessage();
+                            Tag_list = t.getList();
+                            file_name = t.getFile_name();
+                            break;
+                        }
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+                }
             }
             else if(typeofrequest == 19){
                 protocol p = new protocol(typeofrequest, user_id);
