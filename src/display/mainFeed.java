@@ -1,10 +1,13 @@
 package display;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+
 import function.*;
 import chatting.*;
 
@@ -23,15 +26,17 @@ public class mainFeed extends JFrame{
     private JButton heart;
     private JButton dm;
     private JPanel topbar;
-    private JScrollPane post;
+    private JScrollPane feedscroll;
 
     private JPanel home_main;
     private JButton story;
+    private JPanel feed;
     private JPanel home;
 
     public String user_id;
     public int session_id;
 
+    public ArrayList<String> feed_num;
 
     class JFrameWindowClosingEventHandler extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
@@ -68,9 +73,8 @@ public class mainFeed extends JFrame{
         ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-       ImgSetSize userhome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
-       userHomeButton.setIcon(home.getImg());
-
+        ImgSetSize userhome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
+        userHomeButton.setIcon(home.getImg());
 
         ImgSetSize mainphoto = new ImgSetSize("src/IMG/login.png", 200, 80);
         icon.setIcon(mainphoto.getImg());
@@ -87,7 +91,32 @@ public class mainFeed extends JFrame{
         ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
         dm.setIcon(dm_size.getImg());
 
+        get_data feed_data = new get_data();
+        feed_data.setType16(16,user_id);
+        feed_data.start();
+        feed_num = feed_data.getfeed_list();
 
+        feedscroll.getVerticalScrollBar().setUnitIncrement(15);
+
+        GridBagLayout Gbag = new GridBagLayout();
+        feed.setLayout(Gbag);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        for(int i = 0;i<feed_num.size();i++){
+            feed pane = new feed(feed_num.get(i));
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.ipadx = 600;
+            gbc.ipady = 600;
+            gbc.gridx = 0;
+            gbc.gridy = i;
+            Gbag.setConstraints(pane,gbc);
+            feed.add(pane);
+            feed.updateUI();
+        }
+        feedscroll.setViewportView(feed);
+        feedscroll.setVisible(true);
+        feed.setVisible(true);
         setContentPane(main);
 
         setSize(850, 1000);
@@ -178,6 +207,23 @@ public class mainFeed extends JFrame{
         });
     }
 
+    public class feed extends JPanel{
+        private String feed_id;
+        private String message;
+        private String file_name;
+        private ArrayList<String> Tag;
+
+        feed(String feed_id){
+            get_data feed_data = new get_data();
+            feed_data.setType18(18,feed_id);
+            feed_data.start();
+            message = feed_data.getMessage();
+            file_name = feed_data.getFile_name();
+            Tag = feed_data.getTag_list();
+
+
+        }
+    }
 
 }
 
