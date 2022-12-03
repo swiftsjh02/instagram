@@ -106,8 +106,8 @@ public class mainFeed extends JFrame{
         for(int i = 0;i<feed_num.size();i++){
             feed pane = new feed(feed_num.get(i));
             gbc.fill = GridBagConstraints.BOTH;
-            gbc.ipadx = 600;
-            gbc.ipady = 600;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
             gbc.gridx = 0;
             gbc.gridy = i;
             Gbag.setConstraints(pane,gbc);
@@ -213,6 +213,8 @@ public class mainFeed extends JFrame{
         private String file_name;
         private ArrayList<String> Tag;
 
+        private String writer;
+
         private JLabel img;
 
         private JTextArea feedMessage;
@@ -225,11 +227,18 @@ public class mainFeed extends JFrame{
             get_data feed_data = new get_data();
             feed_data.setType18(18,feed_id);
             feed_data.start();
+            this.feed_id = feed_data.getFeed_id();
             message = feed_data.getMessage();
             file_name = feed_data.getFile_name();
             Tag = feed_data.getTag_list();
 
-            setSize(600,600);
+            feed_data.setType21(21,feed_id);
+            feed_data.start();
+            writer = feed_data.getposter_id();
+
+            imgdownload tmp = new imgdownload(writer,file_name);
+
+            setSize(600,800);
             GridBagLayout Gbag = new GridBagLayout();
             setLayout(Gbag);
             GridBagConstraints gbc = new GridBagConstraints();
@@ -239,49 +248,74 @@ public class mainFeed extends JFrame{
 
             //이미지 추가
             img = new JLabel();
-            ImgSetSize image = new ImgSetSize(file_name, 600, 500);
+            img.setSize(600,400);
+            ImgSetSize image = new ImgSetSize("post/"+writer+"/"+file_name, 800, 400);
             img.setIcon(image.getImg());
             gbc.gridx = 0;
             gbc.gridy = 0;
-            gbc.weightx = 4;
-            gbc.weighty = 4;
+            gbc.gridwidth = 4;
+            gbc.gridheight = 4;
+            gbc.weightx = 1.0;
+            gbc.weighty = 0.8;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
             add(img,gbc);
 
             //메세지 추가
             feedMessage = new JTextArea();
+            feedMessage.setSize(600,200);
             feedMessage.setText(message);
             gbc.gridx = 0;
-            gbc.gridy = 1;
-            gbc.weightx = 4;
-            gbc.weighty = 2;
+            gbc.gridy = 4;
+            gbc.gridwidth = 4;
+            gbc.gridheight = 2;
+            gbc.weightx = 1.0;
+            gbc.weighty = 0.1;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
             add(feedMessage,gbc);
 
             //태그 추가
             feedTag = new JTextArea();
+            feedTag.setSize(600,100);
             feedTag.setText("");
             for(int i = 0;i<Tag.size();i++){
                 feedTag.setText(feedTag.getText() + "#" + Tag.get(i) + " ");
             }
             gbc.gridx = 0;
-            gbc.gridy = 2;
-            gbc.weightx = 4;
-            gbc.weighty = 1;
+            gbc.gridy = 6;
+            gbc.gridwidth = 4;
+            gbc.gridheight = 1;
+            gbc.weightx = 1.0;
+            gbc.weighty = 0.04;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
             add(feedTag,gbc);
 
             //댓글 창 추가
             comment = new JTextField();
+            comment.setSize(450,100);
             gbc.gridx = 0;
-            gbc.gridy = 3;
-            gbc.weightx = 3;
-            gbc.weighty = 1;
+            gbc.gridy = 7;
+            gbc.gridwidth = 3;
+            gbc.gridheight = 1;
+            gbc.weightx = 0.75;
+            gbc.weighty = 0.06;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
             add(comment,gbc);
 
             //댓글 버튼
-            comment_button = new JButton();
+            comment_button = new JButton("comment");
+            comment_button.setSize(150,100);
             gbc.gridx = 3;
-            gbc.gridy = 3;
-            gbc.weightx = 1;
-            gbc.weighty = 1;
+            gbc.gridy = 7;
+            gbc.gridwidth = 1;
+            gbc.gridheight = 1;
+            gbc.weightx = 0.25;
+            gbc.weighty = 0.06;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
             add(comment_button,gbc);
             comment_button.addActionListener(new ActionListener() {
                 @Override

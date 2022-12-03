@@ -3,7 +3,9 @@ package display;
 import chatting.ListeningThread;
 import chatting.chatting_client;
 import chatting.filechoose;
+import chatting.protocol;
 import function.get_data;
+import function.imgClient;
 import function.imgchoose;
 
 import javax.swing.*;
@@ -56,14 +58,19 @@ public class addFeed extends JFrame{
 
                 String tag_split[] = tag_not_split.split("#");
 
-                for(int i =0;i < tag_split.length;i++){
+                for(int i =1;i < tag_split.length;i++){
                     Tag.add(tag_split[i].trim());
                     System.out.println(tag_split[i]);
                 }
+                protocol q = new protocol();
+                q.setTime();
+                String time = q.getTime();
 
-                get_data feed = new get_data();
-                feed.setType17(17,user_id,message,Tag,imgName);
-                feed.start();
+
+                imgClient imgCl = new imgClient(user_id,imgName,time,client);
+                String file_name = imgCl.getName();
+
+                client.chat_message(new protocol(17,user_id,message,Tag,file_name));
 
                 mainFeed a = new mainFeed(session,user_id,client,t1);
                 setVisible(false);
