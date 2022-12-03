@@ -98,6 +98,7 @@ public class chatting_client implements Runnable { // 채팅 클라이언트
         protocol content = new protocol(typeofrequest, sender, roomnumber);
         chat_message(content); // 방에 있는 유저 목록 받아오기
     }
+
     public void get_all_user_list(int typeofrequest, String sender){
         protocol content = new protocol(typeofrequest, sender);
         chat_message(content); // 전체 유저 목록 받아오기

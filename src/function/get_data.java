@@ -31,6 +31,11 @@ public class get_data {
     private int followerNum; // 팔로워 수
     private int postNum; // 게시물 수
     private String id;
+    private ArrayList<String> list;
+    private ArrayList<String> Tag_list;
+    private String message;
+    private String file_name;
+
     public void setType9(int typeofrequset, String user_id, String id){
         this.typeofrequest = typeofrequset;
         this.user_id = user_id;
@@ -62,6 +67,13 @@ public class get_data {
         this.user_id = user_id;
     }
 
+    public void setType17(int typeofrequest, String user_id, String message, ArrayList<String> tag, String file) {
+        this.typeofrequest = typeofrequest;
+        this.user_id = user_id;
+        this.Tag_list = tag;
+        this.message = message;
+        this.file_name = file;
+    }
     public void request(protocol content){
         try{
             this.oos.writeObject(content); // 프로토콜로 담은 내용 전송
@@ -118,7 +130,7 @@ public class get_data {
 
             }
             else if (typeofrequest == 9){
-                protocol p = new protocol(typeofrequest, user_id);
+                protocol p = new protocol(typeofrequest, user_id,id);
                 request(p);
                 this.ois = new ObjectInputStream(is);
                 while(true){
@@ -201,6 +213,10 @@ public class get_data {
                         System.out.println(e);
                     }
                 }
+            }else if(typeofrequest == 17){
+                protocol p = new protocol(typeofrequest, user_id, message, Tag_list, file_name);
+                request(p);
+
             }
             else if(typeofrequest == 19){
                 protocol p = new protocol(typeofrequest, user_id);

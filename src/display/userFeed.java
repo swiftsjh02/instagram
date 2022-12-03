@@ -135,17 +135,17 @@ public class userFeed extends JFrame{
         scroll.setVisible(true);
 
         get_data getData = new get_data();
-        getData.setType10(10, user_id);
+        getData.setType10(10, id);
         getData.start();
-        getData.setType19(19, user_id);
+        getData.setType19(19, id);
         getData.start();
-        getData.setType20(20, user_id);
+        getData.setType20(20, id);
         getData.start();
 
 
         postNum.setText(String.valueOf(getData.getPostNum()));
-        followerNum.setText(String.valueOf(getData.getFollowerNum()));
-        followingNum.setText(String.valueOf(getData.getFollowNum()));
+        followingNum.setText(String.valueOf(getData.getFollowerNum()));
+        followerNum.setText(String.valueOf(getData.getFollowNum()));
 
 
         if(user_id == id){
@@ -156,8 +156,8 @@ public class userFeed extends JFrame{
             user_id_gui.setText(id);
             getData.setType9(9, user_id,id);
             getData.start();
-            follow_exist =String.valueOf(getData.getFollow_yes_or_no());
-
+            follow_exist = getData.getFollow_yes_or_no();
+            System.out.println(follow_exist);
             if(follow_exist.equals("true")){
                 profile_follow.setText("unfollow");
             }
@@ -231,7 +231,7 @@ public class userFeed extends JFrame{
                     user_id_gui.setText(id);
                     getData.setType9(9, user_id,id);
                     getData.start();
-                    follow_exist =String.valueOf(getData.getFollow_yes_or_no());
+                    follow_exist = getData.getFollow_yes_or_no();
                     //follow
                     if(follow_exist.equals("true")){
                         //unfollow 요청
@@ -244,6 +244,18 @@ public class userFeed extends JFrame{
                         new follow(user_id,id,client);
 
                     }
+                    get_data getData = new get_data();
+                    getData.setType10(10, id);
+                    getData.start();
+                    getData.setType19(19, id);
+                    getData.start();
+                    getData.setType20(20, id);
+                    getData.start();
+
+
+                    postNum.setText(String.valueOf(getData.getPostNum()));
+                    followingNum.setText(String.valueOf(getData.getFollowerNum()));
+                    followerNum.setText(String.valueOf(getData.getFollowNum()));
                 }
             }
         });
