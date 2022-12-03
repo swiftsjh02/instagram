@@ -213,6 +213,14 @@ public class mainFeed extends JFrame{
         private String file_name;
         private ArrayList<String> Tag;
 
+        private JLabel img;
+
+        private JTextArea feedMessage;
+
+        private JTextArea feedTag;
+
+        private JTextField comment;
+        private JButton comment_button;
         feed(String feed_id){
             get_data feed_data = new get_data();
             feed_data.setType18(18,feed_id);
@@ -221,7 +229,67 @@ public class mainFeed extends JFrame{
             file_name = feed_data.getFile_name();
             Tag = feed_data.getTag_list();
 
+            setSize(600,600);
+            GridBagLayout Gbag = new GridBagLayout();
+            setLayout(Gbag);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            gbc.fill = GridBagConstraints.BOTH;
 
+            //이미지 추가
+            img = new JLabel();
+            ImgSetSize image = new ImgSetSize(file_name, 600, 500);
+            img.setIcon(image.getImg());
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.weightx = 4;
+            gbc.weighty = 4;
+            add(img,gbc);
+
+            //메세지 추가
+            feedMessage = new JTextArea();
+            feedMessage.setText(message);
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.weightx = 4;
+            gbc.weighty = 2;
+            add(feedMessage,gbc);
+
+            //태그 추가
+            feedTag = new JTextArea();
+            feedTag.setText("");
+            for(int i = 0;i<Tag.size();i++){
+                feedTag.setText(feedTag.getText() + "#" + Tag.get(i) + " ");
+            }
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.weightx = 4;
+            gbc.weighty = 1;
+            add(feedTag,gbc);
+
+            //댓글 창 추가
+            comment = new JTextField();
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            gbc.weightx = 3;
+            gbc.weighty = 1;
+            add(comment,gbc);
+
+            //댓글 버튼
+            comment_button = new JButton();
+            gbc.gridx = 3;
+            gbc.gridy = 3;
+            gbc.weightx = 1;
+            gbc.weighty = 1;
+            add(comment_button,gbc);
+            comment_button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String a = comment.getText();
+                    //댓글 보내기
+                }
+            });
         }
     }
 
