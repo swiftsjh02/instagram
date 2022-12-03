@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.util.ArrayList;
 
 import function.*;
@@ -223,6 +224,8 @@ public class mainFeed extends JFrame{
 
         private JTextField comment;
         private JButton comment_button;
+
+        private JButton like_button;
         feed(String feed_id){
             get_data feed_data = new get_data();
             feed_data.setType18(18,feed_id);
@@ -235,8 +238,11 @@ public class mainFeed extends JFrame{
             feed_data.setType21(21,feed_id);
             feed_data.start();
             writer = feed_data.getposter_id();
+            File img_tmp=new File("post/"+writer+"/"+file_name);
+            if(img_tmp.exists()==false){
+                imgdownload tmp = new imgdownload(writer,file_name);
+            }
 
-            imgdownload tmp = new imgdownload(writer,file_name);
 
             setSize(600,800);
             GridBagLayout Gbag = new GridBagLayout();
@@ -253,8 +259,8 @@ public class mainFeed extends JFrame{
             img.setIcon(image.getImg());
             gbc.gridx = 0;
             gbc.gridy = 0;
-            gbc.gridwidth = 4;
-            gbc.gridheight = 4;
+            gbc.gridwidth = 8;
+            gbc.gridheight = 8;
             gbc.weightx = 1.0;
             gbc.weighty = 0.8;
             gbc.ipadx = 0;
@@ -266,9 +272,9 @@ public class mainFeed extends JFrame{
             feedMessage.setSize(600,200);
             feedMessage.setText(message);
             gbc.gridx = 0;
-            gbc.gridy = 4;
-            gbc.gridwidth = 4;
-            gbc.gridheight = 2;
+            gbc.gridy = 8;
+            gbc.gridwidth = 8;
+            gbc.gridheight = 4;
             gbc.weightx = 1.0;
             gbc.weighty = 0.1;
             gbc.ipadx = 0;
@@ -283,9 +289,9 @@ public class mainFeed extends JFrame{
                 feedTag.setText(feedTag.getText() + "#" + Tag.get(i) + " ");
             }
             gbc.gridx = 0;
-            gbc.gridy = 6;
-            gbc.gridwidth = 4;
-            gbc.gridheight = 1;
+            gbc.gridy = 12;
+            gbc.gridwidth = 8;
+            gbc.gridheight = 2;
             gbc.weightx = 1.0;
             gbc.weighty = 0.04;
             gbc.ipadx = 0;
@@ -296,9 +302,9 @@ public class mainFeed extends JFrame{
             comment = new JTextField();
             comment.setSize(450,100);
             gbc.gridx = 0;
-            gbc.gridy = 7;
-            gbc.gridwidth = 3;
-            gbc.gridheight = 1;
+            gbc.gridy = 14;
+            gbc.gridwidth = 6;
+            gbc.gridheight = 2;
             gbc.weightx = 0.75;
             gbc.weighty = 0.06;
             gbc.ipadx = 0;
@@ -308,16 +314,35 @@ public class mainFeed extends JFrame{
             //댓글 버튼
             comment_button = new JButton("comment");
             comment_button.setSize(150,100);
-            gbc.gridx = 3;
-            gbc.gridy = 7;
+            gbc.gridx = 6;
+            gbc.gridy = 14;
             gbc.gridwidth = 1;
             gbc.gridheight = 1;
-            gbc.weightx = 0.25;
+            gbc.weightx = 0.125;
             gbc.weighty = 0.06;
             gbc.ipadx = 0;
             gbc.ipady = 0;
             add(comment_button,gbc);
             comment_button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String a = comment.getText();
+                    //댓글 보내기
+                }
+            });
+
+            like_button = new JButton("like");
+            like_button.setSize(150,100);
+            gbc.gridx = 7;
+            gbc.gridy = 14;
+            gbc.gridwidth = 1;
+            gbc.gridheight = 1;
+            gbc.weightx = 0.125;
+            gbc.weighty = 0.06;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
+            add(like_button,gbc);
+            like_button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     String a = comment.getText();
