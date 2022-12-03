@@ -30,7 +30,7 @@ public class invite extends JFrame{
 
     private String user_id;
     private chatting_client client;
-    public invite(chatting_client client, String user_id, ListeningThread t1){
+    public invite(int session, chatting_client client, String user_id, ListeningThread t1){
         this.client = client;
         this.user_id = user_id;
         setContentPane(main);
@@ -97,14 +97,10 @@ public class invite extends JFrame{
                 }
                 //chatting_client에 List 전달
                 client.make_room(1,user_id,List);
-                client.get_room_list(11,user_id);
-                try {
-                    TimeUnit.MILLISECONDS.sleep(1000);
-                }
-                catch(Exception e1){
-                    e1.printStackTrace();
-                }
-                ArrayList<String> b = t1.get_myroom_list();
+                get_data getData = new get_data();
+                getData.setType11(11, user_id);
+                getData.start();
+                ArrayList<String> b = getData.getMy_room_list();
                 System.out.println("chatting_data/" + b.get(b.size()-1) + ".txt");
                 File file =new File("chatting_data/" + b.get(b.size()-1) + ".txt");
                 try{
@@ -116,7 +112,7 @@ public class invite extends JFrame{
                     e2.printStackTrace();
                 }
 
-                dm a = new dm(client,user_id,t1);
+                dm a = new dm(session,client,user_id,t1);
                 a.setVisible(true);
                 dispose();
             }

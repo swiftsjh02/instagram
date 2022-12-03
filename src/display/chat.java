@@ -79,7 +79,7 @@ public class chat extends JFrame{
         }
     }
 
-    public chat(chatting_client client, String my_id, String room_id, ListeningThread t1){
+    public chat(int session, chatting_client client, String my_id, String room_id, ListeningThread t1){
 
 
         this.t1 = t1;
@@ -171,7 +171,7 @@ public class chat extends JFrame{
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dm a = new dm(client,my_id,t1);
+                dm a = new dm(session,client,my_id,t1);
                 a.setVisible(true);
                 dispose();
             }
