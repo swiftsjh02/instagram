@@ -83,9 +83,11 @@ public class get_data {
         return allUserList;
     }
     public int getFollowNum() {
+        System.out.println(" followNum : " + followNum);
         return followNum;
     }
     public int getFollowerNum() {
+        System.out.println(" followerNum : " +followerNum);
         return followerNum;
     }
     public int getPostNum() {

@@ -145,7 +145,9 @@ public class mainFeed extends JFrame{
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                addFeed a = new addFeed(session,user_id,client,t1);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
 

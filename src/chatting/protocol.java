@@ -18,7 +18,7 @@ public class protocol implements Serializable {
 
     private int follower_num;
 
-    private int post_num;
+    private int num;
     private boolean file_exist;
     private String file_name;
     private String error_type;
@@ -68,9 +68,9 @@ public class protocol implements Serializable {
         this.follow = c;
     }
 
-    public protocol(int typeofrequest,int post_num){
+    public protocol(int typeofrequest,int num){
         this.typeofrequest = typeofrequest;
-        this.post_num = post_num;
+        this.num = num;
     }
 
     // 메시지 보내기 4
@@ -122,11 +122,11 @@ public class protocol implements Serializable {
     }
 
     public int get_follower_num() {
-        return follower_num;
+        return num;
     }
 
     public int getFollow_num(){
-        return follow_num;
+        return num;
     }
 
 
@@ -136,7 +136,7 @@ public class protocol implements Serializable {
     }
 
     public int getPostNum(){
-        return post_num;
+        return num;
     }
     public String getFollowing() {
         return following;

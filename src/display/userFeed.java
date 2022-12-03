@@ -56,13 +56,15 @@ public class userFeed extends JFrame{
     private String id;
 
     private int session;
+
+    private ListeningThread t1;
     public userFeed(int session, String user_id, String id,chatting_client client, ListeningThread t1){
 
         this.user_id = user_id;
         this.session = session;
         this.client = client;
         this.id = id;
-
+        this.t1 = t1;
 
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
@@ -132,9 +134,6 @@ public class userFeed extends JFrame{
         post_scroll.setVisible(true);
         scroll.setVisible(true);
 
-        client.get_post_num(10, user_id);
-        client.get_following_num(19, user_id);// 팔로잉
-        client.get_follow_num(20, user_id); //팔로워
         get_data getData = new get_data();
         getData.setType10(10, user_id);
         getData.start();
@@ -155,16 +154,11 @@ public class userFeed extends JFrame{
         }
         else{
             user_id_gui.setText(id);
-            client.follow_bool(9,user_id,id);
-            try {
-                TimeUnit.MILLISECONDS.sleep(500);
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-            String a = t1.get_follow_exist();
-            follow_exist =a;
-            if(a.equals("true")){
+            getData.setType9(9, user_id,id);
+            getData.start();
+            follow_exist =String.valueOf(getData.getFollow_yes_or_no());
+
+            if(follow_exist.equals("true")){
                 profile_follow.setText("unfollow");
             }
             else{
@@ -235,15 +229,9 @@ public class userFeed extends JFrame{
                 }
                 else{
                     user_id_gui.setText(id);
-                    client.follow_bool(9,user_id,id);
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(500);
-                    }
-                    catch(Exception ea){
-                        ea.printStackTrace();
-                    }
-                    String a = t1.get_follow_exist();
-                    follow_exist =a;
+                    getData.setType9(9, user_id,id);
+                    getData.start();
+                    follow_exist =String.valueOf(getData.getFollow_yes_or_no());
                     //follow
                     if(follow_exist.equals("true")){
                         //unfollow 요청
@@ -274,7 +262,9 @@ public class userFeed extends JFrame{
             post_num.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    display.post a = new display.post(session,user_id,client,t1);
+                    a.setVisible(true);
+                    dispose();
                 }
             });
         }
