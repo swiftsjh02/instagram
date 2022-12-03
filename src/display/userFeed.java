@@ -134,9 +134,6 @@ public class userFeed extends JFrame{
         post_scroll.setVisible(true);
         scroll.setVisible(true);
 
-        client.get_post_num(10, user_id);
-        client.get_following_num(19, user_id);// 팔로잉
-        client.get_follow_num(20, user_id); //팔로워
         get_data getData = new get_data();
         getData.setType10(10, user_id);
         getData.start();
@@ -157,16 +154,11 @@ public class userFeed extends JFrame{
         }
         else{
             user_id_gui.setText(id);
-            client.follow_bool(9,user_id,id);
-            try {
-                TimeUnit.MILLISECONDS.sleep(500);
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-            String a = t1.get_follow_exist();
-            follow_exist =a;
-            if(a.equals("true")){
+            getData.setType9(9, user_id,id);
+            getData.start();
+            follow_exist =String.valueOf(getData.getFollow_yes_or_no());
+
+            if(follow_exist.equals("true")){
                 profile_follow.setText("unfollow");
             }
             else{
@@ -237,15 +229,9 @@ public class userFeed extends JFrame{
                 }
                 else{
                     user_id_gui.setText(id);
-                    client.follow_bool(9,user_id,id);
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(500);
-                    }
-                    catch(Exception ea){
-                        ea.printStackTrace();
-                    }
-                    String a = t1.get_follow_exist();
-                    follow_exist =a;
+                    getData.setType9(9, user_id,id);
+                    getData.start();
+                    follow_exist =String.valueOf(getData.getFollow_yes_or_no());
                     //follow
                     if(follow_exist.equals("true")){
                         //unfollow 요청
@@ -277,8 +263,8 @@ public class userFeed extends JFrame{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     display.post a = new display.post(session,user_id,client,t1);
-                    setVisible(false);
                     a.setVisible(true);
+                    dispose();
                 }
             });
         }
