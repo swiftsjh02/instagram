@@ -38,6 +38,9 @@ public class get_data {
 
     private String feed_id;
 
+    private String post_id;
+    private String poster_id;
+
     public void setType9(int typeofrequset, String user_id, String id){
         this.typeofrequest = typeofrequset;
         this.user_id = user_id;
@@ -83,6 +86,10 @@ public class get_data {
     public void setType16(int typeofrequest, String user_id) {
         this.typeofrequest = typeofrequest;
         this.user_id = user_id;
+    }
+    public void setType21(int typeofrequest, String post_id) {
+        this.typeofrequest = typeofrequest;
+        this.post_id = post_id;
     }
     public void request(protocol content){
         try{
@@ -130,6 +137,8 @@ public class get_data {
     public ArrayList<String> getfeed_list(){
         return list;
     }
+    public String getFeed_id(){return feed_id;}
+    public String getposter_id(){return poster_id;}
     public void start(){
         try{
             Socket socket = new Socket("swiftsjh.tplinkdns.com",9998);
@@ -264,6 +273,7 @@ public class get_data {
                     try{
                         protocol t = (protocol) ois.readObject();
                         if(t.getTypeofrequest() == 18){
+                            feed_id = t.getSender();
                             message = t.getMessage();
                             Tag_list = t.getList();
                             file_name = t.getFile_name();
@@ -301,6 +311,24 @@ public class get_data {
                         protocol t = (protocol) ois.readObject();
                         if(t.getTypeofrequest() == 20){
                             followNum = t.getFollow_num();
+                            break;
+                        }
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+                }
+            }
+            else if(typeofrequest == 21){
+                protocol p = new protocol(typeofrequest, post_id);
+                request(p);
+                this.ois = new ObjectInputStream(is);
+                while(true){
+                    try{
+                        protocol t = (protocol) ois.readObject();
+                        if(t.getTypeofrequest() == 21){
+                            poster_id = t.getSender();
+                            System.out.println(poster_id);
                             break;
                         }
                     }
