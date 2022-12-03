@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class searchTag extends JFrame {
     private static ArrayList<String> friend_list = new ArrayList<String>();
