@@ -39,6 +39,7 @@ public class get_data{
     private String post_id;
     private String poster_id;
 
+    private int like_num;
     public void setType49(int typeofrequest, String user_id, String feed_id){
         this.typeofrequest = typeofrequest;
         this.user_id = user_id;
@@ -95,6 +96,10 @@ public class get_data{
         this.typeofrequest = typeofrequest;
         this.user_id = user_id;
     }
+    public void setType23(int typeofrequest, String feed_id) {
+        this.typeofrequest = typeofrequest;
+        this.feed_id = feed_id;
+    }
     public void request(protocol content){
         try{
             this.oos.writeObject(content); // 프로토콜로 담은 내용 전송
@@ -145,6 +150,10 @@ public class get_data{
     }
     public String getFeed_id(){return feed_id;}
     public String getposter_id(){return poster_id;}
+
+    public int getLikeNum() {
+        return like_num;
+    }
     public void start(){
         try{
             Socket socket = new Socket("swiftsjh.tplinkdns.com",9998);
@@ -384,7 +393,24 @@ public class get_data{
                     try{
                         protocol t = (protocol) ois.readObject();
                         if(t.getTypeofrequest() == 22){
-                            list = t.getList();
+                            like_num = t.getLikeNum();
+                            break;
+                        }
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+                }
+            }
+            else if(typeofrequest == 23){
+                protocol p = new protocol(typeofrequest, feed_id);
+                request(p);
+                this.ois = new ObjectInputStream(is);
+                while(true){
+                    try{
+                        protocol t = (protocol) ois.readObject();
+                        if(t.getTypeofrequest() == 23){
+                            like_num = t.getLikeNum();
                             break;
                         }
                     }
