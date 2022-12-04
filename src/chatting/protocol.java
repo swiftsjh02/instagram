@@ -155,5 +155,3 @@ public class protocol implements Serializable {
         this.time = now.format(formatter);
     }
 }
-
-
