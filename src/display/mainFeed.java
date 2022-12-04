@@ -243,7 +243,7 @@ public class mainFeed extends JFrame{
         });
     }
 
-    public class feed extends JPanel{
+    public static class feed extends JPanel{
         private String feed_id;
         private String message;
         private String file_name;

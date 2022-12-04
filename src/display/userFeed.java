@@ -97,13 +97,19 @@ public class userFeed extends JFrame{
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        ArrayList<String> post_list = new ArrayList<String>();
+        ArrayList<String> post_list = null;
 
         get_data a = new get_data();
         a.setType22(22,id);
         a.start();
         post_list = a.getfeed_list();
-
+        int num;
+        if(post_list == null){
+            num = 0;
+        }
+        else{
+            num = post_list.size();
+        }
         post_scroll.getVerticalScrollBar().setUnitIncrement(15);
 
         GridBagLayout Gbag = new GridBagLayout();
@@ -111,7 +117,7 @@ public class userFeed extends JFrame{
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-        for(int i = 0;i<post_list.size();i++){
+        for(int i = 0;i<num;i++){
             post pane = new post(post_list.get(i));
             gbc.fill = GridBagConstraints.BOTH;
             gbc.ipadx = 0;
