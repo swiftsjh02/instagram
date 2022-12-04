@@ -144,6 +144,7 @@ public class search extends JFrame {
             setSize(200,200);
             post_num = new JButton();
             post_num.setSize(200,200);
+            post_num.setBackground(new Color(255,255,255));
             add(post_num);
 
 
