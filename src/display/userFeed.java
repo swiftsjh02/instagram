@@ -15,6 +15,34 @@ import java.util.concurrent.TimeUnit;
 
 
 public class userFeed extends JFrame{
+    public class make_feed extends Thread{
+        ArrayList<String> feed_num;
+        JPanel feed;
+        JPanel scorll;
+        GridBagConstraints gbc;
+        GridBagLayout Gbag;
+        int i;
+        public make_feed(ArrayList<String> feed_num, JPanel scorll, GridBagConstraints gbc, GridBagLayout Gbag, int i){
+            this.feed_num = feed_num;
+            this.scorll = scorll;
+            this.gbc = gbc;
+            this.Gbag = Gbag;
+            this.i = i;
+        }
+        public void run() {
+            for(int k=i; k<i+4; k++){
+                post pane = new post(feed_num.get(k));
+                gbc.fill = GridBagConstraints.BOTH;
+                gbc.ipadx = 0;
+                gbc.ipady = 0;
+                gbc.gridx = k%3;
+                gbc.gridy = k/3;
+                Gbag.setConstraints(pane,gbc);
+                scroll.add(pane);
+                scroll.updateUI();
+            }
+        }
+    }
     private JButton homeButton;
     private JButton userhomeButton;
     private JButton reelsButton;
@@ -117,16 +145,28 @@ public class userFeed extends JFrame{
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-        for(int i = 0;i<num;i++){
-            post pane = new post(post_list.get(i));
-            gbc.fill = GridBagConstraints.BOTH;
-            gbc.ipadx = 0;
-            gbc.ipady = 0;
-            gbc.gridx = i%3;
-            gbc.gridy = i/3;
-            Gbag.setConstraints(pane,gbc);
-            scroll.add(pane);
-            scroll.updateUI();
+        if(post_list.size() % 4 == 0){
+            for(int i=0; i<post_list.size(); i+=4){
+                make_feed thread = new make_feed(post_list,scroll,gbc,Gbag,i);
+                thread.start();
+            }
+        }
+        else{
+            for(int i=0; i<post_list.size()-4; i+=4){
+                 make_feed thread = new make_feed(post_list,scroll,gbc,Gbag,i);
+                thread.start();
+            }
+            for(int i=post_list.size()-4; i<post_list.size(); i++){
+                post pane = new post(post_list.get(i));
+                gbc.fill = GridBagConstraints.BOTH;
+                gbc.ipadx = 0;
+                gbc.ipady = 0;
+                gbc.gridx = i%3;
+                gbc.gridy = i/3;
+                Gbag.setConstraints(pane,gbc);
+                scroll.add(pane);
+                scroll.updateUI();
+            }
         }
         post_scroll.setViewportView(scroll);
         post_scroll.setVisible(true);
@@ -292,6 +332,7 @@ public class userFeed extends JFrame{
 
                     JFrame a = new JFrame();
                     display.mainFeed.feed n = new display.mainFeed.feed(feed_id,user_id);
+
                     a.setContentPane(n);
                     a.setSize(850,1000);
                     a.addWindowListener(new JFrameWindowClosingEventHandler());
