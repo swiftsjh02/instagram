@@ -39,6 +39,7 @@ public class get_data{
     private String post_id;
     private String poster_id;
 
+
     private int like_num;
     public void setType49(int typeofrequest, String user_id, String feed_id){
         this.typeofrequest = typeofrequest;
@@ -393,7 +394,7 @@ public class get_data{
                     try{
                         protocol t = (protocol) ois.readObject();
                         if(t.getTypeofrequest() == 22){
-                            like_num = t.getLikeNum();
+                            list = t.getList();
                             break;
                         }
                     }
