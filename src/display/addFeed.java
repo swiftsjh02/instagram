@@ -4,6 +4,7 @@ import chatting.ListeningThread;
 import chatting.chatting_client;
 import chatting.filechoose;
 import chatting.protocol;
+import function.ImgSetSize;
 import function.get_data;
 import function.imgClient;
 import function.imgchoose;
@@ -36,6 +37,8 @@ public class addFeed extends JFrame{
     addFeed(int session, String user_id, chatting_client client, ListeningThread t1){
 
 
+        ImgSetSize image = new ImgSetSize("src/IMG/addfeed_image.png", 50, 50);
+        picture.setIcon(image.getImg());
         setContentPane(main);
 
         setSize(850, 1000);

@@ -246,7 +246,7 @@ public class mainFeed extends JFrame{
 
 
             setSize(600,800);
-            setBackground(new Color(0,0,0));
+            setBackground(new Color(255,255,255));
             GridBagLayout Gbag = new GridBagLayout();
             setLayout(Gbag);
             GridBagConstraints gbc = new GridBagConstraints();
@@ -327,6 +327,7 @@ public class mainFeed extends JFrame{
 
             //댓글 버튼
             comment_button = new JButton("comment");
+            comment_button.setBackground(new Color(255,255,255));
             comment_button.setSize(150,100);
             gbc.gridx = 6;
             gbc.gridy = 14;
@@ -346,6 +347,7 @@ public class mainFeed extends JFrame{
             });
 
             like_button = new JButton("like");
+            like_button.setBackground(new Color(255,255,255));
             like_button.setSize(150,100);
             gbc.gridx = 7;
             gbc.gridy = 14;
