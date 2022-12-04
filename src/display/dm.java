@@ -42,7 +42,7 @@ public class dm extends JFrame{
             new cache_download(null,room_id.get(i),room_id.get(i),"1",2,client);
         }
         setContentPane(main);
-
+        exit.setBackground(new Color(255,255,255));
         setSize(850, 1000);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(0,0,850,1000);
@@ -111,6 +111,9 @@ public class dm extends JFrame{
 
             setLayout(new FlowLayout(FlowLayout.LEFT));
             setSize(850,100);
+
+            this.in.setBackground(new Color(255,255,255));
+            this.out.setBackground(new Color(255,255,255));
             this.in.setSize(100,100);
             this.out.setSize(100,100);
             this.member.setSize(750,100);

@@ -135,12 +135,12 @@ public class invite extends JFrame{
             invite_friend = new JButton("invite");
             ImgSetSize invite = new ImgSetSize("src/IMG/invite_invite.png", 50, 50);
             invite_friend.setIcon(invite.getImg());
-            invite_friend.setBackground(Color.WHITE);
+            invite_friend.setBackground(new Color(255,255,255));
 
             remove_friend = new JButton("remove");
             ImgSetSize remove = new ImgSetSize("src/IMG/invite_exit.png", 50, 50);
             remove_friend.setIcon(remove.getImg());
-            remove_friend.setBackground(Color.WHITE);
+            remove_friend.setBackground(new Color(255,255,255));
 
             friend_name = new JLabel();
             friend_name.setText(String.valueOf(friend_id));
