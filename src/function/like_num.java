@@ -3,11 +3,10 @@ package function;
 import chatting.protocol;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.net.Socket;
 
-public class like_check extends JFrame implements Runnable{
+public class like_num extends Thread{
     private protocol t;
     private InputStream is;
     private OutputStream os;
@@ -20,17 +19,17 @@ public class like_check extends JFrame implements Runnable{
     private BufferedOutputStream bos;
     private JButton like_button;
     private String user_id;
-    private String feed_id;
-    public like_check(JButton like_button, String user_id, String feed_id){
+    private final String feed_id;
+    private JLabel like_num;
+    public like_num(JButton like_button, JLabel like_num, String feed_id){
         this.like_button = like_button;
-        this.user_id = user_id;
+        this.like_num = like_num;
         this.feed_id = feed_id;
     }
     public void request(protocol content){
         try{
             System.out.println("typeofrequset : " + content.getTypeofrequest());
             System.out.println("feed_id : " + content.getFeed_id());
-            System.out.println("user_id : " + content.getSender());
             this.oos.writeObject(content); // 프로토콜로 담은 내용 전송
             this.oos.flush();
         }
@@ -41,7 +40,7 @@ public class like_check extends JFrame implements Runnable{
     public void run(){
         try {
             Socket socket = new Socket("swiftsjh.tplinkdns.com", 9998);
-            System.out.println("like_check 쓰레드 실행");
+            System.out.println("like_num 쓰레드 실행");
             this.is = socket.getInputStream();
             this.os = socket.getOutputStream();
             this.di = new DataInputStream(is);
@@ -51,26 +50,14 @@ public class like_check extends JFrame implements Runnable{
             this.dos = new DataOutputStream(os);
             this.bos = new BufferedOutputStream(os);
             this.pw = new PrintWriter(bos);
-            protocol p = new protocol(49, user_id, feed_id);
+            protocol p = new protocol(23, feed_id);
             request(p);
             this.ois = new ObjectInputStream(is);
             while(true){
                 try{
                     t = (protocol) ois.readObject();
-                    if(t.getTypeofrequest() == 49){
-                        System.out.println(t.getHeart());
-                        if(t.getHeart()  == true) {
-                            System.out.println("좋아요 누름으로 들어오긴 하는거야??????");
-                            like_button.setText("♥");
-                            like_button.setForeground(Color.red);
-                        }
-                        else if(t.getHeart()  == false) {
-                            like_button.setText("♡");
-                            like_button.setForeground(Color.black);
-                        }
-                        else{
-                            System.out.println("좋아요 누르기 실패");
-                        }
+                    if(t.getTypeofrequest() == 23){
+                        like_num.setText("좋아요 : " + String.valueOf(t.getLikeNum()));
                         break;
                     }
                 }

@@ -183,7 +183,7 @@ public class get_data{
                     try{
                         protocol t = (protocol) ois.readObject();
                         if(t.getTypeofrequest() == 49){
-                            this.heart_yes_or_no = t.getHeart();
+                            this.heart_yes_or_no = String.valueOf(t.getHeart());
                             break;
                         }
                     }

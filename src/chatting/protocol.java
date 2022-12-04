@@ -13,7 +13,7 @@ public class protocol implements Serializable {
     private String roomnumber;
     private String messege;
     private String time;
-    private String heart;
+    private boolean heart;
     private int follow_num;
     private int follower_num;
     private int num;
@@ -86,7 +86,7 @@ public class protocol implements Serializable {
     public protocol(int typeofrequest, String sender) {
         this.typeofrequest = typeofrequest;
         this.sender = sender;
-        this.heart = sender;
+        this.feed_id = sender;
     }
     //게시물 전용
     public protocol(int typeofrequest, String sender, String message, ArrayList<String> tag, String file) {
@@ -99,6 +99,10 @@ public class protocol implements Serializable {
 
     public protocol(String error_type) {
         this.error_type = error_type;
+    }
+    public protocol(int typeofrequest, boolean heart){
+        this.typeofrequest = typeofrequest;
+        this.heart = heart;
     }
 
     //make getter function
@@ -135,7 +139,7 @@ public class protocol implements Serializable {
     public int getFollow_num(){
         return num;
     }
-    public String getHeart(){return heart;}
+    public boolean getHeart(){return heart;}
     public String getFeed_id(){return feed_id;}
     public boolean getFollowExist(){return follow_yes_or_no;}
     public String getFollow() {
@@ -157,3 +161,4 @@ public class protocol implements Serializable {
         this.time = now.format(formatter);
     }
 }
+

@@ -263,7 +263,7 @@ public class mainFeed extends JFrame{
         private JTextField comment;
         private JButton comment_button;
 
-        private JLabel like_num;
+        private JLabel like_num1;
 
         private JButton like_button;
         public feed(String feed_id,String user_id){
@@ -312,11 +312,11 @@ public class mainFeed extends JFrame{
             add(poster,gbc);
 
             //좋아요 갯수
-            like_num = new JLabel();
+            like_num1 = new JLabel();
             feed_data.setType23(23,feed_id);
             feed_data.start();
-            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-            like_num.setForeground(new Color(255,255,255));
+            like_num1.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
+            like_num1.setForeground(new Color(255,255,255));
             gbc.gridx = 6;
             gbc.gridy = 0;
             gbc.gridwidth = 2;
@@ -325,7 +325,7 @@ public class mainFeed extends JFrame{
             gbc.weighty = 0.1;
             gbc.ipadx = 0;
             gbc.ipady = 0;
-            add(like_num,gbc);
+            add(like_num1,gbc);
             //이미지 추가
             img = new JLabel();
             img.setSize(600,400);
@@ -419,64 +419,26 @@ public class mainFeed extends JFrame{
             gbc.ipady = 0;
             add(like_button,gbc);
 
-            get_data Data = new get_data();
-            Data.setType49(49, user_id, this.feed_id);
-            Data.start();
+            like_check check = new like_check(like_button, user_id, this.feed_id);
+            check.run();
 
-            if(Data.getHeart_yes_or_no().equals("true")){
-                like_button.setText("unlike");
-                like_button.setBackground(new Color(255,0,0));
-            }
-            else{
-                like_button.setBackground(new Color(255,255,255));
-                like_button.setText("like");
-            }
             like_button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(Data.getHeart_yes_or_no().equals("false")){
-                        get_data Data1 = new get_data();
-                        Data1.setType50(50,user_id,feed_id);
-                        Data1.start();
-                        get_data Data = new get_data();
-                        Data.setType49(49, user_id,feed_id);
-                        Data.start();
-                        if(Data.getHeart_yes_or_no().equals("true")){
-                            like_button.setText("unlike");
-                            like_button.setBackground(new Color(255,0,0));
-                            feed_data.setType23(23,feed_id);
-                            feed_data.start();
-                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-                        }
-                        else{
-                            like_button.setBackground(new Color(255,255,255));
-                            like_button.setText("like");
-                            feed_data.setType23(23,feed_id);
-                            feed_data.start();
-                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-                        }
-                    }
-                    else{
-                        get_data Data1 = new get_data();
-                        Data1.setType50(50,user_id,feed_id);
-                        Data1.start();
-                        get_data Data = new get_data();
-                        Data.setType49(49, user_id,feed_id);
-                        Data.start();
-                        if(Data.getHeart_yes_or_no().equals("true")){
-                            like_button.setText("unlike");
-                            like_button.setBackground(new Color(255,0,0));
-                            feed_data.setType23(23,feed_id);
-                            feed_data.start();
-                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-                        }
-                        else{
-                            like_button.setBackground(new Color(255,255,255));
-                            like_button.setText("like");
-                            feed_data.setType23(23,feed_id);
-                            feed_data.start();
-                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-                        }
+                    try{
+                        // 좋아요 버튼 누르기
+                        like like = new like(like_button, user_id, feed_id);
+                        like.start();
+                        like.join();
+                        // 좋아요 여부
+                        like_check check = new like_check(like_button, user_id, feed_id);
+                        check.run();
+                        // 좋아요 갯수
+                        like_num like_num = new like_num(like_button, like_num1, feed_id);
+                        like_num.start();
+                        like_num.join();
+                    }catch (Exception e1) {
+                        e1.printStackTrace();
                     }
                 }
             });
