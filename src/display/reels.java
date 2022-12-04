@@ -1,6 +1,9 @@
 package display;
 
 import javax.swing.*;
+
+import chatting.ListeningThread;
+import chatting.chatting_client;
 import function.*;
 
 import java.awt.event.ActionEvent;
@@ -23,20 +26,20 @@ public class reels extends JFrame{
     private JPanel bottom;
     private JButton shopButton;
 
-    public reels(int session,String user_id){
-        ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
+    public reels(int session, String user_id, chatting_client client, ListeningThread t1){
+        ImgSetSize home = new ImgSetSize("src/IMG/reels_home.jpg", 50, 50);
         homeButton.setIcon(home.getImg());
 
-        ImgSetSize search = new ImgSetSize("src/IMG/search.png", 50, 50);
+        ImgSetSize search = new ImgSetSize("src/IMG/reels_search.jpg", 50, 50);
         searchButton.setIcon(search.getImg());
 
-        ImgSetSize reels = new ImgSetSize("src/IMG/reels.png", 50, 50);
+        ImgSetSize reels = new ImgSetSize("src/IMG/reels_reels.jpg", 50, 50);
         reelsButton.setIcon(reels.getImg());
 
-        ImgSetSize shop = new ImgSetSize("src/IMG/shop.jpg", 50, 50);
+        ImgSetSize shop = new ImgSetSize("src/IMG/reels_shop.jpg", 50, 50);
         shopButton.setIcon(shop.getImg());
 
-        ImgSetSize userHome = new ImgSetSize("src/IMG/userhomefeed.png", 50, 50);
+        ImgSetSize userHome = new ImgSetSize("src/IMG/reels_user.jpg", 50, 50);
         userhomeButton.setIcon(userHome.getImg());
 
         ImgSetSize camera1 = new ImgSetSize("src/IMG/camera1.png", 50,50);
@@ -63,40 +66,47 @@ public class reels extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a  = new mainFeed(session,user_id);
+                mainFeed a = new mainFeed(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
+
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search(session,user_id);
+                search a = new search(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
+
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                reels a = new reels(session,user_id,client,t1);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
+
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                shop a = new shop(session,user_id);
+                shop a = new shop(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
+
         userhomeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session,user_id);
+                userFeed a = new userFeed(session,user_id,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
+
     }
 }

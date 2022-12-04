@@ -1,14 +1,15 @@
 package display;
 
 import chatting.*;
+import function.get_data;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class dm extends JFrame{
     private static ArrayList<String> room_id;
@@ -17,33 +18,30 @@ public class dm extends JFrame{
     private JButton createRoom;
     private JScrollPane roomPanel;
     private JPanel room;
+    private JButton exit;
     private String user_id;
     private ListeningThread t1;
     private chatting_client client;
-    public dm(chatting_client client, String user_id, ListeningThread t1){
+
+    private int session;
+    public dm(int session, chatting_client client, String user_id, ListeningThread t1){
+        this.session = session;
         this.t1 = t1;
         this.user_id = user_id;
         this.client = client;
-
-        ArrayList<String> a = new ArrayList<>();
         // 방 목록 업데이트
         // client에서 방목록을 불러오기 room_id 형태 arrayList<string>
-        client.get_room_list(11,user_id);
-        try {
-            TimeUnit.MILLISECONDS.sleep(1000);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        room_id = t1.get_myroom_list();
+
+        get_data getData = new get_data();
+        getData.setType11(11, user_id);
+        getData.start();
+        room_id = getData.getMy_room_list();
 
         for(int i = 0;i<room_id.size();i++){
             System.out.println(room_id.get(i));
             new cache_download(null,room_id.get(i),room_id.get(i),"1",2,client);
         }
         setContentPane(main);
-
-
 
         setSize(850, 1000);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -57,16 +55,9 @@ public class dm extends JFrame{
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         for(int i = 0;i<room_id.size();i++){
-            client.get_user_list_in_room(13,user_id,room_id.get(i));
-
-            try {
-                TimeUnit.MILLISECONDS.sleep(500);
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-//            room_id = t1.get_myroom_list();
-            member_list = t1.get_users_in_room();
+            getData.setType12(12, user_id, room_id.get(i));
+            getData.start();
+            member_list = getData.get_users_in_room();
             roomPanel pane = new roomPanel(member_list,room_id.get(i));
             gbc.fill = GridBagConstraints.BOTH;
             gbc.ipadx = 850;
@@ -84,7 +75,16 @@ public class dm extends JFrame{
         createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                invite a = new invite(client,user_id,t1);
+                invite a = new invite(session,client,user_id,t1);
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
+
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFeed a = new mainFeed(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
@@ -120,7 +120,7 @@ public class dm extends JFrame{
             in.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    chat a = new chat(client,user_id,room_id,t1);
+                    chat a = new chat(session,client,user_id,room_id,t1);
                     a.setVisible(true);
                     dispose();
                 }
@@ -140,7 +140,7 @@ public class dm extends JFrame{
                         System.out.println("없다");
                     }
 
-                    dm a = new dm(client, user_id,t1);
+                    dm a = new dm(session, client, user_id,t1);
                     a.setVisible(true);
                     dispose();
                 }

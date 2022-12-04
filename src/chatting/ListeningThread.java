@@ -7,6 +7,12 @@ import java.util.ArrayList;
 
 public class ListeningThread extends Thread { // 서버에서 보낸 메세지 읽는 Thread
 	Socket socket = null;
+	String follow_yes_or_no;
+
+	int post_num=-1;
+
+	int follower_num=-1;
+	int follow_num=-1;
 	private static ArrayList<String> myroom_list = new ArrayList<>();
 	private static ArrayList<String> userlist_in_room;
 	private static ArrayList<String> all_user_list = new ArrayList<>();
@@ -17,6 +23,9 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 	public ArrayList<String> getAll_user_list() {
 		return all_user_list;
 	}
+	public int getPost_num() {
+		return post_num;
+	}
 	public ArrayList<String> get_myroom_list() {
 		return myroom_list;
 	}
@@ -24,6 +33,16 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 		return userlist_in_room;
 	}
 
+	public String get_follow_exist(){return follow_yes_or_no;}
+
+	public int get_follow_num(){
+		return follow_num;
+	}
+
+
+	public int get_follower_num(){
+		return follower_num;
+	}
 	public boolean caching(protocol content){
 		String room_id=content.getRoomnumber();
 		String msg=content.getMessege();
@@ -64,6 +83,16 @@ public class ListeningThread extends Thread { // 서버에서 보낸 메세지 �
 					System.out.println("메시지 : " +  t.getMessege());
 					System.out.println("파일 존재 여부 : " + t.isFile_exist());
 					System.out.println("파일명 : " + t.getFile_name());
+				}
+				else if(t.getTypeofrequest() == 9){
+					follow_yes_or_no = t.getFollow();
+					System.out.println("팔로우 여부");
+				}else if(t.getTypeofrequest()==10) {
+					post_num=t.getPostNum();
+				}else if(t.getTypeofrequest()==19) {
+					follow_num=t.getFollow_num();
+				}else if(t.getTypeofrequest()==20) {
+				    follower_num=t.get_follower_num();
 				}else if(t.getTypeofrequest() == 12) {
 					myroom_list=t.getList();
 					System.out.println("서버의 방목록 업데이트 결과가 도착했습니다.");

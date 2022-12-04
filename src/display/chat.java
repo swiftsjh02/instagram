@@ -25,6 +25,8 @@ public class chat extends JFrame{
     private JButton exit;
     private JTextField file_down_text;
     private JButton file_down;
+    private JButton button1;
+    private JButton button2;
     private String room_id;
     private String my_id;
 
@@ -77,7 +79,7 @@ public class chat extends JFrame{
         }
     }
 
-    public chat(chatting_client client, String my_id, String room_id, ListeningThread t1){
+    public chat(int session, chatting_client client, String my_id, String room_id, ListeningThread t1){
 
 
         this.t1 = t1;
@@ -169,9 +171,9 @@ public class chat extends JFrame{
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dm a = new dm(client,my_id,t1);
+                dm a = new dm(session,client,my_id,t1);
                 a.setVisible(true);
-                dispose();
+                setVisible(false);
             }
         });
         file_down.addActionListener(new ActionListener() {

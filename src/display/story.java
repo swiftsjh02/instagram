@@ -1,5 +1,7 @@
 package display;
 
+import chatting.ListeningThread;
+import chatting.chatting_client;
 import function.ImgSetSize;
 
 import javax.swing.*;
@@ -8,57 +10,22 @@ import java.awt.event.ActionListener;
 
 
 public class story extends JFrame{
-    private JButton option;
-    private JButton exit;
-    private JButton likebt;
-    private JButton dmbt;
+
     public JPanel main;
-    private JButton story;
-    private JLabel profile;
     private JButton homeButton;
     private JButton searchButton;
     private JButton reelsButton;
     private JButton shopButton;
-    private JButton userHomeButton;
     private JPanel bottom;
-    private JButton likeButton;
-    private JButton dmButton;
+    private JTextField sendMessageTextField;
+    private JButton story_dm;
+    private JButton like;
+    private JButton exit;
+    private JPanel top;
+    private JButton more;
 
-    public story(int session_id,String user_id){
-        ImgSetSize dm_size = new ImgSetSize("src/IMG/dm.jpg", 50, 50);
-        dmbt.setIcon(dm_size.getImg());
+    public story(int session_id, String user_id, chatting_client client, ListeningThread t1){
 
-        ImgSetSize like = new ImgSetSize("src/IMG/notification.jpg", 50, 50);
-        likebt.setIcon(like.getImg());
-
-        ImgSetSize testpng = new ImgSetSize("src/IMG/storytest.png", 560, 640);
-        story.setIcon(testpng.getImg());
-
-        ImgSetSize testprofile = new ImgSetSize("src/IMG/testprofile.png", 50, 50);
-        profile.setIcon(testprofile.getImg());
-
-        ImgSetSize optionbt = new ImgSetSize("src/IMG/testprofile.png", 50, 50);
-        option.setIcon(optionbt.getImg());
-
-        ImgSetSize exitbt = new ImgSetSize("src/IMG/testprofile.png", 50, 50);
-        exit.setIcon(exitbt.getImg());
-
-        //bottom button
-
-        ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
-        homeButton.setIcon(home.getImg());
-
-        ImgSetSize search = new ImgSetSize("src/IMG/search.png", 50, 50);
-        searchButton.setIcon(search.getImg());
-
-        ImgSetSize reels = new ImgSetSize("src/IMG/reels.png", 50, 50);
-        reelsButton.setIcon(reels.getImg());
-
-        ImgSetSize shop = new ImgSetSize("src/IMG/shop.png", 50, 50);
-        shopButton.setIcon(shop.getImg());
-
-//        ImgSetSize userhome = new ImgSetSize("src/IMG/.png", 50, 50);
-//        userHomeButton.setIcon(home.getImg());
 
         setContentPane(main);
         setSize(850,1000);
@@ -67,11 +34,24 @@ public class story extends JFrame{
         setVisible(true);
         //dispose();
 
+        ImgSetSize storyLike = new ImgSetSize("src/IMG/reels_like.png", 50, 50);
+        like.setIcon(storyLike.getImg());
 
-        homeButton.addActionListener(new ActionListener() {
+        ImgSetSize storyDm = new ImgSetSize("src/IMG/reels_dm.png", 50, 50);
+        story_dm.setIcon(storyDm.getImg());
+
+        ImgSetSize storyExit = new ImgSetSize("src/IMG/exit.png", 50, 50);
+        exit.setIcon(storyExit.getImg());
+
+        ImgSetSize storyMore = new ImgSetSize("src/IMG/reels_more.png", 50, 50);
+        more.setIcon(storyMore.getImg());
+
+
+
+        exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a = new mainFeed(session_id,user_id);
+                mainFeed a = new mainFeed(session_id,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }

@@ -1,5 +1,7 @@
 package display;
 
+import chatting.ListeningThread;
+import chatting.chatting_client;
 import function.ImgSetSize;
 
 import javax.swing.*;
@@ -18,7 +20,7 @@ public class shop extends JFrame{
     private JButton searchButton1;
     private JButton editVideoButton;
 
-    public shop(int session,String user_id){
+    public shop(int session, String user_id, chatting_client client, ListeningThread t1){
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -44,40 +46,47 @@ public class shop extends JFrame{
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFeed a  = new mainFeed(session,user_id);
+                mainFeed a = new mainFeed(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
+
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                search a = new search(session,user_id);
+                search a = new search(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
+
         reelsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reels a = new reels(session,user_id);
+                reels a = new reels(session,user_id,client,t1);
                 setVisible(false);
                 a.setVisible(true);
             }
         });
-        userHomeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                userFeed a = new userFeed(session,user_id);
-                setVisible(false);
-                a.setVisible(true);
-            }
-        });
+
         shopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                shop a = new shop(session,user_id,client,t1);
+                setVisible(false);
+                a.setVisible(true);
             }
         });
+
+        userHomeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                userFeed a = new userFeed(session,user_id,user_id,client,t1);
+                setVisible(false);
+                a.setVisible(true);
+            }
+        });
+
     }
 }

@@ -1,5 +1,7 @@
 package display;
 
+import chatting.ListeningThread;
+import chatting.chatting_client;
 import function.ImgSetSize;
 import javax.swing.*;
 
@@ -15,7 +17,7 @@ public class post extends JFrame {
     private JButton upload;
     private JPanel main;
 
-    public post(){
+    post(int session, String user_id, chatting_client client, ListeningThread t1) {
         ImgSetSize profilebt = new ImgSetSize("src/IMG/testprofile.png", 50, 50);
         profile.setIcon(profilebt.getImg());
 
