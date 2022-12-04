@@ -90,6 +90,8 @@ public class searchTag extends JFrame {
             scoll.add(pane);
             scoll.updateUI();
         }
+
+        sroll_pane.setBackground(new Color(255,255,255));
         sroll_pane.setViewportView(scoll);
         sroll_pane.setVisible(true);
         scoll.setVisible(true);
@@ -198,6 +200,7 @@ public class searchTag extends JFrame {
             setLayout(new GridLayout(1,1));
             setSize(600,100);
             user = new JButton(friend_id);
+            user.setBackground(new Color(255,255,255));
             user.setSize(600,100);
             add(user);
 

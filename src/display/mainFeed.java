@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import function.*;
 import chatting.*;
 
-import static java.lang.System.exit;
-
 
 public class mainFeed extends JFrame{
 
@@ -84,6 +82,14 @@ public class mainFeed extends JFrame{
         session_id=session;
         this.user_id=user_id;
 
+//         client.send_messege();
+//         client.invite_room();
+//         client.make_room();
+//         client.exit_room();
+//         client.logout();
+//         client.send_file();
+
+
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
 
@@ -118,6 +124,7 @@ public class mainFeed extends JFrame{
         feed_data.setType16(16,user_id);
         feed_data.start();
         feed_num = feed_data.getfeed_list();
+
         feedscroll.getVerticalScrollBar().setUnitIncrement(15);
 
         GridBagLayout Gbag = new GridBagLayout();
@@ -243,7 +250,7 @@ public class mainFeed extends JFrame{
         });
     }
 
-    public class feed extends JPanel{
+    public static class feed extends JPanel{
         private String feed_id;
         private String message;
         private String file_name;
@@ -262,8 +269,7 @@ public class mainFeed extends JFrame{
         private JButton comment_button;
 
         private JButton like_button;
-        feed(String feed_id){
-            //get_data_t feed_data = new get_data_t(feed_id, message, Tag, file_name);
+        public feed(String feed_id){
             get_data feed_data = new get_data();
             feed_data.setType18(18,feed_id);
             feed_data.start();
@@ -282,7 +288,7 @@ public class mainFeed extends JFrame{
 
 
             setSize(600,800);
-            setBackground(new Color(0,0,0));
+            setBackground(new Color(255,255,255));
             GridBagLayout Gbag = new GridBagLayout();
             setLayout(Gbag);
             GridBagConstraints gbc = new GridBagConstraints();
@@ -363,6 +369,7 @@ public class mainFeed extends JFrame{
 
             //댓글 버튼
             comment_button = new JButton("comment");
+            comment_button.setBackground(new Color(255,255,255));
             comment_button.setSize(150,100);
             gbc.gridx = 6;
             gbc.gridy = 14;
@@ -382,6 +389,7 @@ public class mainFeed extends JFrame{
             });
 
             like_button = new JButton("like");
+            like_button.setBackground(new Color(255,255,255));
             like_button.setSize(150,100);
             gbc.gridx = 7;
             gbc.gridy = 14;

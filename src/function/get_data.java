@@ -91,6 +91,10 @@ public class get_data{
         this.typeofrequest = typeofrequest;
         this.post_id = post_id;
     }
+    public void setType22(int typeofrequest, String user_id) {
+        this.typeofrequest = typeofrequest;
+        this.user_id = user_id;
+    }
     public void request(protocol content){
         try{
             this.oos.writeObject(content); // 프로토콜로 담은 내용 전송
@@ -364,6 +368,23 @@ public class get_data{
                         if(t.getTypeofrequest() == 21){
                             poster_id = t.getSender();
                             System.out.println(poster_id);
+                            break;
+                        }
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+                }
+            }
+            else if(typeofrequest == 22){
+                protocol p = new protocol(typeofrequest, user_id);
+                request(p);
+                this.ois = new ObjectInputStream(is);
+                while(true){
+                    try{
+                        protocol t = (protocol) ois.readObject();
+                        if(t.getTypeofrequest() == 22){
+                            list = t.getList();
                             break;
                         }
                     }
