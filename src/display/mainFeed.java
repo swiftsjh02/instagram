@@ -66,6 +66,7 @@ public class mainFeed extends JFrame{
         }
         public void run() {
             for(int k=i; k<i+4; k++){
+                System.out.println("쓰레드k : " + k);
                 feed pane = new feed(feed_num.get(k),user_id);
                 gbc.fill = GridBagConstraints.BOTH;
                 gbc.ipadx = 0;
