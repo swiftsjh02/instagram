@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import function.*;
 import chatting.*;
 
+import static java.lang.System.exit;
+
 
 public class mainFeed extends JFrame{
 
@@ -64,7 +66,7 @@ public class mainFeed extends JFrame{
         }
         public void run() {
             for(int k=i; k<i+4; k++){
-                feed pane = new feed(feed_num.get(k),user_id);
+                feed pane = new feed(feed_num.get(k));
                 gbc.fill = GridBagConstraints.BOTH;
                 gbc.ipadx = 0;
                 gbc.ipady = 0;
@@ -81,14 +83,6 @@ public class mainFeed extends JFrame{
 
         session_id=session;
         this.user_id=user_id;
-
-//         client.send_messege();
-//         client.invite_room();
-//         client.make_room();
-//         client.exit_room();
-//         client.logout();
-//         client.send_file();
-
 
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
@@ -124,7 +118,6 @@ public class mainFeed extends JFrame{
         feed_data.setType16(16,user_id);
         feed_data.start();
         feed_num = feed_data.getfeed_list();
-
         feedscroll.getVerticalScrollBar().setUnitIncrement(15);
 
         GridBagLayout Gbag = new GridBagLayout();
@@ -145,7 +138,7 @@ public class mainFeed extends JFrame{
                 thread.start();
             }
             for(int i=feed_num.size()-4; i<feed_num.size(); i++){
-                feed pane = new feed(feed_num.get(i),user_id);
+                feed pane = new feed(feed_num.get(i));
                 gbc.fill = GridBagConstraints.BOTH;
                 gbc.ipadx = 0;
                 gbc.ipady = 0;
@@ -250,7 +243,7 @@ public class mainFeed extends JFrame{
         });
     }
 
-    public static class feed extends JPanel{
+    public class feed extends JPanel{
         private String feed_id;
         private String message;
         private String file_name;
@@ -268,10 +261,9 @@ public class mainFeed extends JFrame{
         private JTextField comment;
         private JButton comment_button;
 
-        private JLabel like_num;
-
         private JButton like_button;
-        public feed(String feed_id,String user_id){
+        feed(String feed_id){
+            //get_data_t feed_data = new get_data_t(feed_id, message, Tag, file_name);
             get_data feed_data = new get_data();
             feed_data.setType18(18,feed_id);
             feed_data.start();
@@ -283,11 +275,16 @@ public class mainFeed extends JFrame{
             feed_data.setType21(21,feed_id);
             feed_data.start();
             writer = feed_data.getposter_id();
-            File img_tmp=new File("post/"+writer+"/"+file_name);
+            File img_tmp = new File("post/"+writer+"/"+file_name);
             if(img_tmp.exists()==false){
-                imgdownload tmp = new imgdownload(writer,file_name);
+                try{imgdownload tmp = new imgdownload(writer,file_name);
+                    tmp.start();
+                    tmp.wait();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
             }
-
 
             setSize(600,800);
             setBackground(new Color(0,0,0));
@@ -302,29 +299,14 @@ public class mainFeed extends JFrame{
             poster.setForeground(new Color(255,255,255));
             gbc.gridx = 0;
             gbc.gridy = 0;
-            gbc.gridwidth = 6;
+            gbc.gridwidth = 8;
             gbc.gridheight = 1;
-            gbc.weightx = 0.75;
+            gbc.weightx = 1.0;
             gbc.weighty = 0.1;
             gbc.ipadx = 0;
             gbc.ipady = 0;
             add(poster,gbc);
 
-            //좋아요 갯수
-            like_num = new JLabel();
-            feed_data.setType23(23,feed_id);
-            feed_data.start();
-            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-            like_num.setForeground(new Color(255,255,255));
-            gbc.gridx = 6;
-            gbc.gridy = 0;
-            gbc.gridwidth = 2;
-            gbc.gridheight = 1;
-            gbc.weightx = 0.25;
-            gbc.weighty = 0.1;
-            gbc.ipadx = 0;
-            gbc.ipady = 0;
-            add(like_num,gbc);
             //이미지 추가
             img = new JLabel();
             img.setSize(600,400);
@@ -386,7 +368,6 @@ public class mainFeed extends JFrame{
 
             //댓글 버튼
             comment_button = new JButton("comment");
-            comment_button.setBackground(new Color(255,255,255));
             comment_button.setSize(150,100);
             gbc.gridx = 6;
             gbc.gridy = 14;
@@ -406,7 +387,6 @@ public class mainFeed extends JFrame{
             });
 
             like_button = new JButton("like");
-            like_button.setBackground(new Color(255,255,255));
             like_button.setSize(150,100);
             gbc.gridx = 7;
             gbc.gridy = 14;
@@ -418,67 +398,16 @@ public class mainFeed extends JFrame{
             gbc.ipady = 0;
             add(like_button,gbc);
 
-            get_data Data = new get_data();
-            Data.setType49(49, user_id, this.feed_id);
-            Data.start();
-
-            if(Data.getHeart_yes_or_no().equals("true")){
-                like_button.setText("unlike");
-                like_button.setBackground(new Color(255,0,0));
-            }
-            else{
-                like_button.setBackground(new Color(255,255,255));
-                like_button.setText("like");
-            }
+            like_check like = new like_check(like_button, user_id, this.feed_id);
+            like.start();
             like_button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(Data.getHeart_yes_or_no().equals("false")){
-                        get_data Data1 = new get_data();
-                        Data1.setType50(50,user_id,feed_id);
-                        Data1.start();
-                        get_data Data = new get_data();
-                        Data.setType49(49, user_id,feed_id);
-                        Data.start();
-                        if(Data.getHeart_yes_or_no().equals("true")){
-                            like_button.setText("unlike");
-                            like_button.setBackground(new Color(255,0,0));
-                            feed_data.setType23(23,feed_id);
-                            feed_data.start();
-                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-                        }
-                        else{
-                            like_button.setBackground(new Color(255,255,255));
-                            like_button.setText("like");
-                            feed_data.setType23(23,feed_id);
-                            feed_data.start();
-                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-                        }
-                    }
-                    else{
-                        get_data Data1 = new get_data();
-                        Data1.setType50(50,user_id,feed_id);
-                        Data1.start();
-                        get_data Data = new get_data();
-                        Data.setType49(49, user_id,feed_id);
-                        Data.start();
-                        if(Data.getHeart_yes_or_no().equals("true")){
-                            like_button.setText("unlike");
-                            like_button.setBackground(new Color(255,0,0));
-                            feed_data.setType23(23,feed_id);
-                            feed_data.start();
-                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-                        }
-                        else{
-                            like_button.setBackground(new Color(255,255,255));
-                            like_button.setText("like");
-                            feed_data.setType23(23,feed_id);
-                            feed_data.start();
-                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
-                        }
-                    }
+                    like_check like = new like_check(like_button, user_id, feed_id);
+                    like.start();
                 }
             });
+
         }
     }
 
