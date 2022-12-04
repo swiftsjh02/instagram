@@ -4,9 +4,7 @@ import javax.xml.crypto.Data;
 import java.io.*;
 import java.net.Socket;
 
-public class imgdownload {
-
-
+public class imgdownload extends Thread{
 
     private String writer;
 
@@ -15,13 +13,16 @@ public class imgdownload {
     private String filesavepath="post/";
 
     private Socket socket;
-    public imgdownload(String writer1, String file_name1){
+    public imgdownload(String writer1, String file_name1) {
 
         this.writer = writer1;
         this.file_name = file_name1;
 
-        System.out.println(writer +" " +file_name);
+        System.out.println(writer + " " + file_name);
 
+    }
+    public void run(){
+        System.out.println("이미지 다운로드 쓰레드 실행");
         try{
             socket = new Socket("swiftsjh.tplinkdns.com",9797);
             OutputStream os = socket.getOutputStream();
@@ -69,6 +70,7 @@ public class imgdownload {
             System.out.println("image receive complete");
 
             socket.close();
+            join();
         }catch (Exception e) {
             e.printStackTrace();
         }

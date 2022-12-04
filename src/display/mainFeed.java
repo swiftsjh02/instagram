@@ -275,11 +275,16 @@ public class mainFeed extends JFrame{
             feed_data.setType21(21,feed_id);
             feed_data.start();
             writer = feed_data.getposter_id();
-            File img_tmp=new File("post/"+writer+"/"+file_name);
+            File img_tmp = new File("post/"+writer+"/"+file_name);
             if(img_tmp.exists()==false){
-                imgdownload tmp = new imgdownload(writer,file_name);
+                try{imgdownload tmp = new imgdownload(writer,file_name);
+                    tmp.start();
+                    tmp.wait();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
             }
-
 
             setSize(600,800);
             setBackground(new Color(0,0,0));
@@ -393,55 +398,16 @@ public class mainFeed extends JFrame{
             gbc.ipady = 0;
             add(like_button,gbc);
 
-            get_data Data = new get_data();
-            Data.setType49(49, user_id, this.feed_id);
-            Data.start();
-
-            if(Data.getHeart_yes_or_no().equals("true")){
-                like_button.setText("unlike");
-                like_button.setBackground(new Color(255,0,0));
-            }
-            else{
-                like_button.setBackground(new Color(255,255,255));
-                like_button.setText("like");
-            }
+            like_check like = new like_check(like_button, user_id, this.feed_id);
+            like.start();
             like_button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(Data.getHeart_yes_or_no().equals("false")){
-                        get_data Data1 = new get_data();
-                        Data1.setType50(50,user_id,feed_id);
-                        Data1.start();
-                        get_data Data = new get_data();
-                        Data.setType49(49, user_id,feed_id);
-                        Data.start();
-                        if(Data.getHeart_yes_or_no().equals("true")){
-                            like_button.setText("unlike");
-                            like_button.setBackground(new Color(255,0,0));
-                        }
-                        else{
-                            like_button.setBackground(new Color(255,255,255));
-                            like_button.setText("like");
-                        }
-                    }
-                    else{
-                        get_data Data1 = new get_data();
-                        Data1.setType50(50,user_id,feed_id);
-                        Data1.start();
-                        get_data Data = new get_data();
-                        Data.setType49(49, user_id,feed_id);
-                        Data.start();
-                        if(Data.getHeart_yes_or_no().equals("true")){
-                            like_button.setText("unlike");
-                            like_button.setBackground(new Color(255,0,0));
-                        }
-                        else{
-                            like_button.setBackground(new Color(255,255,255));
-                            like_button.setText("like");
-                        }
-                    }
+                    like_check like = new like_check(like_button, user_id, feed_id);
+                    like.start();
                 }
             });
+
         }
     }
 
