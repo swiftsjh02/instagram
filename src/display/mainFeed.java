@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import function.*;
 import chatting.*;
 
+import static java.lang.System.exit;
+
 
 public class mainFeed extends JFrame{
 
@@ -81,14 +83,6 @@ public class mainFeed extends JFrame{
 
         session_id=session;
         this.user_id=user_id;
-
-//         client.send_messege();
-//         client.invite_room();
-//         client.make_room();
-//         client.exit_room();
-//         client.logout();
-//         client.send_file();
-
 
         ImgSetSize home = new ImgSetSize("src/IMG/home.png", 50, 50);
         homeButton.setIcon(home.getImg());
@@ -250,7 +244,7 @@ public class mainFeed extends JFrame{
         });
     }
 
-    public static class feed extends JPanel{
+    public class feed extends JPanel{
         private String feed_id;
         private String message;
         private String file_name;
@@ -285,7 +279,13 @@ public class mainFeed extends JFrame{
             writer = feed_data.getposter_id();
             File img_tmp=new File("post/"+writer+"/"+file_name);
             if(img_tmp.exists()==false){
-                imgdownload tmp = new imgdownload(writer,file_name);
+                try{imgdownload tmp = new imgdownload(writer,file_name);
+                    tmp.start();
+                    tmp.join();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
             }
 
 
