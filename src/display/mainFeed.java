@@ -208,7 +208,7 @@ public class mainFeed extends JFrame{
         });
     }
 
-    public class feed extends JPanel{
+    public static class feed extends JPanel{
         private String feed_id;
         private String message;
         private String file_name;
@@ -227,7 +227,7 @@ public class mainFeed extends JFrame{
         private JButton comment_button;
 
         private JButton like_button;
-        feed(String feed_id){
+        public feed(String feed_id){
             get_data feed_data = new get_data();
             feed_data.setType18(18,feed_id);
             feed_data.start();

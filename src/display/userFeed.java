@@ -2,15 +2,14 @@ package display;
 
 import chatting.ListeningThread;
 import chatting.chatting_client;
-import function.ImgSetSize;
-import function.follow;
-import function.get_data;
-import function.unfollow;
+import function.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -98,19 +97,12 @@ public class userFeed extends JFrame{
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        ArrayList<Integer> post_list = new ArrayList<Integer>();
-        // get_post_list();
-        post_list.add(1);
-        post_list.add(2);
-        post_list.add(3);
-        post_list.add(4);
-        post_list.add(5);
-        post_list.add(6);
-        post_list.add(7);
-        post_list.add(8);
-        post_list.add(9);
-        post_list.add(10);
-        post_list.add(11);
+        ArrayList<String> post_list = new ArrayList<String>();
+
+        get_data a = new get_data();
+        a.setType22(22,id);
+        a.start();
+        post_list = a.getfeed_list();
 
         post_scroll.getVerticalScrollBar().setUnitIncrement(15);
 
@@ -120,10 +112,10 @@ public class userFeed extends JFrame{
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         for(int i = 0;i<post_list.size();i++){
-            post pane = new post();
+            post pane = new post(post_list.get(i));
             gbc.fill = GridBagConstraints.BOTH;
-            gbc.ipadx = 200;
-            gbc.ipady = 200;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
             gbc.gridx = i%3;
             gbc.gridy = i/3;
             Gbag.setConstraints(pane,gbc);
@@ -263,22 +255,55 @@ public class userFeed extends JFrame{
     public class post extends JPanel{
         private JButton post_num;
 
-        post(){
+        private String feed;
+
+        post(String feed_id){
+            feed = feed_id;
             setLayout(new GridLayout(1,1));
             setSize(200,200);
             post_num = new JButton();
             post_num.setSize(200,200);
-            add(post_num);
+            post_num.setBackground(new Color(255,255,255));
+            get_data a = new get_data();
+            a.setType18(18,feed_id);
+            a.start();
+            a.setType21(21,feed_id);
+            a.start();
 
+            String file_name = a.getFile_name();
+            String writer = a.getposter_id();
+            ImgSetSize feed_img = new ImgSetSize("post/"+writer+"/"+file_name, 200, 200);
+            post_num.setIcon(feed_img.getImg());
+
+            add(post_num);
 
             post_num.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    display.post a = new display.post(session,user_id,client,t1);
+//                    display.post a = new display.post(session,user_id,client,t1);
+//                    a.setVisible(true);
+//                    dispose();
+
+                    JFrame a = new JFrame();
+                    display.mainFeed.feed n = new display.mainFeed.feed(feed_id);
+                    a.setContentPane(n);
+                    a.setSize(850,1000);
+                    a.addWindowListener(new JFrameWindowClosingEventHandler());
+
                     a.setVisible(true);
                     dispose();
                 }
             });
+
+
+        }
+        class JFrameWindowClosingEventHandler extends WindowAdapter {
+            public void windowClosing(WindowEvent e) {
+                JFrame frame = (JFrame)e.getWindow();
+                userFeed a = new userFeed(session,user_id,id,client,t1);
+                a.setVisible(true);
+                frame.dispose();
+            }
         }
     }
 }
