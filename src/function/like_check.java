@@ -27,7 +27,9 @@ public class like_check extends Thread{
     }
     public void request(protocol content){
         try{
-            System.out.println(content.getTypeofrequest());
+            System.out.println("typeofrequset : " + content.getTypeofrequest());
+            System.out.println("feed_id : " + content.getFeed_id());
+            System.out.println("user_id : " + content.getSender());
             this.oos.writeObject(content); // 프로토콜로 담은 내용 전송
             this.oos.flush();
         }
