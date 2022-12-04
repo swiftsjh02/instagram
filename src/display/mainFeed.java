@@ -279,7 +279,7 @@ public class mainFeed extends JFrame{
             if(img_tmp.exists()==false){
                 try{imgdownload tmp = new imgdownload(writer,file_name);
                     tmp.start();
-                    tmp.wait();
+                    tmp.join();
                 }
                 catch(Exception e){
                     e.printStackTrace();

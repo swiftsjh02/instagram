@@ -70,7 +70,6 @@ public class imgdownload extends Thread{
             System.out.println("image receive complete");
 
             socket.close();
-            join();
         }catch (Exception e) {
             e.printStackTrace();
         }
