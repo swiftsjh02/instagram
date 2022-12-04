@@ -268,7 +268,7 @@ public class mainFeed extends JFrame{
         private JTextField comment;
         private JButton comment_button;
 
-
+        private JLabel like_num;
 
         private JButton like_button;
         public feed(String feed_id,String user_id){
@@ -302,14 +302,29 @@ public class mainFeed extends JFrame{
             poster.setForeground(new Color(255,255,255));
             gbc.gridx = 0;
             gbc.gridy = 0;
-            gbc.gridwidth = 8;
+            gbc.gridwidth = 6;
             gbc.gridheight = 1;
-            gbc.weightx = 1.0;
+            gbc.weightx = 0.75;
             gbc.weighty = 0.1;
             gbc.ipadx = 0;
             gbc.ipady = 0;
             add(poster,gbc);
 
+            //좋아요 갯수
+            like_num = new JLabel();
+            feed_data.setType23(23,feed_id);
+            feed_data.start();
+            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
+            like_num.setForeground(new Color(255,255,255));
+            gbc.gridx = 6;
+            gbc.gridy = 0;
+            gbc.gridwidth = 2;
+            gbc.gridheight = 1;
+            gbc.weightx = 0.25;
+            gbc.weighty = 0.1;
+            gbc.ipadx = 0;
+            gbc.ipady = 0;
+            add(like_num,gbc);
             //이미지 추가
             img = new JLabel();
             img.setSize(600,400);
@@ -428,10 +443,16 @@ public class mainFeed extends JFrame{
                         if(Data.getHeart_yes_or_no().equals("true")){
                             like_button.setText("unlike");
                             like_button.setBackground(new Color(255,0,0));
+                            feed_data.setType23(23,feed_id);
+                            feed_data.start();
+                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
                         }
                         else{
                             like_button.setBackground(new Color(255,255,255));
                             like_button.setText("like");
+                            feed_data.setType23(23,feed_id);
+                            feed_data.start();
+                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
                         }
                     }
                     else{
@@ -444,10 +465,16 @@ public class mainFeed extends JFrame{
                         if(Data.getHeart_yes_or_no().equals("true")){
                             like_button.setText("unlike");
                             like_button.setBackground(new Color(255,0,0));
+                            feed_data.setType23(23,feed_id);
+                            feed_data.start();
+                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
                         }
                         else{
                             like_button.setBackground(new Color(255,255,255));
                             like_button.setText("like");
+                            feed_data.setType23(23,feed_id);
+                            feed_data.start();
+                            like_num.setText("좋아요 : " + String.valueOf(feed_data.getLikeNum()));
                         }
                     }
                 }

@@ -147,7 +147,9 @@ public class protocol implements Serializable {
     public String getFollowing() {
         return following;
     }
-
+    public int getLikeNum(){
+        return num;
+    }
     //make setter function
     public void setTime() {
         LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
