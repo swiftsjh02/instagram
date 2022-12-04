@@ -64,7 +64,7 @@ public class mainFeed extends JFrame{
         }
         public void run() {
             for(int k=i; k<i+4; k++){
-                feed pane = new feed(feed_num.get(k));
+                feed pane = new feed(feed_num.get(k),user_id);
                 gbc.fill = GridBagConstraints.BOTH;
                 gbc.ipadx = 0;
                 gbc.ipady = 0;
@@ -145,7 +145,7 @@ public class mainFeed extends JFrame{
                 thread.start();
             }
             for(int i=feed_num.size()-4; i<feed_num.size(); i++){
-                feed pane = new feed(feed_num.get(i));
+                feed pane = new feed(feed_num.get(i),user_id);
                 gbc.fill = GridBagConstraints.BOTH;
                 gbc.ipadx = 0;
                 gbc.ipady = 0;
@@ -268,8 +268,10 @@ public class mainFeed extends JFrame{
         private JTextField comment;
         private JButton comment_button;
 
+
+
         private JButton like_button;
-        public feed(String feed_id){
+        public feed(String feed_id,String user_id){
             get_data feed_data = new get_data();
             feed_data.setType18(18,feed_id);
             feed_data.start();
@@ -288,7 +290,7 @@ public class mainFeed extends JFrame{
 
 
             setSize(600,800);
-            setBackground(new Color(255,255,255));
+            setBackground(new Color(0,0,0));
             GridBagLayout Gbag = new GridBagLayout();
             setLayout(Gbag);
             GridBagConstraints gbc = new GridBagConstraints();

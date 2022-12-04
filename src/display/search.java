@@ -174,7 +174,7 @@ public class search extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JFrame a = new JFrame();
-                    display.mainFeed.feed n = new display.mainFeed.feed(feed_id);
+                    display.mainFeed.feed n = new display.mainFeed.feed(feed_id,user_id);
                     a.setContentPane(n);
                     a.setSize(850,1000);
                     a.addWindowListener(new JFrameWindowClosingEventHandler());
