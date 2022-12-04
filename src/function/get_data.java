@@ -5,9 +5,7 @@ import chatting.protocol;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-
-
-public class get_data {
+public class get_data{
     public get_data(){
         // 빈 생성자
     }
@@ -27,6 +25,7 @@ public class get_data {
     private ArrayList<String> userlist_in_room; // 방에 있는 유저 목록
     private ArrayList<String> allUserList; // 전체 유저 목록
     private String follow_yes_or_no; // 팔로우 여부
+    private String heart_yes_or_no; // 하트 여부
     private int followNum; // 팔로우 수
     private int followerNum; // 팔로워 수
     private int postNum; // 게시물 수
@@ -37,10 +36,19 @@ public class get_data {
     private String file_name;
 
     private String feed_id;
-
     private String post_id;
     private String poster_id;
 
+    public void setType49(int typeofrequest, String user_id, String feed_id){
+        this.typeofrequest = typeofrequest;
+        this.user_id = user_id;
+        this.feed_id = feed_id;
+    }
+    public void setType50(int typeofrequest, String user_id, String feed_id){
+        this.typeofrequest = typeofrequest;
+        this.user_id = user_id;
+        this.feed_id = feed_id;
+    }
     public void setType9(int typeofrequset, String user_id, String id){
         this.typeofrequest = typeofrequset;
         this.user_id = user_id;
@@ -71,14 +79,6 @@ public class get_data {
         this.typeofrequest = typeofrequest;
         this.user_id = user_id;
     }
-
-    public void setType17(int typeofrequest, String user_id, String message, ArrayList<String> tag, String file) {
-        this.typeofrequest = typeofrequest;
-        this.user_id = user_id;
-        this.Tag_list = tag;
-        this.message = message;
-        this.file_name = file;
-    }
     public void setType18(int typeofrequest, String feed_id) {
         this.typeofrequest = typeofrequest;
         this.feed_id = feed_id;
@@ -104,7 +104,6 @@ public class get_data {
     public ArrayList<String> getMy_room_list() {
         return my_room_list;
     }
-
     public ArrayList<String> get_users_in_room() {
         return userlist_in_room;
     }
@@ -124,6 +123,9 @@ public class get_data {
     }
     public String getFollow_yes_or_no() {
         return follow_yes_or_no;
+    }
+    public String getHeart_yes_or_no() {
+        return heart_yes_or_no;
     }
     public String getMessage(){
         return message;
@@ -158,6 +160,39 @@ public class get_data {
             this.pw = new PrintWriter(bos);
             if(typeofrequest == 1){
 
+            }
+            else if(typeofrequest == 49){
+                protocol p = new protocol(typeofrequest, user_id, feed_id);
+                request(p);
+                this.ois = new ObjectInputStream(is);
+                while(true){
+                    try{
+                        protocol t = (protocol) ois.readObject();
+                        if(t.getTypeofrequest() == 49){
+                            this.heart_yes_or_no = t.getHeart();
+                            break;
+                        }
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+                }
+            }
+            else if(typeofrequest == 50){
+                protocol p = new protocol(typeofrequest, user_id, feed_id);
+                request(p);
+                this.ois = new ObjectInputStream(is);
+                while(true){
+                    try{
+                        protocol t = (protocol) ois.readObject();
+                        if(t.getTypeofrequest() == 50){
+                            break;
+                        }
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                    }
+                }
             }
             else if (typeofrequest == 9){
                 protocol p = new protocol(typeofrequest, user_id,id);
@@ -348,6 +383,7 @@ public class get_data {
             bos.close();
             pw.close();
             socket.close();
+            System.out.println(typeofrequest);
             System.out.println("서버 연결 종료");
         }catch (Exception e){
             e.printStackTrace();
