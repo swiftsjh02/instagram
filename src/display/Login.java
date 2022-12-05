@@ -1,6 +1,7 @@
 package display;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
 
 import chatting.ListeningThread;
 import chatting.chatting_client;
@@ -14,9 +15,32 @@ public class Login extends JFrame {
     private JLabel Icon;
     private JPasswordField txtpwd;
 
+    public String makedir(){
+
+        String path = "chatting_data";
+        File Folder = new File(path);
+
+        // 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
+        if (!Folder.exists()) {
+            try{
+                Folder.mkdir(); //폴더 생성합니다.
+                System.out.println("폴더가 생성되었습니다.");
+                return Folder.getAbsolutePath();
+            }
+            catch(Exception e){
+                e.getStackTrace();
+            }
+        }else {
+            System.out.println("이미 폴더가 생성되어 있습니다.");
+            return null;
+        }
+        return null;
+    }
+
 
     public Login() {
         // 캐싱된 체팅 파일들 모두 지우기
+        makedir();
         new clean_cache("chatting_data/");
         txtId.setText("전화번호, 사용자이름 또는 이메일");
         txtpwd.setText("비밀번호486");
