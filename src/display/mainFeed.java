@@ -127,8 +127,20 @@ public class mainFeed extends JFrame{
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-
-        if(feed_num.size() % 4 == 0){
+        if(feed_num.size() < 4){
+            for(int i=0; i< feed_num.size(); i++) {
+                feed pane = new feed(feed_num.get(i),user_id);
+                gbc.fill = GridBagConstraints.BOTH;
+                gbc.ipadx = 0;
+                gbc.ipady = 0;
+                gbc.gridx = 0;
+                gbc.gridy = i;
+                Gbag.setConstraints(pane, gbc);
+                feed.add(pane);
+                feed.updateUI();
+            }
+        }
+        else if(feed_num.size() % 4 == 0){
             for(int i=0; i<feed_num.size(); i+=4){
                 make_feed thread = new make_feed(feed_num,feed,gbc,Gbag,i);
                 thread.start();
