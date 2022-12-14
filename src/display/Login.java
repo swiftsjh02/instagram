@@ -62,6 +62,8 @@ public class Login extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 // 마우스 클릭했을때
                 txtId.setText("");
+
+
             }
             @Override
             public void mousePressed(MouseEvent e) {}
