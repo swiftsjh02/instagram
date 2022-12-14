@@ -98,6 +98,19 @@ public class search extends JFrame {
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
 
+        if(post_list.size() < 4){
+            for(int i=0; i< post_list.size(); i++) {
+                post pane = new post(post_list.get(i));
+                gbc.fill = GridBagConstraints.BOTH;
+                gbc.ipadx = 0;
+                gbc.ipady = 0;
+                gbc.gridx = i % 3;
+                gbc.gridy = i / 3;
+                Gbag.setConstraints(pane, gbc);
+                scroll.add(pane);
+                scroll.updateUI();
+            }
+        }
         if(post_list.size() % 4 == 0){
             for(int i=0; i<post_list.size(); i+=4){
                 make_feed thread = new make_feed(post_list,scroll,gbc,Gbag,i);
